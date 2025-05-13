@@ -21,24 +21,41 @@ const Cards = () => {
   }, []);
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">📇 Cartes Sauvegardées</h2>
-      {cards.length === 0 ? (
-        <p>Aucune carte enregistrée pour le moment.</p>
-      ) : (
-        <div className="grid gap-4">
-          {cards.map((card, index) => (
-            <div key={index} className="border rounded p-4 shadow">
-              <h3 className="text-lg font-semibold">{card.nom}</h3>
-              <p>📞 {card.telephone}</p>
-              <p>📧 {card.email}</p>
-              <p>🌐 {card.site}</p>
-              <p>🔗 {card.reseaux}</p>
-              <p className="text-sm text-gray-600 mt-2">{card.notes}</p>
-            </div>
-          ))}
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="🔍 Rechercher une carte..."
+            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
-      )}
+
+        {cards.length === 0 ? (
+          <p className="text-center text-gray-500">
+            Aucune carte enregistrée pour le moment.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition"
+              >
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  {card.nom || "Nom inconnu"}
+                </h3>
+                <div className="space-y-1 text-sm text-gray-600">
+                  <p>📞 {card.telephone || "Non précisé"}</p>
+                  <p>📧 {card.email || "Non précisé"}</p>
+                  <p>🌐 {card.site || "Non précisé"}</p>
+                  <p>🔗 {card.reseaux || "Non précisé"}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

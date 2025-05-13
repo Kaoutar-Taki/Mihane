@@ -42,7 +42,7 @@ const Validate = () => {
 
       console.log("✅ Saved:", response.data);
       alert("Carte enregistrée !");
-      navigate("/cards");
+      navigate("/");
     } catch (error) {
       console.error("❌ Save error:", error);
       alert("Erreur lors de l'enregistrement");

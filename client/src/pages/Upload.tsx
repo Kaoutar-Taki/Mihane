@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Tesseract from "tesseract.js";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const Upload = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -14,7 +14,7 @@ const Upload = () => {
     if (file) {
       setImage(file);
       setPreview(URL.createObjectURL(file));
-      setText(""); // reset
+      setText(""); 
     }
   };
 
@@ -28,7 +28,6 @@ const Upload = () => {
       const extractedText = result.data.text;
       setText(extractedText);
 
-      // 👉 Navigate vers la page de validation avec le texte OCR
       navigate("/validate", { state: { text: extractedText } });
     } catch (err) {
       console.error("OCR error:", err);
@@ -40,12 +39,8 @@ const Upload = () => {
 
   return (
     <div className="p-6 max-w-md mx-auto space-y-4">
-      <Link to="/cards" className="text-blue-600 underline">
-        Voir mes cartes enregistrées
-      </Link>
-
       <h2 className="text-2xl font-bold">📤 Upload Carte Visite</h2>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+      <input type="file" accept="image/*" onChange={handleImageChange} className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
       {preview && (
         <>
           <img src={preview} alt="Preview" className="w-full border rounded" />
