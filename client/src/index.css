@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@import "@fontsource/tajawal/400.css";
+@import "@fontsource/tajawal/700.css";
+
+@theme {
+    --color-primary: #F97316;
+    --color-secondary: #FACC15;
+    --color-light: #FFF7ED;
+    --color-dark: #1F2937;
+    --font-tajawal: "Tajawal", sans-serif;
+}
+
+body {
+    @apply font-tajawal bg-light text-dark;
+}
+input {
+    @apply w-full rounded border border-gray-300 p-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary transition;
+}
