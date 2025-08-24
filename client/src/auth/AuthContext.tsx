@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export type Role = "client" | "pro";
 
@@ -52,6 +53,7 @@ const decryptData = (encrypted: string): any => {
 };
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation();
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -119,7 +121,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       store.setItem("auth", encryptData(authData));
     } catch (err) {
       const errorMessage =
-        err instanceof Error ? err.message : "خطأ في تسجيل الدخول";
+        err instanceof Error ? err.message : t("auth.errors.signInError");
       setError(errorMessage);
       throw new Error(errorMessage);
     } finally {
@@ -147,6 +149,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  const { t } = useTranslation();
+  if (!ctx) throw new Error(t("auth.errors.contextError"));
   return ctx;
 };
