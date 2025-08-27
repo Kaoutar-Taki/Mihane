@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": { "ar": "نجار", "fr": "Menuisier" },
+    "image": "/assets/professions/menuisier.jpg"
+  },
+  {
+    "id": 2,
+    "title": { "ar": "كهربائي", "fr": "Électricien" },
+    "image": "/assets/professions/electricien.jpg"
+  },
+  {
+    "id": 3,
+    "title": { "ar": "سباك", "fr": "Plombier" },
+    "image": "/assets/professions/plombier.jpg"
+  },
+  {
+    "id": 4,
+    "title": { "ar": "بناء", "fr": "Maçon" },
+    "image": "/assets/professions/macon.jpg"
+  },
+  {
+    "id": 5,
+    "title": { "ar": "صباغ", "fr": "Peintre" },
+    "image": "/assets/professions/peintre.jpg"
+  },
+  {
+    "id": 6,
+    "title": { "ar": "فلاح", "fr": "Agriculteur" },
+    "image": "/assets/professions/agriculture.jpg"
+  },
+  {
+    "id": 7,
+    "title": { "ar": "ميكانيكي", "fr": "Mécanicien" },
+    "image": "/assets/professions/mecanicien.jpg"
+  },
+  {
+    "id": 8,
+    "title": { "ar": "حداد", "fr": "Ferronnier" },
+    "image": "/assets/professions/ferronnier.jpg"
+  },
+  {
+    "id": 9,
+    "title": { "ar": "صانع تقليدي", "fr": "Artisan" },
+    "image": "/assets/professions/artisan.jpg"
+  },
+  {
+    "id": 10,
+    "title": { "ar": "خياط", "fr": "Tailleur" },
+    "image": "/assets/professions/tailleur.jpg"
+  },
+  {
+    "id": 11,
+    "title": { "ar": "مُزيّن", "fr": "Décorateur" },
+    "image": "/assets/professions/decorateur.jpg"
+  },
+  {
+    "id": 12,
+    "title": { "ar": "صانع أحذية", "fr": "Cordonnier" },
+    "image": "/assets/professions/cordonnier.webp"
+  },
+  {
+    "id": 13,
+    "title": { "ar": "إسكافي", "fr": "Couturier" },
+    "image": "/assets/professions/couturier.jpg"
+  },
+  {
+    "id": 14,
+    "title": { "ar": "صانع الفخار", "fr": "Potier" },
+    "image": "/assets/professions/potier.jpg"
+  },
+  {
+    "id": 15,
+    "title": { "ar": "صانع الزرابي", "fr": "Tisserand" },
+    "image": "/assets/professions/tisserand.webp"
+  },
+  {
+    "id": 16,
+    "title": { "ar": "عامل زجاج", "fr": "Vitrailliste" },
+    "image": "/assets/professions/vitrier.jpg"
+  },
+  {
+    "id": 17,
+    "title": { "ar": "عامل رخام", "fr": "Marbrier" },
+    "image": "/assets/professions/marbrier.jpeg"
+  },
+  {
+    "id": 18,
+    "title": { "ar": "نجار ألمنيوم", "fr": "Menuisier Aluminium" },
+    "image": "/assets/professions/alu.jpg"
+  },
+  {
+    "id": 19,
+    "title": { "ar": "عامل نظافة", "fr": "Agent de nettoyage" },
+    "image": "/assets/professions/nettoyage.jpg"
+  },
+  {
+    "id": 20,
+    "title": { "ar": "صانع مجوهرات", "fr": "Bijoutier" },
+    "image": "/assets/professions/bijoutier.jpeg"
+  }
+]

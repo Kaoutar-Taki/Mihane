@@ -1,0 +1,253 @@
+[
+  {
+    "id": 1,
+    "userId": 6,
+    "professionId": 4,
+    "categoryId": 1,
+    "title": {
+      "ar": "بناء محترف",
+      "fr": "Maçon professionnel"
+    },
+    "description": {
+      "ar": "بناء محترف مع خبرة أكثر من 15 سنة في البناء والتشييد. متخصص في البناء التقليدي والحديث، الترميم والتجديد.",
+      "fr": "Maçon professionnel avec plus de 15 ans d'expérience en construction. Spécialisé dans la construction traditionnelle et moderne, rénovation et réhabilitation."
+    },
+    "gallery": [
+      "/assets/1.jpg",
+      "/assets/2.jpg",
+      "/assets/3.jpg",
+      "/assets/4.jpg"
+    ],
+    "social": {
+      "facebook": "https://www.facebook.com/nassrine.builder",
+      "instagram": "https://www.instagram.com/nassrine_construction",
+      "website": "https://www.nassrine.builder.ma"
+    },
+    "availability": {
+      "hours": [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "days": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ]
+    },
+    "address": {
+      "ar": "حي المعاريف، شارع الحسن الثاني، الدار البيضاء",
+      "fr": "Quartier Maarif, Avenue Hassan II, Casablanca"
+    },
+    "visibility": "PUBLIC",
+    "verifyStatus": "VERIFIED",
+    "createdAt": "2025-08-25T10:00:00Z",
+    "updatedAt": "2025-08-25T12:00:00Z"
+  },
+  {
+    "id": 2,
+    "userId": 7,
+    "professionId": 5,
+    "categoryId": 1,
+    "title": {
+      "ar": "صباغ محترف - فاس",
+      "fr": "Peintre professionnel - Fès"
+    },
+    "description": {
+      "ar": "صباغ محترف متخصص في الدهانات الداخلية والخارجية. خبرة واسعة في الألوان والتشطيبات الحديثة والديكورية.",
+      "fr": "Peintre professionnel spécialisé en peinture intérieure et extérieure. Large expérience en couleurs et finitions modernes et décoratives."
+    },
+    "gallery": ["/assets/1.jpg", "/assets/2.jpg", "/assets/3.jpg"],
+    "social": {
+      "facebook": "https://www.facebook.com/khaled.painter",
+      "instagram": "https://www.instagram.com/khaled_peinture",
+      "website": "https://www.khaled.painter.ma"
+    },
+    "availability": {
+      "hours": [
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "days": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY"
+      ]
+    },
+    "address": {
+      "ar": "حي الأطلس، شارع محمد الخامس، فاس",
+      "fr": "Quartier Atlas, Avenue Mohammed V, Fès"
+    },
+    "visibility": "PUBLIC",
+    "verifyStatus": "VERIFIED",
+    "createdAt": "2025-08-25T10:00:00Z",
+    "updatedAt": "2025-08-25T12:00:00Z"
+  },
+  {
+    "id": 3,
+    "userId": 8,
+    "professionId": 6,
+    "categoryId": 3,
+    "title": {
+      "ar": "فلاحة محترفة - فاس",
+      "fr": "Agricultrice professionnelle - Fès"
+    },
+    "description": {
+      "ar": "فلاحة محترفة متخصصة في الزراعة العضوية والخضروات الطازجة. خبرة في إدارة المزارع الصغيرة والمتوسطة والبستنة.",
+      "fr": "Agricultrice professionnelle spécialisée en agriculture biologique et légumes frais. Expérience en gestion de petites et moyennes exploitations et jardinage."
+    },
+    "gallery": ["/assets/1.jpg", "/assets/2.jpg", "/assets/3.jpg"],
+    "social": {
+      "facebook": "https://www.facebook.com/nassrine.agriculture",
+      "instagram": "https://www.instagram.com/nassrine_farm",
+      "website": "https://www.nassrine.agriculture.ma"
+    },
+    "availability": {
+      "hours": [
+        "06:00",
+        "07:00",
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "days": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ]
+    },
+    "address": {
+      "ar": "دوار أولاد حميد، طريق مكناس، فاس",
+      "fr": "Douar Oulad Hmid, Route de Meknès, Fès"
+    },
+    "visibility": "PUBLIC",
+    "verifyStatus": "VERIFIED",
+    "createdAt": "2025-08-25T10:00:00Z",
+    "updatedAt": "2025-08-25T12:00:00Z"
+  },
+  {
+    "id": 4,
+    "userId": 9,
+    "professionId": 1,
+    "categoryId": 2,
+    "title": {
+      "ar": "نجار ماهر - مراكش",
+      "fr": "Menuisier habile - Marrakech"
+    },
+    "description": {
+      "ar": "نجار محترف متخصص في الأثاث التقليدي والحديث. خبرة واسعة في النجارة المغربية الأصيلة والديكور الخشبي.",
+      "fr": "Menuisier professionnel spécialisé en mobilier traditionnel et moderne. Large expérience en menuiserie marocaine authentique et décoration en bois."
+    },
+    "gallery": ["/assets/1.jpg", "/assets/2.jpg", "/assets/3.jpg"],
+    "social": {
+      "facebook": "https://www.facebook.com/ahmed.menuisier",
+      "instagram": "https://www.instagram.com/ahmed_wood",
+      "website": "https://www.ahmed.menuisier.ma"
+    },
+    "availability": {
+      "hours": [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ],
+      "days": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY"
+      ]
+    },
+    "address": {
+      "ar": "حي جليز، شارع محمد السادس، مراكش",
+      "fr": "Quartier Guéliz, Avenue Mohammed VI, Marrakech"
+    },
+    "visibility": "PUBLIC",
+    "verifyStatus": "VERIFIED",
+    "createdAt": "2025-08-25T10:00:00Z",
+    "updatedAt": "2025-08-25T12:00:00Z"
+  },
+  {
+    "id": 5,
+    "userId": 10,
+    "professionId": 2,
+    "categoryId": 4,
+    "title": {
+      "ar": "كهربائي محترف - الرباط",
+      "fr": "Électricien professionnel - Rabat"
+    },
+    "description": {
+      "ar": "كهربائي محترف متخصص في التركيبات الكهربائية المنزلية والصناعية. خبرة في الصيانة والإصلاح وأنظمة الإنارة الذكية.",
+      "fr": "Électricien professionnel spécialisé en installations électriques résidentielles et industrielles. Expérience en maintenance, réparation et systèmes d'éclairage intelligent."
+    },
+    "gallery": ["/assets/1.jpg", "/assets/2.jpg", "/assets/3.jpg"],
+    "social": {
+      "facebook": "https://www.facebook.com/youssef.electricien",
+      "instagram": "https://www.instagram.com/youssef_electricien",
+      "website": "https://www.youssef.electricien.ma"
+    },
+    "availability": {
+      "hours": [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "days": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY"
+      ]
+    },
+    "address": {
+      "ar": "حي أكدال، شارع الأمير مولاي عبد الله، الرباط",
+      "fr": "Quartier Agdal, Avenue Prince Moulay Abdellah, Rabat"
+    },
+    "visibility": "PUBLIC",
+    "verifyStatus": "PENDING",
+    "createdAt": "2025-08-25T10:00:00Z",
+    "updatedAt": "2025-08-25T12:00:00Z"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "isActive": true,
+    "question": {
+      "ar": "ما هي منصة مشروع مهن؟",
+      "fr": "Qu'est-ce que la plateforme Projet Mihan ?"
+    },
+    "answer": {
+      "ar": "منصة مشروع مهن هي منصة مغربية تهدف إلى ربط العملاء بأفضل الحرفيين والمهنيين في جميع أنحاء المغرب. نوفر واجهة سهلة الاستخدام للبحث عن الخدمات المطلوبة والتواصل مع المحترفين المؤهلين.",
+      "fr": "La plateforme Projet Mihan est une plateforme marocaine qui vise à connecter les clients avec les meilleurs artisans et professionnels à travers tout le Maroc. Nous fournissons une interface facile à utiliser pour rechercher les services requis et communiquer avec des professionnels qualifiés."
+    }
+  },
+  {
+    "id": 2,
+    "priority": 2,
+    "isActive": true,
+    "question": {
+      "ar": "كيف يمكنني العثور على حرفي مناسب؟",
+      "fr": "Comment puis-je trouver un artisan approprié ?"
+    },
+    "answer": {
+      "ar": "يمكنك البحث عن الحرفيين باستخدام شريط البحث في الصفحة الرئيسية. حدد نوع الخدمة والمنطقة المطلوبة، وستحصل على قائمة بالحرفيين المتاحين مع تقييماتهم وأعمالهم السابقة.",
+      "fr": "Vous pouvez rechercher des artisans en utilisant la barre de recherche sur la page d'accueil. Sélectionnez le type de service et la région souhaitée, et vous obtiendrez une liste des artisans disponibles avec leurs évaluations et leurs travaux précédents."
+    }
+  },
+  {
+    "id": 3,
+    "priority": 3,
+    "isActive": true,
+    "question": {
+      "ar": "هل التسجيل في المنصة مجاني؟",
+      "fr": "L'inscription sur la plateforme est-elle gratuite ?"
+    },
+    "answer": {
+      "ar": "نعم، التسجيل في منصة مشروع مهن مجاني تماماً للعملاء والحرفيين. يمكنك إنشاء حساب والبدء في استخدام جميع الميزات الأساسية دون أي رسوم.",
+      "fr": "Oui, l'inscription sur la plateforme Projet Mihan est entièrement gratuite pour les clients et les artisans. Vous pouvez créer un compte et commencer à utiliser toutes les fonctionnalités de base sans frais."
+    }
+  },
+  {
+    "id": 4,
+    "priority": 4,
+    "isActive": true,
+    "question": {
+      "ar": "كيف تضمنون جودة الحرفيين؟",
+      "fr": "Comment garantissez-vous la qualité des artisans ?"
+    },
+    "answer": {
+      "ar": "نحن نتحقق من هوية جميع الحرفيين المسجلين ونراجع أعمالهم السابقة. كما نعتمد على نظام التقييمات والمراجعات من العملاء السابقين لضمان جودة الخدمات المقدمة.",
+      "fr": "Nous vérifions l'identité de tous les artisans inscrits et examinons leurs travaux précédents. Nous nous appuyons également sur un système d'évaluations et de commentaires des clients précédents pour garantir la qualité des services fournis."
+    }
+  },
+  {
+    "id": 5,
+    "priority": 5,
+    "isActive": true,
+    "question": {
+      "ar": "كيف يتم الدفع للحرفيين؟",
+      "fr": "Comment le paiement aux artisans est-il effectué ?"
+    },
+    "answer": {
+      "ar": "الدفع يتم مباشرة بين العميل والحرفي. المنصة لا تتدخل في عملية الدفع، ولكن ننصح بالاتفاق على طريقة الدفع وتفاصيل العمل قبل البدء في المشروع.",
+      "fr": "Le paiement s'effectue directement entre le client et l'artisan. La plateforme n'intervient pas dans le processus de paiement, mais nous recommandons de convenir du mode de paiement et des détails du travail avant de commencer le projet."
+    }
+  },
+  {
+    "id": 6,
+    "priority": 6,
+    "isActive": false,
+    "question": {
+      "ar": "ماذا لو واجهت مشكلة مع حرفي؟",
+      "fr": "Que faire si j'ai un problème avec un artisan ?"
+    },
+    "answer": {
+      "ar": "في حالة وجود أي مشكلة، يمكنك التواصل مع فريق الدعم الخاص بنا عبر صفحة الاتصال. سنعمل على حل المشكلة بأسرع وقت ممكن وضمان حصولك على أفضل تجربة.",
+      "fr": "En cas de problème, vous pouvez contacter notre équipe de support via la page de contact. Nous travaillerons à résoudre le problème le plus rapidement possible et à vous garantir la meilleure expérience."
+    }
+  }
+]

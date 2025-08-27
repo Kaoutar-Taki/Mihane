@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "ar": "جهة طنجة تطوان الحسيمة",
+    "fr": "Tanger-Tétouan-Al Hoceïma"
+  },
+  { "id": 2, "ar": "جهة الشرق", "fr": "L'Oriental" },
+  { "id": 3, "ar": "جهة فاس مكناس", "fr": "Fès-Meknès" },
+  { "id": 4, "ar": "جهة الرباط سلا القنيطرة", "fr": "Rabat-Salé-Kénitra" },
+  { "id": 5, "ar": "جهة بني ملال خنيفرة", "fr": "Béni Mellal-Khénifra" },
+  { "id": 6, "ar": "جهة الدار البيضاء سطات", "fr": "Casablanca-Settat" },
+  { "id": 7, "ar": "جهة مراكش آسفي", "fr": "Marrakech-Safi" },
+  { "id": 8, "ar": "جهة درعة تافيلالت", "fr": "Drâa-Tafilalet" },
+  { "id": 9, "ar": "جهة سوس ماسة", "fr": "Souss-Massa" },
+  { "id": 10, "ar": "جهة كلميم واد نون", "fr": "Guelmim-Oued Noun" },
+  {
+    "id": 11,
+    "ar": "جهة العيون الساقية الحمراء",
+    "fr": "Laâyoune-Sakia El Hamra"
+  },
+  { "id": 12, "ar": "جهة الداخلة وادي الذهب", "fr": "Dakhla-Oued Ed Dahab" }
+]

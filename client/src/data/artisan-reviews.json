@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "profileId": 1,
+    "userId": 4,
+    "rating": 5,
+    "comment": "عمل ممتاز وجودة عالية. أنصح بشدة بالتعامل مع هذا البناء المحترف. الالتزام بالمواعيد والدقة في العمل كانا مميزين.",
+    "status": "APPROVED",
+    "visibility": "PUBLIC",
+    "createdAt": "2025-01-10T14:30:00Z",
+    "updatedAt": "2025-01-10T14:30:00Z"
+  },
+  {
+    "id": 2,
+    "profileId": 1,
+    "userId": 5,
+    "rating": 4,
+    "comment": "أنصح به، جودة عالية في العمل والالتزام بالمواعيد",
+    "status": "APPROVED",
+    "visibility": "PUBLIC",
+    "createdAt": "2025-01-08T14:20:00Z",
+    "updatedAt": "2025-01-08T15:00:00Z"
+  },
+  {
+    "id": 3,
+    "profileId": 2,
+    "userId": 4,
+    "rating": 4,
+    "comment": "صباغ ماهر، عمل نظيف",
+    "status": "APPROVED",
+    "isVisible": true,
+    "createdAt": "2025-08-15T16:45:00Z",
+    "updatedAt": "2025-08-15T17:00:00Z"
+  },
+  {
+    "id": 4,
+    "profileId": 3,
+    "userId": 4,
+    "rating": 4,
+    "comment": "أنصح به للزراعة",
+    "status": "APPROVED",
+    "isVisible": true,
+    "createdAt": "2025-08-12T11:15:00Z",
+    "updatedAt": "2025-08-12T12:00:00Z"
+  },
+  {
+    "id": 5,
+    "profileId": 3,
+    "userId": 5,
+    "rating": 5,
+    "comment": "خدمة ممتازة في الزراعة",
+    "status": "APPROVED",
+    "isVisible": true,
+    "createdAt": "2025-08-10T09:30:00Z",
+    "updatedAt": "2025-08-10T10:00:00Z"
+  },
+  {
+    "id": 6,
+    "profileId": 2,
+    "userId": 5,
+    "rating": 3,
+    "comment": "عمل جيد لكن يحتاج تحسين في المواعيد",
+    "status": "PENDING",
+    "isVisible": false,
+    "createdAt": "2025-08-25T14:00:00Z",
+    "updatedAt": "2025-08-25T14:00:00Z"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "ar": "البناء والتشييد",
+      "fr": "Construction et Bâtiment"
+    },
+    "description": {
+      "ar": "خدمات البناء والتشييد والترميم",
+      "fr": "Services de construction, bâtiment et rénovation"
+    },
+    "icon": "🏗️",
+    "color": "#FF6B35",
+    "professionIds": [4, 1, 2, 3],
+    "isActive": true,
+    "displayOrder": 1
+  },
+  {
+    "id": 2,
+    "name": {
+      "ar": "الحرف التقليدية",
+      "fr": "Artisanat Traditionnel"
+    },
+    "description": {
+      "ar": "الحرف اليدوية والتقليدية المغربية",
+      "fr": "Artisanat traditionnel et manuel marocain"
+    },
+    "icon": "🎨",
+    "color": "#4ECDC4",
+    "professionIds": [9, 10, 12, 13, 14, 15, 20],
+    "isActive": true,
+    "displayOrder": 2
+  },
+  {
+    "id": 3,
+    "name": {
+      "ar": "الزراعة والفلاحة",
+      "fr": "Agriculture"
+    },
+    "description": {
+      "ar": "خدمات الزراعة والفلاحة والبستنة",
+      "fr": "Services d'agriculture, jardinage et horticulture"
+    },
+    "icon": "🌱",
+    "color": "#95E1D3",
+    "professionIds": [6],
+    "isActive": true,
+    "displayOrder": 3
+  },
+  {
+    "id": 4,
+    "name": {
+      "ar": "الخدمات التقنية",
+      "fr": "Services Techniques"
+    },
+    "description": {
+      "ar": "الخدمات التقنية والصيانة",
+      "fr": "Services techniques et maintenance"
+    },
+    "icon": "🔧",
+    "color": "#F38BA8",
+    "professionIds": [7, 8, 16, 17, 18],
+    "isActive": true,
+    "displayOrder": 4
+  },
+  {
+    "id": 5,
+    "name": {
+      "ar": "الخدمات المنزلية",
+      "fr": "Services Domestiques"
+    },
+    "description": {
+      "ar": "خدمات التنظيف والصيانة المنزلية",
+      "fr": "Services de nettoyage et maintenance domestique"
+    },
+    "icon": "🏠",
+    "color": "#A8DADC",
+    "professionIds": [19],
+    "isActive": true,
+    "displayOrder": 5
+  },
+  {
+    "id": 6,
+    "name": {
+      "ar": "التصميم والديكور",
+      "fr": "Design et Décoration"
+    },
+    "description": {
+      "ar": "خدمات التصميم والديكور الداخلي",
+      "fr": "Services de design et décoration intérieure"
+    },
+    "icon": "✨",
+    "color": "#FFD23F",
+    "professionIds": [11],
+    "isActive": true,
+    "displayOrder": 6
+  }
+]

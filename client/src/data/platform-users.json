@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "profileId": null,
+    "genderId": 1,
+    "cityId": 1,
+    "name": {
+      "ar": "أحمد المغربي",
+      "fr": "Ahmed Almaghribi"
+    },
+    "description": {
+      "ar": "مدير عام للمنصة مع خبرة واسعة في إدارة المشاريع التقنية",
+      "fr": "Directeur général de la plateforme avec une vaste expérience en gestion de projets techniques"
+    },
+    "email": "admin@digitalcard.ma",
+    "phone": "+212600000001",
+    "avatar": "/assets/avatars/admin.jpg",
+    "role": "SUPER_ADMIN",
+    "isActive": true,
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2024-01-15T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "profileId": null,
+    "genderId": 1,
+    "cityId": 1,
+    "name": {
+      "ar": "كوثر الكروج",
+      "fr": "Kaoutar Alkrouj"
+    },
+    "description": {
+      "ar": "مدير النظام مع صلاحيات كاملة",
+      "fr": "Administrateur système avec permissions complètes"
+    },
+    "email": "kaoutar.alkrouj@mihan.ma",
+    "phone": "+212600000002",
+    "avatar": "/assets/avatars/kaoutar.jpg",
+    "role": "ADMIN",
+    "isActive": true,
+    "createdAt": "2025-01-01T10:00:00Z",
+    "updatedAt": "2025-01-15T12:30:00Z"
+  },
+  {
+    "id": 3,
+    "profileId": null,
+    "genderId": 1,
+    "cityId": 1,
+    "name": {
+      "ar": "أسامة الكروج",
+      "fr": "Oussama Alkrouj"
+    },
+    "description": {
+      "ar": "مدير النظام مع صلاحيات كاملة",
+      "fr": "Administrateur système avec permissions complètes"
+    },
+    "email": "oussama.alkrouj@mihan.ma",
+    "phone": "+212600000003",
+    "avatar": "/assets/avatars/oussama.jpg",
+    "role": "ADMIN",
+    "isActive": true,
+    "createdAt": "2025-01-01T10:00:00Z",
+    "updatedAt": "2025-01-15T12:30:00Z"
+  },
+  {
+    "id": 4,
+    "profileId": null,
+    "genderId": 2,
+    "cityId": 4,
+    "name": {
+      "ar": "فاطمة الزهراء العلمي",
+      "fr": "Fatima Zahra Alami"
+    },
+    "description": {
+      "ar": "مهتمة بالحرف التقليدية المغربية والتراث الثقافي",
+      "fr": "Passionnée par l'artisanat traditionnel marocain et le patrimoine culturel"
+    },
+    "email": "fatimazahra.alami@mihan.ma",
+    "phone": "+212662345678",
+    "avatar": "/assets/avatars/fatima.jpg",
+    "role": "CLIENT",
+    "isActive": true,
+    "createdAt": "2025-01-10T08:30:00Z",
+    "updatedAt": "2025-01-15T12:00:00Z"
+  },
+  {
+    "id": 5,
+    "profileId": null,
+    "genderId": 1,
+    "cityId": 5,
+    "name": {
+      "ar": "يوسف العلمي",
+      "fr": "Youssef Alami"
+    },
+    "description": {
+      "ar": "جامع للقطع الحرفية والتحف التراثية",
+      "fr": "Collectionneur de pièces artisanales et d'antiquités patrimoniales"
+    },
+    "email": "youssef.alami@mihan.ma",
+    "phone": "+212663456789",
+    "avatar": "/assets/avatars/youssef.jpg",
+    "role": "CLIENT",
+    "isActive": true,
+    "createdAt": "2025-01-08T07:45:00Z",
+    "updatedAt": "2025-01-15T10:15:00Z"
+  },
+  {
+    "id": 6,
+    "profileId": 1,
+    "genderId": 1,
+    "cityId": 6,
+    "name": {
+      "ar": "نصر الدين الكروج",
+      "fr": "Nassredine Alkrouj"
+    },
+    "description": {
+      "ar": "بناء محترف في مدينة الدار البيضاء بخبرة واسعة وجودة عالية",
+      "fr": "Maçon professionnel à Casablanca avec une vaste expérience et une haute qualité"
+    },
+    "email": "nassredine.alkrouj@mihan.ma",
+    "phone": "+212600000006",
+    "avatar": "/assets/profiles/P3.jpg",
+    "role": "ARTISAN",
+    "isActive": true,
+    "createdAt": "2025-01-05T10:00:00Z",
+    "updatedAt": "2025-01-15T12:30:00Z"
+  },
+  {
+    "id": 7,
+    "profileId": 2,
+    "genderId": 1,
+    "cityId": 7,
+    "name": {
+      "ar": "خالد الكروج",
+      "fr": "Khaled Alkrouj"
+    },
+    "description": {
+      "ar": "صباغ محترف في مدينة فاس بخبرة واسعة وجودة عالية",
+      "fr": "Peintre professionnel à Fès avec une vaste expérience et une haute qualité"
+    },
+    "email": "khaled.alkrouj@mihan.ma",
+    "phone": "+212600000007",
+    "avatar": "/assets/profiles/P1.jpg",
+    "role": "ARTISAN",
+    "isActive": true,
+    "createdAt": "2025-01-05T10:00:00Z",
+    "updatedAt": "2025-01-15T12:30:00Z"
+  },
+  {
+    "id": 8,
+    "profileId": 3,
+    "genderId": 2,
+    "cityId": 8,
+    "name": {
+      "ar": "نسرين الهلالي",
+      "fr": "Nisrine Alhelali"
+    },
+    "description": {
+      "ar": "فلاحة محترفة في مدينة فاس متخصصة في الزراعة العضوية",
+      "fr": "Agricultrice professionnelle à Fès spécialisée en agriculture biologique"
+    },
+    "email": "nisrine.alhelali@mihan.ma",
+    "phone": "+212600000008",
+    "avatar": "/assets/profiles/defaultWomen.png",
+    "role": "ARTISAN",
+    "isActive": true,
+    "createdAt": "2025-01-05T10:00:00Z",
+    "updatedAt": "2025-01-15T12:30:00Z"
+  },
+  {
+    "id": 9,
+    "profileId": 4,
+    "genderId": 1,
+    "cityId": 9,
+    "name": {
+      "ar": "أحمد البناني",
+      "fr": "Ahmed Bennani"
+    },
+    "description": {
+      "ar": "نجار محترف متخصص في الأثاث التقليدي والحديث",
+      "fr": "Menuisier professionnel spécialisé en mobilier traditionnel et moderne"
+    },
+    "email": "ahmed.bennani@mihan.ma",
+    "phone": "+212664567890",
+    "avatar": "/assets/profiles/P2.jpg",
+    "role": "ARTISAN",
+    "isActive": true,
+    "createdAt": "2025-01-05T09:00:00Z",
+    "updatedAt": "2025-01-15T11:00:00Z"
+  },
+  {
+    "id": 10,
+    "profileId": 5,
+    "genderId": 1,
+    "cityId": 10,
+    "name": {
+      "ar": "يوسف الإدريسي",
+      "fr": "Youssef Idrissi"
+    },
+    "description": {
+      "ar": "كهربائي محترف متخصص في التركيبات المنزلية والصناعية",
+      "fr": "Électricien professionnel spécialisé en installations résidentielles et industrielles"
+    },
+    "email": "youssef.idrissi@mihan.ma",
+    "phone": "+212665678901",
+    "avatar": "/assets/profiles/defaultMen.png",
+    "role": "ARTISAN",
+    "isActive": true,
+    "createdAt": "2025-01-05T08:00:00Z",
+    "updatedAt": "2025-01-15T13:00:00Z"
+  }
+]
