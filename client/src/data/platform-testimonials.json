@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "userId": 4,
+    "rating": 5,
+    "comment": "منصة رائعة لإيجاد الحرفيين المحترفين. سهولة في الاستخدام وجودة في الخدمة.",
+    "isApproved": true,
+    "createdAt": "2025-08-20T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "userId": 5,
+    "rating": 5,
+    "comment": "Excellente expérience avec la plateforme. J'ai trouvé ce que je cherchais rapidement et facilement.",
+    "isApproved": true,
+    "createdAt": "2025-08-10T09:30:00Z"
+  },
+  {
+    "id": 3,
+    "userId": 6,
+    "rating": 5,
+    "comment": "المنصة ساعدتني في الوصول لعملاء جدد وتطوير عملي. أنصح بها كل الحرفيين.",
+    "isApproved": true,
+    "createdAt": "2025-08-15T16:45:00Z"
+  },
+  {
+    "id": 4,
+    "userId": 7,
+    "rating": 4,
+    "comment": "منصة مفيدة للحرفيين. التسجيل سهل والدعم ممتاز.",
+    "isApproved": true,
+    "createdAt": "2025-08-18T14:20:00Z"
+  },
+  {
+    "id": 5,
+    "userId": 8,
+    "rating": 5,
+    "comment": "بفضل هذه المنصة تمكنت من عرض منتجاتي الزراعية العضوية لجمهور أوسع.",
+    "isApproved": true,
+    "createdAt": "2025-08-12T11:30:00Z"
+  },
+  {
+    "id": 6,
+    "userId": 9,
+    "rating": 4,
+    "comment": "منصة احترافية تساعد في التواصل مع العملاء بطريقة منظمة وفعالة.",
+    "isApproved": true,
+    "createdAt": "2025-08-22T09:15:00Z"
+  },
+  {
+    "id": 7,
+    "userId": 4,
+    "rating": 4,
+    "comment": "Application facile à utiliser, j'ai trouvé d'excellents artisans dans ma région.",
+    "isApproved": true,
+    "createdAt": "2025-08-25T15:00:00Z"
+  },
+  {
+    "id": 8,
+    "userId": 10,
+    "rating": 5,
+    "comment": "Électricien professionnel, la plateforme m'a fourni de nouvelles opportunités de travail et des clients satisfaits.",
+    "isApproved": true,
+    "createdAt": "2025-08-24T13:45:00Z"
+  },
+  {
+    "id": 9,
+    "userId": 5,
+    "rating": 3,
+    "comment": "La plateforme est bonne mais nécessite une amélioration de la vitesse de réponse.",
+    "isApproved": false,
+    "createdAt": "2025-08-26T16:20:00Z"
+  }
+]

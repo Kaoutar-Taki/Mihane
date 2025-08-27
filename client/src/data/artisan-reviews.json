@@ -7,8 +7,12 @@
     "comment": "عمل ممتاز وجودة عالية. أنصح بشدة بالتعامل مع هذا البناء المحترف. الالتزام بالمواعيد والدقة في العمل كانا مميزين.",
     "status": "APPROVED",
     "visibility": "PUBLIC",
+    "artisanResponse": {
+      "comment": "شكرا لك على هذا التقييم الإيجابي. نحن نسعى دائما لتقديم أفضل خدمة لعملائنا.",
+      "respondedAt": "2025-01-10T16:00:00Z"
+    },
     "createdAt": "2025-01-10T14:30:00Z",
-    "updatedAt": "2025-01-10T14:30:00Z"
+    "updatedAt": "2025-01-10T16:00:00Z"
   },
   {
     "id": 2,
@@ -18,6 +22,7 @@
     "comment": "أنصح به، جودة عالية في العمل والالتزام بالمواعيد",
     "status": "APPROVED",
     "visibility": "PUBLIC",
+    "artisanResponse": null,
     "createdAt": "2025-01-08T14:20:00Z",
     "updatedAt": "2025-01-08T15:00:00Z"
   },
@@ -26,20 +31,25 @@
     "profileId": 2,
     "userId": 4,
     "rating": 4,
-    "comment": "صباغ ماهر، عمل نظيف",
+    "comment": "صباغ ماهر، عمل نظيف ومنظم. راضي عن النتيجة النهائية.",
     "status": "APPROVED",
-    "isVisible": true,
+    "visibility": "PUBLIC",
+    "artisanResponse": {
+      "comment": "أشكرك على ثقتك. سعيد لأن العمل نال إعجابك.",
+      "respondedAt": "2025-08-15T18:00:00Z"
+    },
     "createdAt": "2025-08-15T16:45:00Z",
-    "updatedAt": "2025-08-15T17:00:00Z"
+    "updatedAt": "2025-08-15T18:00:00Z"
   },
   {
     "id": 4,
     "profileId": 3,
     "userId": 4,
     "rating": 4,
-    "comment": "أنصح به للزراعة",
+    "comment": "فلاحة محترفة، منتجات عضوية ممتازة وطازجة. أنصح بها للزراعة العضوية.",
     "status": "APPROVED",
-    "isVisible": true,
+    "visibility": "PUBLIC",
+    "artisanResponse": null,
     "createdAt": "2025-08-12T11:15:00Z",
     "updatedAt": "2025-08-12T12:00:00Z"
   },
@@ -48,21 +58,80 @@
     "profileId": 3,
     "userId": 5,
     "rating": 5,
-    "comment": "خدمة ممتازة في الزراعة",
+    "comment": "خدمة ممتازة في الزراعة العضوية. منتجات طازجة وجودة عالية. التعامل محترف جداً.",
     "status": "APPROVED",
-    "isVisible": true,
+    "visibility": "PUBLIC",
+    "artisanResponse": {
+      "comment": "شكرا جزيلا لك. نحن نهتم بجودة منتجاتنا العضوية ورضا عملائنا.",
+      "respondedAt": "2025-08-10T12:00:00Z"
+    },
     "createdAt": "2025-08-10T09:30:00Z",
-    "updatedAt": "2025-08-10T10:00:00Z"
+    "updatedAt": "2025-08-10T12:00:00Z"
   },
   {
     "id": 6,
     "profileId": 2,
     "userId": 5,
     "rating": 3,
-    "comment": "عمل جيد لكن يحتاج تحسين في المواعيد",
+    "comment": "عمل جيد لكن يحتاج تحسين في المواعيد. الجودة مقبولة.",
     "status": "PENDING",
-    "isVisible": false,
+    "visibility": "PRIVATE",
+    "artisanResponse": null,
     "createdAt": "2025-08-25T14:00:00Z",
     "updatedAt": "2025-08-25T14:00:00Z"
+  },
+  {
+    "id": 7,
+    "profileId": 4,
+    "userId": 4,
+    "rating": 5,
+    "comment": "نجار ماهر جداً، أثاث تقليدي رائع. الحرفية والإتقان واضحان في العمل.",
+    "status": "APPROVED",
+    "visibility": "PUBLIC",
+    "artisanResponse": {
+      "comment": "أشكرك على تقديرك لعملي. الحرف التقليدية تحتاج صبر وإتقان.",
+      "respondedAt": "2025-08-20T10:30:00Z"
+    },
+    "createdAt": "2025-08-20T09:00:00Z",
+    "updatedAt": "2025-08-20T10:30:00Z"
+  },
+  {
+    "id": 8,
+    "profileId": 5,
+    "userId": 5,
+    "rating": 4,
+    "comment": "كهربائي محترف، حل المشكلة بسرعة وكفاءة. أسعار معقولة.",
+    "status": "APPROVED",
+    "visibility": "PUBLIC",
+    "artisanResponse": null,
+    "createdAt": "2025-08-22T15:45:00Z",
+    "updatedAt": "2025-08-22T16:00:00Z"
+  },
+  {
+    "id": 9,
+    "profileId": 1,
+    "userId": 4,
+    "rating": 5,
+    "comment": "بناء ممتاز، عمل متقن ونظيف. احترام المواعيد والميزانية المتفق عليها.",
+    "status": "APPROVED",
+    "visibility": "PUBLIC",
+    "artisanResponse": {
+      "comment": "الحمد لله، نسعى دائما لإرضاء عملائنا وتقديم أفضل خدمة.",
+      "respondedAt": "2025-08-24T11:00:00Z"
+    },
+    "createdAt": "2025-08-24T10:15:00Z",
+    "updatedAt": "2025-08-24T11:00:00Z"
+  },
+  {
+    "id": 10,
+    "profileId": 4,
+    "userId": 5,
+    "rating": 3,
+    "comment": "العمل جيد لكن التأخير في التسليم كان مشكلة.",
+    "status": "PENDING",
+    "visibility": "PRIVATE",
+    "artisanResponse": null,
+    "createdAt": "2025-08-26T13:20:00Z",
+    "updatedAt": "2025-08-26T13:20:00Z"
   }
 ]
