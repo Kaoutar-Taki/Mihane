@@ -127,8 +127,8 @@ export const useReviews = (options: UseReviewsOptions = {}) => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const newReview: Review = {
-        id: `review_${Date.now()}`,
-        clientId: user.id,
+        id: Date.now().toString(),
+        clientId: user.id.toString(),
         artisanId: reviewData.artisanId,
         clientName: {
           ar: user.name,

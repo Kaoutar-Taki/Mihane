@@ -73,7 +73,7 @@ export default function Navbar() {
               <span className="text-sm font-medium text-gray-700">
                 {user.name} ·{" "}
                 <span className="text-orange-600">
-                  {user.role === "client" ? t("auth.client") : t("auth.pro")}
+                  {user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
                 </span>
               </span>
               <button
@@ -142,7 +142,7 @@ export default function Navbar() {
                 <div className="text-sm font-medium text-gray-700">
                   {user.name} ·{" "}
                   <span className="text-orange-600">
-                    {user.role === "client" ? t("auth.client") : t("auth.pro")}
+                    {user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
                   </span>
                 </div>
                 <button

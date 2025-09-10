@@ -13,7 +13,7 @@ export function useQueryParams<T extends string>(keys: T[]) {
     const next = new URLSearchParams(sp);
     Object.entries(obj).forEach(([k, v]) => {
       if (!v) next.delete(k);
-      else next.set(k, v);
+      else next.set(k, v as string);
     });
     setSp(next, { replace: true });
   };

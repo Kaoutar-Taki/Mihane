@@ -1,24 +1,21 @@
-import { profiles } from "../data";
+import type { ArtisanProfile } from "../types";
 
 export function filterProfiles({
+  profiles,
   professionId,
   regionId,
   cityId,
 }: {
+  profiles: ArtisanProfile[];
   professionId?: number;
   regionId?: number;
   cityId?: number;
 }) {
   let list = profiles;
-  if (professionId) list = list.filter((p) => p.profession_id === professionId);
+  if (professionId) list = list.filter((p) => p.craftType.includes(professionId.toString()));
   if (regionId) {
-    const cityIds = new Set(
-      (await import("../data")).cities
-        .filter((c) => c.region_id === regionId)
-        .map((c) => c.id),
-    );
-    list = list.filter((p) => cityIds.has(p.city_id));
+    list = list.filter((p) => p.region.includes(regionId.toString()));
   }
-  if (cityId) list = list.filter((p) => p.city_id === cityId);
+  if (cityId) list = list.filter((p) => p.city.includes(cityId.toString()));
   return list;
 }
