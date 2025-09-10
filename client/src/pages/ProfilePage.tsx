@@ -395,7 +395,7 @@ export default function ProfilePage() {
                       <div className="mb-4 flex items-start justify-between">
                         <div>
                           <h4 className="font-semibold text-gray-900">
-                            {review.clientName}
+                            {review.clientName}te
                           </h4>
                           <div className="mt-1 flex items-center gap-1">
                             {[...Array(5)].map((_, i) => (
