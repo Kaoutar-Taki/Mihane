@@ -6,8 +6,6 @@ import MainLayout from "./layouts/MainLayout";
 import SectionCard from "../components/ui/SectionCard";
 import { useAuth } from "../auth/AuthContext";
 import TwoFactorAuth from "../components/auth/TwoFactorAuth";
-import type { Role } from "../auth/AuthContext";
-
 export default function LoginPage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -18,6 +16,7 @@ export default function LoginPage() {
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState<"client" | "pro">("client");
   const [show, setShow] = useState(false);
   const [remember, setRemember] = useState(true);
   const [loading, setLoading] = useState(false);

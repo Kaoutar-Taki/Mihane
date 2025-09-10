@@ -35,17 +35,21 @@ export default function RegionProfilesPage() {
 
   // المدن ديال هاد الجهة
   const regionCities = cities.filter((c) => c.region_id === regionId);
-  const cityIds = new Set(regionCities.map((c) => c.id));
 
-  // جميع البروفايلات فالجهة
-  const profilesInRegion = profiles.filter((p) => cityIds.has(p.city_id));
+  // جميع البروفايلات فالجهة - البحث في العنوان
+  const profilesInRegion = profiles.filter((p) =>
+    regionCities.some(
+      (city) =>
+        p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr),
+    ),
+  );
 
   // نجمعوهم حسب المهنة
   const groupedByProfession: Record<number, typeof profiles> = {};
   for (const p of profilesInRegion) {
-    if (!groupedByProfession[p.profession_id])
-      groupedByProfession[p.profession_id] = [];
-    groupedByProfession[p.profession_id].push(p);
+    if (!groupedByProfession[p.professionId])
+      groupedByProfession[p.professionId] = [];
+    groupedByProfession[p.professionId].push(p);
   }
 
   // ترتيب المهن اللي فعلا عندها بروفايلات، حسب الاسم
@@ -53,9 +57,12 @@ export default function RegionProfilesPage() {
     .filter((pro) => groupedByProfession[pro.id]?.length)
     .sort((a, b) => a.title[lang].localeCompare(b.title[lang]));
 
-  const getCityLabel = (city_id: number) => {
-    const c = cities.find((x) => x.id === city_id);
-    return c ? c[lang] : "—";
+  const getCityLabel = (address: { ar: string; fr: string }) => {
+    const addressText = address[lang];
+    const foundCity = cities.find(
+      (city) => addressText.includes(city.ar) || addressText.includes(city.fr),
+    );
+    return foundCity ? foundCity[lang] : "—";
   };
 
   return (
@@ -125,21 +132,21 @@ export default function RegionProfilesPage() {
                     >
                       <div className="h-16 w-16 overflow-hidden rounded-full border-2 border-orange-500">
                         <img
-                          src={p.image}
-                          alt={p.fullName}
+                          src={p.gallery[0] || "/assets/default-profile.jpg"}
+                          alt={p.title.ar}
                           className="h-full w-full object-cover"
                           loading="lazy"
                         />
                       </div>
                       <div className="min-w-0 flex-1">
                         <h3 className="group-hover:text-primary truncate text-base font-semibold text-gray-800">
-                          {p.fullName}
+                          {p.title.ar}
                         </h3>
                         <p className="mt-0.5 text-sm text-gray-600">
-                          {getCityLabel(p.city_id)} {/* المدينة */}
+                          {getCityLabel(p.address)} {/* المدينة */}
                         </p>
                         <p className="mt-1 line-clamp-2 text-xs text-gray-500">
-                          {p.description}
+                          {p.description.ar}
                         </p>
                       </div>
                     </Link>

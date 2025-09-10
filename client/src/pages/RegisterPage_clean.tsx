@@ -12,7 +12,7 @@ import {
   Home,
   LogIn,
 } from "lucide-react";
-import MainLayout from "../components/layout/MainLayout";
+import MainLayout from "./layouts/MainLayout";
 
 // Types
 type IconCmp = React.ComponentType<{ size?: number; className?: string }>;
@@ -60,8 +60,8 @@ function FloatInput({
             "hover:border-orange-300 hover:shadow-md",
             dir === "ltr"
               ? Icon
-                ? "pl-11 pr-4"
-                : "pl-4 pr-4"
+                ? "pr-4 pl-11"
+                : "pr-4 pl-4"
               : Icon
                 ? "pr-11 pl-4"
                 : "pr-4 pl-4",
@@ -130,23 +130,30 @@ export default function RegisterPage() {
     if (!fullName.trim())
       e.name = t("register.errors.name", "الإسم الكامل مطلوب");
 
-    if (!email.trim())
-      e.email = t("register.errors.email", "الإيميل مطلوب");
+    if (!email.trim()) e.email = t("register.errors.email", "الإيميل مطلوب");
     else if (!validateEmail(email))
       e.email = t("register.errors.emailInvalid", "الإيميل غير صحيح");
 
     if (!password.trim())
       e.password = t("register.errors.password", "كلمة المرور مطلوبة");
     else if (!validatePassword(password))
-      e.password = t("register.errors.passwordWeak", "كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+      e.password = t(
+        "register.errors.passwordWeak",
+        "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+      );
 
     if (!confirmPassword.trim())
-      e.confirmPassword = t("register.errors.confirmPassword", "تأكيد كلمة المرور مطلوب");
+      e.confirmPassword = t(
+        "register.errors.confirmPassword",
+        "تأكيد كلمة المرور مطلوب",
+      );
     else if (password !== confirmPassword)
-      e.confirmPassword = t("register.errors.passwordMismatch", "كلمات المرور غير متطابقة");
+      e.confirmPassword = t(
+        "register.errors.passwordMismatch",
+        "كلمات المرور غير متطابقة",
+      );
 
-    if (!agree)
-      e.agree = t("register.errors.agree", "يجب الموافقة على الشروط");
+    if (!agree) e.agree = t("register.errors.agree", "يجب الموافقة على الشروط");
 
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -201,21 +208,24 @@ export default function RegisterPage() {
                 {t("register.success.title", "تم إنشاء حسابك بنجاح!")}
               </h1>
               <p className="mb-8 text-lg text-gray-700">
-                {t("register.success.message", "يمكنك الآن تسجيل الدخول والبدء في استخدام المنصة")}
+                {t(
+                  "register.success.message",
+                  "يمكنك الآن تسجيل الدخول والبدء في استخدام المنصة",
+                )}
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <button
                   onClick={() => navigate("/")}
-                  className="rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:from-orange-700 hover:to-amber-700"
+                  className="rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:from-orange-700 hover:to-amber-700 hover:shadow-xl"
                 >
-                  <Home size={18} className="inline mr-2" />
+                  <Home size={18} className="mr-2 inline" />
                   {t("register.success.home", "العودة للرئيسية")}
                 </button>
                 <button
                   onClick={() => navigate("/login")}
                   className="rounded-xl border-2 border-orange-200 bg-white/80 px-8 py-3 font-semibold text-orange-700 backdrop-blur transition-all duration-300 hover:border-orange-300 hover:bg-orange-50"
                 >
-                  <LogIn size={18} className="inline mr-2" />
+                  <LogIn size={18} className="mr-2 inline" />
                   {t("register.success.login", "تسجيل الدخول")}
                 </button>
               </div>
@@ -245,20 +255,13 @@ export default function RegisterPage() {
               {t("register.title", "إنشاء حساب جديد")}
             </h1>
             <p className="mx-auto max-w-xl text-lg text-gray-700">
-              {t(
-                "register.subtitle",
-                "انضم إلى منصتنا وابدأ رحلتك معنا",
-              )}
+              {t("register.subtitle", "انضم إلى منصتنا وابدأ رحلتك معنا")}
             </p>
           </div>
 
           <div className="mx-auto max-w-md">
-            <form
-              onSubmit={onSubmit}
-              dir={dir}
-              className="space-y-6"
-            >
-              <div className="rounded-2xl border border-gray-200 bg-white/80 shadow-xl backdrop-blur p-8">
+            <form onSubmit={onSubmit} dir={dir} className="space-y-6">
+              <div className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-xl backdrop-blur">
                 <div className="space-y-6">
                   {/* Full Name */}
                   <div>
@@ -304,7 +307,10 @@ export default function RegisterPage() {
                       type="password"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder={t("register.confirmPassword", "تأكيد كلمة المرور")}
+                      placeholder={t(
+                        "register.confirmPassword",
+                        "تأكيد كلمة المرور",
+                      )}
                       Icon={Lock}
                       error={errors.confirmPassword}
                       dir={dir}
@@ -316,7 +322,9 @@ export default function RegisterPage() {
                     <div className="relative">
                       <select
                         value={userRole}
-                        onChange={(e) => setUserRole(e.target.value as "CLIENT" | "ARTISAN")}
+                        onChange={(e) =>
+                          setUserRole(e.target.value as "CLIENT" | "ARTISAN")
+                        }
                         className={[
                           "peer h-12 w-full appearance-none rounded-xl border bg-white/80 backdrop-blur",
                           "border-gray-200 text-sm transition-all duration-300",
@@ -325,8 +333,12 @@ export default function RegisterPage() {
                           dir === "ltr" ? "pr-10 pl-11" : "pr-11 pl-10",
                         ].join(" ")}
                       >
-                        <option value="CLIENT">{t("register.userTypes.client", "عميل")}</option>
-                        <option value="ARTISAN">{t("register.userTypes.artisan", "حرفي")}</option>
+                        <option value="CLIENT">
+                          {t("register.userTypes.client", "عميل")}
+                        </option>
+                        <option value="ARTISAN">
+                          {t("register.userTypes.artisan", "حرفي")}
+                        </option>
                       </select>
                       <label
                         className={[
@@ -353,7 +365,9 @@ export default function RegisterPage() {
                         ].join(" ")}
                       />
                     </div>
-                    {errors.role && <p className="mt-1 text-xs text-red-600">{errors.role}</p>}
+                    {errors.role && (
+                      <p className="mt-1 text-xs text-red-600">{errors.role}</p>
+                    )}
                   </div>
 
                   {/* Agreement */}
@@ -374,7 +388,9 @@ export default function RegisterPage() {
                       </label>
                     </div>
                     {errors.agree && (
-                      <p className="mt-1 text-xs text-red-600">{errors.agree}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        {errors.agree}
+                      </p>
                     )}
                   </div>
 
@@ -383,21 +399,21 @@ export default function RegisterPage() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:from-orange-700 hover:to-amber-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:from-orange-700 hover:to-amber-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {loading && (
                         <Loader2 size={18} className="animate-spin" />
                       )}
                       {t("register.submit", "إنشاء الحساب")}
                     </button>
-                    
+
                     <div className="text-center">
                       <span className="text-sm text-gray-600">
                         {t("register.hasAccount", "لديك حساب بالفعل؟")}{" "}
                         <button
                           type="button"
                           onClick={() => navigate("/login")}
-                          className="text-orange-600 hover:text-orange-700 font-medium"
+                          className="font-medium text-orange-600 hover:text-orange-700"
                         >
                           {t("register.loginLink", "تسجيل الدخول")}
                         </button>

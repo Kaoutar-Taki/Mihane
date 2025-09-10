@@ -35,16 +35,20 @@ export default function RegionDetailsPage() {
 
   // المدن التابعة للجهة
   const regionCities = cities.filter((c) => c.region_id === regionId);
-  const cityIds = new Set(regionCities.map((c) => c.id));
 
-  // البروفايلات داخل هاد الجهة
-  const profilesInRegion = profiles.filter((p) => cityIds.has(p.city_id));
+  // البروفايلات داخل هاد الجهة - البحث في العنوان
+  const profilesInRegion = profiles.filter((p) =>
+    regionCities.some(
+      (city) =>
+        p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr),
+    ),
+  );
 
   // عدد البروفايلات لكل مهنة
   const countPerProfession: Record<number, number> = {};
   for (const p of profilesInRegion) {
-    countPerProfession[p.profession_id] =
-      (countPerProfession[p.profession_id] || 0) + 1;
+    countPerProfession[p.professionId] =
+      (countPerProfession[p.professionId] || 0) + 1;
   }
 
   // المهن المتوفرة فعلاً فهاد الجهة

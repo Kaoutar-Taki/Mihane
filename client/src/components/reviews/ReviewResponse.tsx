@@ -1,8 +1,7 @@
 import { useState, memo } from "react";
 import { useTranslation } from "react-i18next";
-import { MessageSquare, Send, Edit, Trash2, Check, X } from "lucide-react";
-import { useAuth } from "../../hooks/useAuth";
-import { createReviewNotification } from "../notifications/ReviewNotifications";
+import { MessageSquare, Send, Edit, Trash2, X } from "lucide-react";
+import { useAuth } from "../../auth/AuthContext";
 
 interface ReviewResponseProps {
   reviewId: string;
@@ -23,7 +22,7 @@ interface ReviewResponseProps {
 const ReviewResponse = memo(({ 
   reviewId, 
   artisanId, 
-  clientId,
+  clientId: _clientId,
   existingResponse, 
   onResponseAdded, 
   onResponseUpdated, 
@@ -45,7 +44,7 @@ const ReviewResponse = memo(({
   const canManageResponse = user && (
     user.role === "SUPER_ADMIN" || 
     user.role === "ADMIN" || 
-    (user.role === "ARTISAN" && user.id === artisanId)
+    (user.role === "ARTISAN" && user.id === Number(artisanId))
   );
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,20 +85,7 @@ const ReviewResponse = memo(({
         responses.push(response);
         onResponseAdded?.(response);
         
-        // Create notification for client
-        createReviewNotification({
-          type: "review_response",
-          title: {
-            ar: "رد جديد على تقييمك",
-            fr: "Nouvelle réponse à votre avis"
-          },
-          message: {
-            ar: "قام الحرفي بالرد على تقييمك",
-            fr: "L'artisan a répondu à votre avis"
-          },
-          reviewId,
-          clientId
-        });
+        // TODO: Create notification for client when notification system is available
       }
       
       localStorage.setItem(storageKey, JSON.stringify(responses));

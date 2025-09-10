@@ -10,11 +10,8 @@ import {
   MessageCircle,
   Heart,
   Share2,
-  Calendar,
-  Clock,
   Award,
   Eye,
-  Camera,
   ChevronLeft,
   ChevronRight,
   User,
@@ -24,8 +21,6 @@ import MainLayout from "./layouts/MainLayout";
 import profiles from "../data/artisan-profiles.json";
 import professions from "../data/artisan-professions.json";
 import reviews from "../data/artisan-reviews.json";
-import cities from "../data/moroccan-cities.json";
-import regions from "../data/moroccan-regions.json";
 import users from "../data/platform-users.json";
 
 export default function ProfilePage() {
@@ -44,14 +39,6 @@ export default function ProfilePage() {
   const rawProfile = profiles.find((p) => p.id === Number(id));
   const user = users.find((u) => u.id === rawProfile?.userId);
   const profession = professions.find((p) => p.id === rawProfile?.professionId);
-  const profileCity = cities.find(
-    (city) =>
-      rawProfile?.address?.ar?.includes(city.ar) ||
-      rawProfile?.address?.fr?.includes(city.fr),
-  );
-  const profileRegion = profileCity
-    ? regions.find((region) => region.id === profileCity.region_id)
-    : null;
 
   // Calculate ratings
   const profileReviews = reviews.filter(
@@ -395,7 +382,7 @@ export default function ProfilePage() {
                       <div className="mb-4 flex items-start justify-between">
                         <div>
                           <h4 className="font-semibold text-gray-900">
-                            {review.clientName}te
+                            {users.find(u => u.id === review.userId)?.name[lang] || "مستخدم مجهول"}
                           </h4>
                           <div className="mt-1 flex items-center gap-1">
                             {[...Array(5)].map((_, i) => (

@@ -34,14 +34,16 @@ export default function CityDetailsPage() {
 
   const region = regions.find((r) => r.id === city.region_id);
 
-  // البروفايلات داخل هاد المدينة
-  const profilesInCity = profiles.filter((p) => p.city_id === cityId);
+  // البروفايلات داخل هاد المدينة - البحث في العنوان
+  const profilesInCity = profiles.filter((p) => 
+    p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr)
+  );
 
   // عدد البروفايلات لكل مهنة
   const countPerProfession: Record<number, number> = {};
   for (const p of profilesInCity) {
-    countPerProfession[p.profession_id] =
-      (countPerProfession[p.profession_id] || 0) + 1;
+    countPerProfession[p.professionId] =
+      (countPerProfession[p.professionId] || 0) + 1;
   }
 
   // المهن المتوفرة فعلاً فالمدينة

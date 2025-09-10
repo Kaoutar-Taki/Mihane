@@ -38,22 +38,33 @@ export default function ProfessionDetailsPage() {
   }
 
   // --- فلترة البروفايلات ---
-  let filtered = profiles.filter((p) => p.profession_id === professionId);
+  let filtered = profiles.filter((p) => p.professionId === professionId);
 
   // region ⇒ نحسب المدن التابعة لها ونصفي عليهم
   const regionIsValid =
     regionParam && regions.some((r) => r.id === regionParam);
   if (regionIsValid) {
-    const regionCityIds = new Set(
-      cities.filter((c) => c.region_id === regionParam).map((c) => c.id),
+    // البحث في العنوان بدلاً من city_id
+    const regionCities = cities.filter((c) => c.region_id === regionParam);
+    filtered = filtered.filter((p) =>
+      regionCities.some(
+        (city) =>
+          p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr),
+      ),
     );
-    filtered = filtered.filter((p) => regionCityIds.has(p.city_id));
   }
 
   // city ⇒ نضيّق أكثر بالمدينة إذا موجودة
   const cityIsValid = cityParam && cities.some((c) => c.id === cityParam);
   if (cityIsValid) {
-    filtered = filtered.filter((p) => p.city_id === cityParam);
+    const selectedCity = cities.find((c) => c.id === cityParam);
+    if (selectedCity) {
+      filtered = filtered.filter(
+        (p) =>
+          p.address.ar.includes(selectedCity.ar) ||
+          p.address.fr.includes(selectedCity.fr),
+      );
+    }
   }
 
   // (اختياري) تنبيه إذا كاين تضارب: city ماشي فـ region
@@ -64,13 +75,17 @@ export default function ProfessionDetailsPage() {
 
   const title = profession.title[lang];
 
-  const getCityAndRegion = (city_id?: number) => {
-    const city = cities.find((c) => c.id === city_id);
-    const region = city
-      ? regions.find((r) => r.id === city.region_id)
+  const getCityAndRegion = (address: { ar: string; fr: string }) => {
+    // استخراج اسم المدينة من العنوان
+    const addressText = address[lang];
+    const foundCity = cities.find(
+      (city) => addressText.includes(city.ar) || addressText.includes(city.fr),
+    );
+    const region = foundCity
+      ? regions.find((r) => r.id === foundCity.region_id)
       : undefined;
     return {
-      cityLabel: city ? city[lang] : "—",
+      cityLabel: foundCity ? foundCity[lang] : "—",
       regionLabel: region ? region[lang] : "",
     };
   };
@@ -86,21 +101,31 @@ export default function ProfessionDetailsPage() {
   let baseArea = profiles as typeof profiles;
 
   if (regionIsValid) {
-    const regionCityIds = new Set(
-      cities.filter((c) => c.region_id === regionParam).map((c) => c.id),
+    const regionCities = cities.filter((c) => c.region_id === regionParam);
+    baseArea = baseArea.filter((p) =>
+      regionCities.some(
+        (city) =>
+          p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr),
+      ),
     );
-    baseArea = baseArea.filter((p) => regionCityIds.has(p.city_id));
   }
   if (cityIsValid) {
-    baseArea = baseArea.filter((p) => p.city_id === cityParam);
+    const selectedCity = cities.find((c) => c.id === cityParam);
+    if (selectedCity) {
+      baseArea = baseArea.filter(
+        (p) =>
+          p.address.ar.includes(selectedCity.ar) ||
+          p.address.fr.includes(selectedCity.fr),
+      );
+    }
   }
 
   // نحسب عدد المحترفين لكل مهنة (باستثناء المهنة الحالية)
   const countByProfession: Record<number, number> = {};
   for (const p of baseArea) {
-    if (p.profession_id === professionId) continue;
-    countByProfession[p.profession_id] =
-      (countByProfession[p.profession_id] || 0) + 1;
+    if (p.professionId === professionId) continue;
+    countByProfession[p.professionId] =
+      (countByProfession[p.professionId] || 0) + 1;
   }
 
   // لائحة المهن المتوفّرة فالنطاق، مرتّبة حسب العدد ثم الاسم
@@ -204,7 +229,7 @@ export default function ProfessionDetailsPage() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((profile) => {
               const { cityLabel, regionLabel } = getCityAndRegion(
-                profile.city_id,
+                profile.address,
               );
               return (
                 <Link
@@ -214,15 +239,15 @@ export default function ProfessionDetailsPage() {
                 >
                   <div className="h-16 w-16 overflow-hidden rounded-full border-2 border-orange-500">
                     <img
-                      src={profile.image}
-                      alt={profile.fullName.ar}
+                      src={profile.gallery[0] || "/assets/default-profile.jpg"}
+                      alt={profile.title.ar}
                       className="h-full w-full object-cover"
                       loading="lazy"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
                     <h3 className="group-hover:text-primary truncate text-base font-semibold text-gray-800">
-                      {profile.fullName.ar}
+                      {profile.title.ar}
                     </h3>
                     <p className="mt-0.5 text-sm text-gray-600">
                       {cityLabel}

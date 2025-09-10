@@ -13,7 +13,10 @@
     "format:check": "prettier --check .",
     "test": "vitest",
     "prepare": "husky install || true",
-    "clean": "rimraf node_modules .turbo .vite .eslintcache dist"
+    "clean": "rimraf node_modules .turbo .vite .eslintcache dist",
+    "tsc": "tsc",
+    "typecheck": "tsc --noEmit",
+    "typewatch": "tsc --noEmit -w"
   },
   "dependencies": {
     "@fontsource/tajawal": "^5.2.6",

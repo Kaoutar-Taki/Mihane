@@ -8,20 +8,6 @@ import profiles from "../data/artisan-profiles.json";
 import professions from "../data/artisan-professions.json";
 
 // ----- Types (حطّهم فوق) -----
-type Review = { id: number; name: string; rating: number; comment: string };
-type Contact = { whatsapp: string; phone: string; email: string };
-type Profile = {
-  id: number;
-  fullName: string;
-  profession_id: number;
-  city_id: number;
-  genre_id?: number;
-  image: string;
-  description: string;
-  gallery: string[];
-  contact: Contact;
-  reviews: Review[];
-};
 
 export default function CityProfilesPage() {
   const { i18n, t } = useTranslation();
@@ -51,24 +37,19 @@ export default function CityProfilesPage() {
 
   const region = regions.find((r) => r.id === city.region_id);
 
-  // جميع البروفايلات فالمدينة
-  const profilesInCity = profiles.filter((p) => p.city_id === cityId);
+  // جميع البروفايلات فالمدينة - البحث في العنوان
+  const profilesInCity = profiles.filter((p) => 
+    p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr)
+  );
 
   // تجميع حسب المهنة
-  //   const groupedByProfession: Record<number, any[]> = {};
-  const groupedByProfession = profilesInCity.reduce<Record<number, Profile[]>>(
+  const groupedByProfession = profilesInCity.reduce<Record<number, any[]>>(
     (acc, p) => {
-      (acc[p.profession_id] ??= []).push(p as Profile);
+      (acc[p.professionId] ??= []).push(p);
       return acc;
     },
     {},
   );
-
-  for (const p of profilesInCity) {
-    if (!groupedByProfession[p.profession_id])
-      groupedByProfession[p.profession_id] = [];
-    groupedByProfession[p.profession_id].push(p);
-  }
 
   // لائحة المهن اللي فعلا عندها بروفايلات فهاد المدينة (مرتّبة)
   const professionsInCity = professions
