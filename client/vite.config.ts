@@ -1,9 +1,8 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [tailwindcss(), react()],
+  plugins: [react()],
   base: "/",
   build: {
     outDir: "dist",
@@ -14,7 +13,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          i18n: ['i18next', 'react-i18next', 'i18next-http-backend']
+          i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector']
         }
       }
     }
