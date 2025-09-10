@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Artisanat Traditionnel",
+      "slug": "artisanat-traditionnel",
+      "description": "Artisanat marocain traditionnel",
+      "icon": "🎨",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Poterie & Céramique",
+      "slug": "poterie-ceramique",
+      "description": "Potiers et céramistes",
+      "icon": "🏺",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Menuiserie",
+      "slug": "menuiserie",
+      "description": "Menuisiers et ébénistes",
+      "icon": "🪵",
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "name": "Textile & Couture",
+      "slug": "textile-couture",
+      "description": "Couturiers et artisans textile",
+      "icon": "🧵",
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "name": "Bijouterie",
+      "slug": "bijouterie",
+      "description": "Bijoutiers et orfèvres",
+      "icon": "💎",
+      "isActive": true
+    },
+    {
+      "id": 6,
+      "name": "Cuir & Maroquinerie",
+      "slug": "cuir-maroquinerie",
+      "description": "Artisans du cuir",
+      "icon": "👜",
+      "isActive": true
+    }
+  ]
+}

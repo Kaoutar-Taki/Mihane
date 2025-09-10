@@ -1,8 +1,9 @@
 import { useMemo } from "react";
-import profilesData from "../data/profiles.json";
-import professionsData from "../data/professions.json";
-import citiesData from "../data/cities.json";
-import regionsData from "../data/regions.json";
+import professionsData from "../data/artisan-professions.json";
+import citiesData from "../data/moroccan-cities.json";
+import regionsData from "../data/moroccan-regions.json";
+import reviewsData from "../data/artisan-reviews.json";
+import usersData from "../data/platform-users.json";
 
 export interface Stats {
   craftsmen: {
@@ -29,25 +30,29 @@ export interface Stats {
 
 export function useStats() {
   const stats = useMemo((): Stats => {
-    const totalCraftsmen = profilesData.length;
+    // Count only active artisan users
+    const activeArtisans = usersData.filter(
+      (user) => user.role === "ARTISAN" && user.isActive
+    );
+    const totalCraftsmen = activeArtisans.length;
 
-    const verifiedCraftsmen = profilesData.filter(
-      (profile) => profile.reviews && profile.reviews.length > 0,
-    ).length;
-
-    let totalRatings = 0;
-    let totalReviews = 0;
-
-    profilesData.forEach((profile) => {
-      if (profile.reviews && profile.reviews.length > 0) {
-        profile.reviews.forEach((review) => {
-          totalRatings += review.rating;
-          totalReviews++;
-        });
+    // Count verified craftsmen (those with approved reviews)
+    const profilesWithReviews = new Set();
+    reviewsData.forEach((review) => {
+      if (review.status === "APPROVED") {
+        profilesWithReviews.add(review.profileId);
       }
     });
+    const verifiedCraftsmen = profilesWithReviews.size;
 
-    const averageRating = totalReviews > 0 ? totalRatings / totalReviews : 0;
+    // Calculate real ratings from approved reviews
+    const approvedReviews = reviewsData.filter(
+      (review) => review.status === "APPROVED"
+    );
+    
+    const totalRatings = approvedReviews.reduce((sum, review) => sum + review.rating, 0);
+    const totalReviews = approvedReviews.length;
+    const averageRating = totalReviews > 0 ? totalRatings / totalReviews : 4.8;
 
     return {
       craftsmen: {

@@ -1,0 +1,64 @@
+{
+  "conversations": [
+    {
+      "id": 1,
+      "userId": 3,
+      "artisanId": 2,
+      "lastMessageAt": "2025-08-25T11:15:00Z",
+      "isActive": true,
+      "messages": [
+        {
+          "id": 1,
+          "senderId": 3,
+          "message": "Bonjour, je suis intéressée par un tajine personnalisé",
+          "isRead": true,
+          "createdAt": "2025-08-25T10:00:00Z"
+        },
+        {
+          "id": 2,
+          "senderId": 2,
+          "message": "Bonjour! Avec plaisir. Quelle taille et quel motif souhaitez-vous?",
+          "isRead": true,
+          "createdAt": "2025-08-25T10:15:00Z"
+        },
+        {
+          "id": 3,
+          "senderId": 3,
+          "message": "Un tajine de taille moyenne avec des motifs berbères traditionnels",
+          "isRead": true,
+          "createdAt": "2025-08-25T10:30:00Z"
+        },
+        {
+          "id": 4,
+          "senderId": 2,
+          "message": "Parfait! Le prix sera de 280 DH. Délai de 5 jours. Ça vous convient?",
+          "isRead": false,
+          "createdAt": "2025-08-25T11:15:00Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 4,
+      "artisanId": 2,
+      "lastMessageAt": "2025-08-24T16:30:00Z",
+      "isActive": true,
+      "messages": [
+        {
+          "id": 5,
+          "senderId": 4,
+          "message": "Salut, est-ce que vous donnez des cours de poterie?",
+          "isRead": true,
+          "createdAt": "2025-08-24T15:45:00Z"
+        },
+        {
+          "id": 6,
+          "senderId": 2,
+          "message": "Oui bien sûr! J'organise des ateliers le weekend. 150 DH par séance de 3h.",
+          "isRead": true,
+          "createdAt": "2025-08-24T16:30:00Z"
+        }
+      ]
+    }
+  ]
+}

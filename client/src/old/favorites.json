@@ -1,0 +1,16 @@
+{
+  "favorites": [
+    {
+      "id": 1,
+      "userId": 3,
+      "artisanId": 2,
+      "createdAt": "2025-08-20T14:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 4,
+      "artisanId": 2,
+      "createdAt": "2025-08-22T10:15:00Z"
+    }
+  ]
+}

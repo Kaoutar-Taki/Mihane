@@ -1,0 +1,633 @@
+{
+  "landing": {
+    "title": "Trouvez l'artisan parfait facilement",
+    "subtitle": "Plateforme marocaine qui vous connecte aux meilleurs artisans",
+    "search": {
+      "service": "Type de service",
+      "region": "Région",
+      "city": "Ville",
+      "button": "Rechercher"
+    },
+    "hero": {
+      "badge": "Plateforme marocaine de confiance"
+    },
+    "stats": {
+      "title": "Des chiffres qui parlent",
+      "subtitle": "Plateforme de confiance rassemblant les meilleurs artisans du Maroc",
+      "badge": "Statistiques plateforme",
+      "artisans": "artisans experts",
+      "artisansDesc": "Professionnels qualifiés et expérimentés",
+      "professions": "métiers spécialisés",
+      "professionsDesc": "Spécialités variées et de haute qualité",
+      "cities": "villes actives",
+      "citiesDesc": "Villes marocaines avec artisans actifs",
+      "activeUsers": "utilisateurs actifs",
+      "activeUsersDesc": "Membres actifs de la plateforme",
+      "regions": "régions couvertes",
+      "rating": "note clients",
+      "ratingDesc": "Moyenne de satisfaction clients",
+      "cta": "Rejoignez notre communauté grandissante de professionnels"
+    },
+    "professions": {
+      "title": "Métiers disponibles",
+      "subtitle": "Découvrez une large gamme de métiers et d'artisanats spécialisés disponibles sur notre plateforme",
+      "badge": "Métiers disponibles",
+      "viewAll": "Voir tous les métiers"
+    },
+    "categories": {
+      "title": "Catégories populaires",
+      "subtitle": "Découvrez nos différentes catégories d'artisans qualifiés et trouvez le professionnel qu'il vous faut",
+      "badge": "Catégories disponibles",
+      "professions": "métiers",
+      "explore": "Explorer",
+      "viewAll": "Voir toutes les catégories"
+    },
+    "howItWorks": {
+      "title": "Comment ça marche ?",
+      "subtitle": "Trois étapes simples pour obtenir le service dont vous avez besoin",
+      "badge": "Comment ça marche",
+      "step1": {
+        "title": "Recherchez le service",
+        "desc": "Choisissez le métier et la région qui vous conviennent"
+      },
+      "step2": {
+        "title": "Contactez l'artisan",
+        "desc": "Échangez avec l'artisan adapté et convenez des détails"
+      },
+      "step3": {
+        "title": "Réalisez votre projet",
+        "desc": "Obtenez un service de qualité dans les délais convenus"
+      },
+      "cta": "Commencer la recherche",
+      "ready": "Prêt à commencer ?",
+      "readyDesc": "Trouvez l'artisan parfait pour votre projet maintenant"
+    },
+    "topProfessionals": {
+      "title": "Nos Meilleurs Artisans",
+      "subtitle": "Découvrez les artisans les mieux notés de notre plateforme, reconnus pour leur expertise et la qualité de leur travail.",
+      "badge": "Artisans Vérifiés",
+      "viewAll": "Voir tous les profils"
+    },
+    "cta": {
+      "title": "Trouvez l'artisan idéal, simplement",
+      "subtitle": "Plateforme marocaine qui connecte clients et artisans qualifiés partout au Maroc. Recherchez par métier, région et ville, consultez des profils vérifiés avec avis et photos.",
+      "badge": "Rejoignez-nous maintenant",
+      "joinNow": "S'inscrire gratuitement",
+      "browseProfessionals": "Parcourir les artisans",
+      "trustIndicators": {
+        "professionals": "professionnel",
+        "professions": "métier spécialisé",
+        "regions": "région couverte"
+      }
+    },
+    "faq": {
+      "badge": "Questions Fréquentes",
+      "title": "Questions Fréquemment Posées",
+      "subtitle": "Réponses aux questions les plus courantes sur notre plateforme et nos services",
+      "stillHaveQuestions": "Vous avez encore des questions ?",
+      "contactDesc": "Notre équipe de support est prête à vous aider à tout moment"
+    },
+    "services": "Nos Services",
+    "servicesCards": {
+      "plomberie": {
+        "title": "Plomberie",
+        "desc": "Réparation & installation des tuyaux."
+      },
+      "peinture": {
+        "title": "Peinture",
+        "desc": "Peinture intérieure et extérieure."
+      },
+      "jardinage": {
+        "title": "Jardinage",
+        "desc": "Entretien d'espaces verts."
+      },
+      "maconnerie": {
+        "title": "Maçonnerie",
+        "desc": "Travaux de construction."
+      }
+    },
+    "testimonials": {
+      "badge": "Avis clients",
+      "title": "Témoignages de nos Clients",
+      "subtitle": "Découvrez les expériences exceptionnelles de nos clients avec nos artisans talentueux et comment notre plateforme numérique les a aidés à accéder aux meilleurs services artisanaux traditionnels et contemporains",
+      "avgRating": "note moyenne",
+      "happyClients": "clients satisfaits",
+      "verified": "Vérifié",
+      "roles": {
+        "CLIENT": "Client",
+        "ARTISAN": "Artisan Expert",
+        "SUPER_ADMIN": "Administrateur"
+      }
+    },
+    "features": {
+      "badge": "Avantages plateforme",
+      "title": "Pourquoi choisir notre plateforme ?",
+      "subtitle": "Découvrez les avantages qui font de notre plateforme le meilleur choix pour trouver des artisans professionnels",
+      "trust": {
+        "title": "Fiabilité et sécurité",
+        "desc": "Artisans certifiés avec évaluations authentiques et garantie de qualité de service"
+      },
+      "speed": {
+        "title": "Rapidité de réponse",
+        "desc": "Obtenez des devis rapides et communiquez directement avec les artisans"
+      },
+      "search": {
+        "title": "Recherche avancée",
+        "desc": "Recherchez facilement par métier, région et évaluations"
+      },
+      "quality": {
+        "title": "Qualité garantie",
+        "desc": "Artisans sélectionnés avec soin avec garantie de qualité du travail"
+      },
+      "coverage": {
+        "title": "Couverture complète",
+        "desc": "Nos services sont disponibles dans toutes les villes et régions du Maroc"
+      },
+      "community": {
+        "title": "Communauté grandissante",
+        "desc": "Rejoignez des milliers de clients et artisans satisfaits de nos services"
+      },
+      "cta": {
+        "title": "Commencez votre parcours avec nous aujourd'hui",
+        "subtitle": "Rejoignez des milliers de clients qui ont trouvé l'artisan idéal"
+      }
+    }
+  },
+  "notfound": {
+    "tabTitle": "Page introuvable",
+    "aria": "Page introuvable",
+    "title": "Page introuvable",
+    "message": "Veuillez revenir à la page d’accueil.",
+    "button": "Accueil"
+  },
+  "navbar": {
+    "brand": "Project Mihan",
+    "home": "Accueil",
+    "professions": "Métiers",
+    "regions": "Régions",
+    "cities": "Villes",
+    "profiles": "Artisans & Professionnels",
+    "about": "À propos",
+    "register": "S'inscrire",
+    "toggleMenu": "Ouvrir le menu"
+  },
+  "footer": {
+    "tagline": "Votre plateforme de confiance pour trouver les meilleurs artisans au Maroc",
+    "rights": "Tous droits réservés",
+    "followUs": "Suivez-nous",
+    "quickLinks": {
+      "title": "Liens rapides",
+      "home": "Accueil",
+      "professions": "Métiers",
+      "regions": "Régions",
+      "cities": "Villes",
+      "profiles": "Artisans & Professionnels",
+      "about": "À propos",
+      "register": "S'inscrire"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "Maroc",
+      "phone": "Téléphone",
+      "email": "E-mail"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "subtitle": "Inscrivez-vous pour recevoir nos nouveautés.",
+      "placeholder": "Votre email",
+      "button": "S'abonner"
+    },
+    "stats": {
+      "craftsmen": "artisans certifiés",
+      "rating": "note moyenne",
+      "verified": "vérifiés",
+      "support": "support continu"
+    },
+    "badges": {
+      "trusted": "Fiable",
+      "professional": "Professionnel"
+    },
+    "legal": {
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation"
+    }
+  },
+  "about": {
+    "badge": "À propos",
+    "hero": {
+      "title": "Nous connectons clients et artisans qualifiés",
+      "subtitle": "Plateforme marocaine leader visant à faciliter la recherche des meilleurs artisans et experts dans tous les domaines, avec garantie de qualité et confiance dans chaque interaction."
+    },
+    "features": {
+      "title": "Pourquoi choisir notre plateforme ?",
+      "subtitle": "Nous offrons une expérience unique alliant authenticité marocaine et technologies modernes",
+      "trust": {
+        "title": "Confiance et Sécurité",
+        "desc": "Artisans fiables et certifiés avec des évaluations authentiques de clients"
+      },
+      "speed": {
+        "title": "Réactivité",
+        "desc": "Communication directe et rapide avec les artisans adaptés à votre projet"
+      },
+      "quality": {
+        "title": "Haute Qualité",
+        "desc": "Artisans qualifiés et spécialisés dans leurs domaines avec une vaste expérience"
+      },
+      "support": {
+        "title": "Support Continu",
+        "desc": "Équipe de support disponible pour vous aider à chaque étape de votre parcours"
+      }
+    },
+    "stats": {
+      "artisans": "artisans spécialisés",
+      "cities": "villes marocaines",
+      "rating": "note clients",
+      "professions": "métiers disponibles"
+    },
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Nous aspirons à être le pont qui relie les porteurs de projets aux artisans qualifiés au Maroc. Nous croyons que chaque projet mérite l'expertise et la qualité appropriées, et nous travaillons à faciliter cette communication de manière sûre et fiable."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "authenticity": {
+        "title": "Authenticité Marocaine",
+        "desc": "Nous célébrons l'artisanat traditionnel marocain et aidons à préserver notre patrimoine culturel"
+      },
+      "innovation": {
+        "title": "Innovation Technologique",
+        "desc": "Nous utilisons les dernières technologies pour faciliter la communication entre clients et artisans"
+      },
+      "community": {
+        "title": "Communauté Locale",
+        "desc": "Nous soutenons l'économie locale et aidons les artisans à développer leurs activités"
+      }
+    },
+    "cta": {
+      "title": "Commencez votre parcours avec nous aujourd'hui",
+      "subtitle": "Rejoignez des milliers de clients qui ont trouvé l'artisan parfait pour leurs projets",
+      "button": "Rechercher un artisan",
+      "explore": "Découvrir les artisans"
+    }
+  },
+  "register": {
+    "title": "Inscription des professionnels",
+    "sections": {
+      "identity": "Informations de base",
+      "contact": "Coordonnées",
+      "about": "Description",
+      "media": "Photo & Galerie"
+    },
+    "fullName": "Nom complet",
+    "fullNamePh": "Ex: Mohamed Ben Ali",
+    "genre": "Genre",
+    "profession": "Métier",
+    "region": "Région",
+    "city": "Ville",
+    "select": "Choisir",
+    "phone": "Téléphone",
+    "descPh": "Présentez brièvement vos services...",
+    "descHint": "Au moins 20 caractères",
+    "avatar": "Photo de profil",
+    "upload": "Téléverser",
+    "gallery": "Galerie",
+    "addImages": "Ajouter des images (jusqu'à 8)",
+    "optional": "Optionnel",
+    "agree": "J'accepte les conditions d'utilisation et la politique de confidentialité",
+    "submit": "Envoyer la demande",
+    "reset": "Réinitialiser",
+    "preview": "Aperçu",
+    "cardName": "Nom complet",
+    "cardDesc": "La description apparaîtra ici...",
+    "success": "Demande envoyée avec succès !",
+    "errors": {
+      "fullName": "Le nom complet est requis",
+      "profession": "Choisissez un métier",
+      "region": "Choisissez une région",
+      "city": "Choisissez une ville",
+      "genre": "Choisissez un genre",
+      "description": "Saisissez au moins 20 caractères",
+      "contact": "Renseignez au moins un moyen de contact",
+      "agree": "Vous devez accepter les conditions"
+    }
+  },
+  "login": {
+    "title": "Connexion",
+    "sectionTitle": "Entrez vos identifiants",
+    "identifier": "Email ou téléphone",
+    "password": "Mot de passe",
+    "togglePw": "Afficher/Masquer le mot de passe",
+    "remember": "Se souvenir de moi",
+    "forgot": "Mot de passe oublié ?",
+    "submit": "Se connecter",
+    "noAccount": "Nouveau ? Créer un compte",
+    "tips": "Astuce",
+    "tipText": "Utilisez votre email ou votre numéro de téléphone au format international (+212...). L’option Se souvenir conserve la session.",
+    "errors": {
+      "identifier": "Entrez un email valide ou un téléphone valide",
+      "password": "Le mot de passe doit contenir au moins 6 caractères"
+    }
+  },
+  "brand": {
+    "name": "Mihan Maroc",
+    "tagline": "Trouvez le bon professionnel au Maroc"
+  },
+  "logo": {
+    "firstName": "Mihan",
+    "secondName": "Maroc",
+    "alt": "Logo Mihan Maroc"
+  },
+  "contact": {
+    "badge": "Contactez-nous",
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour vous aider à tout moment et serons heureux de répondre à toutes vos questions",
+    "form": {
+      "title": "Envoyez-nous un message",
+      "subtitle": "Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais",
+      "name": "Nom complet",
+      "namePlaceholder": "Entrez votre nom complet",
+      "email": "Adresse email",
+      "emailPlaceholder": "example@email.com",
+      "phone": "Numéro de téléphone",
+      "phonePlaceholder": "+212 6XX XXX XXX",
+      "optional": "Optionnel",
+      "topic": "Type de demande",
+      "topics": {
+        "general": "Question générale",
+        "support": "Support et assistance",
+        "partnership": "Partenariats",
+        "report": "Signalement"
+      },
+      "subject": "Objet",
+      "subjectPlaceholder": "Un titre court pour votre message",
+      "message": "Message",
+      "messagePlaceholder": "Décrivez votre demande ou question en détail...",
+      "send": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "loading": "Envoi en cours...",
+      "submit": "Envoyer le message"
+    },
+    "success": {
+      "title": "Votre message a été envoyé avec succès !",
+      "message": "Nous vous répondrons dans les plus brefs délais",
+      "button": "Envoyer un autre message"
+    },
+    "info": {
+      "title": "Moyens de contact",
+      "subtitle": "Choisissez le moyen le plus approprié pour nous contacter",
+      "email": "Adresse email",
+      "emailDesc": "Pour les questions générales et le support",
+      "phone": "Téléphone",
+      "phoneDesc": "Pour une assistance immédiate"
+    },
+    "social": {
+      "title": "Suivez-nous sur les réseaux sociaux",
+      "subtitle": "Restez informé des dernières nouvelles et mises à jour",
+      "instagramDesc": "Suivez-nous pour les dernières mises à jour",
+      "facebookDesc": "Rejoignez notre communauté"
+    },
+    "map": {
+      "title": "Notre localisation sur la carte",
+      "subtitle": "Venez nous rendre visite dans notre bureau principal"
+    },
+    "errors": {
+      "name": "Le nom complet est requis",
+      "email": "L'adresse email n'est pas valide",
+      "subject": "L'objet est requis",
+      "message": "Le message est trop court"
+    }
+  },
+  "profiles": {
+    "title": "Tous les professionnels",
+    "description": "Trouvez le professionnel adapté à vos besoins parmi les meilleurs artisans du Maroc",
+    "discover": "Découvrir les professionnels",
+    "available": "professionnel disponible",
+    "searchPlaceholder": "Rechercher des professionnels, métiers ou villes...",
+    "clickToView": "Cliquer pour voir les détails",
+    "viewProfile": "Voir le profil",
+    "showing": "Affichage de {{count}} sur {{total}} professionnels",
+    "noResults": "Aucun résultat",
+    "noResultsDescription": "Aucun professionnel ne correspond aux critères de recherche actuels",
+    "clearFilters": "Effacer les filtres",
+    "empty": "Aucun résultat pour le moment.",
+    "listAria": "Liste des profils",
+    "search": "Rechercher dans les profils...",
+    "filters": "Filtres",
+    "sort": {
+      "name": "Nom",
+      "rating": "Note",
+      "reviews": "Nombre d'avis",
+      "newest": "Plus récent"
+    },
+    "filter": {
+      "allProfessions": "Tous les métiers",
+      "allRegions": "Toutes les régions",
+      "allCities": "Toutes les villes"
+    },
+    "resultsCount": "{{count}} sur {{total}} profils"
+  },
+  "categories": {
+    "title": "Toutes les catégories",
+    "description": "Découvrez toutes les catégories disponibles sur notre plateforme",
+    "allBadge": "Toutes les catégories",
+    "categoriesCount": "catégories disponibles",
+    "noResults": "Aucune catégorie trouvée",
+    "noResultsDescription": "Aucune catégorie disponible pour le moment"
+  },
+  "professions": {
+    "title": "Tous les métiers",
+    "description": "Découvrez tous les métiers disponibles sur notre plateforme",
+    "categoryBadge": "Catégorie",
+    "allBadge": "Tous les métiers",
+    "professionsCount": "métiers disponibles",
+    "noResults": "Aucun métier trouvé",
+    "noResultsDescription": "Aucun métier trouvé dans cette catégorie"
+  },
+  "common": {
+    "search": "Recherche",
+    "filter": "Filtrer",
+    "reset": "Réinitialiser",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "backToHome": "Retour à l'accueil",
+    "loading": "Chargement...",
+    "noResults": "Aucun résultat",
+    "viewMore": "Voir plus",
+    "close": "Fermer",
+    "viewProfile": "Voir le profil"
+  },
+  "profession": "Métier",
+  "region": "Région", 
+  "city": "Ville",
+  "allProfessions": "Tous les métiers",
+  "allRegions": "Toutes les régions",
+  "allCities": "Toutes les villes",
+  "activeFilters": "Filtres actifs",
+  "clearAll": "Tout effacer",
+  "reviews": {
+    "review": "avis",
+    "review_plural": "avis"
+  },
+  "components": {
+    "loadingSpinner": {
+      "loading": "Chargement..."
+    }
+  },
+  "auth": {
+    "client": "Client",
+    "pro": "Artisan",
+    "signout": "Déconnexion",
+    "errors": {
+      "signInError": "Erreur de connexion",
+      "contextError": "useAuth doit être utilisé dans AuthProvider"
+    }
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour",
+    "sections": {
+      "introduction": {
+        "title": "Introduction",
+        "content": "Chez Project Mihan, nous nous engageons à protéger votre vie privée et vos données personnelles. Cette politique explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre plateforme de mise en relation entre clients et artisans au Maroc."
+      },
+      "dataCollection": {
+        "title": "Données collectées",
+        "content": "Nous collectons différents types d'informations pour améliorer votre expérience :",
+        "types": {
+          "personal": "Informations personnelles : nom, email, téléphone, adresse",
+          "professional": "Informations professionnelles : métier, compétences, portfolio",
+          "usage": "Données d'utilisation : pages visitées, interactions, préférences",
+          "technical": "Données techniques : adresse IP, navigateur, appareil utilisé"
+        }
+      },
+      "dataUsage": {
+        "title": "Utilisation des données",
+        "content": "Vos données sont utilisées pour :",
+        "purposes": {
+          "service": "Fournir et améliorer nos services de mise en relation",
+          "communication": "Communiquer avec vous concernant votre compte",
+          "matching": "Faciliter la mise en relation entre clients et artisans",
+          "support": "Fournir un support client personnalisé",
+          "analytics": "Analyser l'utilisation pour améliorer la plateforme"
+        }
+      },
+      "dataProtection": {
+        "title": "Protection des données",
+        "content": "Nous mettons en place des mesures de sécurité robustes :",
+        "measures": {
+          "encryption": "Chiffrement des données sensibles",
+          "access": "Contrôle d'accès strict aux données",
+          "monitoring": "Surveillance continue de la sécurité",
+          "updates": "Mises à jour régulières des systèmes de sécurité"
+        }
+      },
+      "userRights": {
+        "title": "Vos droits",
+        "content": "Conformément à la législation marocaine, vous avez le droit de :",
+        "rights": {
+          "access": "Accéder à vos données personnelles",
+          "rectification": "Corriger vos informations",
+          "deletion": "Demander la suppression de vos données",
+          "portability": "Obtenir une copie de vos données",
+          "objection": "Vous opposer au traitement de vos données"
+        }
+      },
+      "contact": {
+        "title": "Contact",
+        "content": "Pour toute question concernant cette politique de confidentialité, contactez-nous à :",
+        "email": "privacy@projectmihan.com"
+      }
+    }
+  },
+  "terms": {
+    "title": "Conditions d'Utilisation",
+    "lastUpdated": "Dernière mise à jour",
+    "sections": {
+      "acceptance": {
+        "title": "Acceptation des conditions",
+        "content": "En utilisant la plateforme Project Mihan, vous acceptez d'être lié par ces conditions d'utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser notre service. Ces conditions s'appliquent à tous les utilisateurs de la plateforme, qu'ils soient clients ou artisans."
+      },
+      "serviceDescription": {
+        "title": "Description du service",
+        "content": "Project Mihan est une plateforme de mise en relation entre clients et artisans au Maroc. Nous facilitons les connexions mais ne sommes pas partie prenante des transactions entre utilisateurs.",
+        "forClients": {
+          "title": "Pour les clients",
+          "features": {
+            "search": "Recherche et découverte d'artisans qualifiés",
+            "profiles": "Consultation des profils et évaluations",
+            "contact": "Contact direct avec les artisans",
+            "reviews": "Système d'évaluation et de commentaires"
+          }
+        },
+        "forArtisans": {
+          "title": "Pour les artisans",
+          "features": {
+            "profile": "Création et gestion de profil professionnel",
+            "showcase": "Présentation de services et réalisations",
+            "requests": "Réception de demandes de clients",
+            "reputation": "Gestion de réputation en ligne"
+          }
+        }
+      },
+      "userObligations": {
+        "title": "Obligations des utilisateurs",
+        "general": {
+          "title": "Tous les utilisateurs s'engagent à :",
+          "obligations": {
+            "accuracy": "Fournir des informations exactes et à jour",
+            "law": "Respecter les lois marocaines en vigueur",
+            "legal": "Ne pas utiliser la plateforme à des fins illégales",
+            "respect": "Respecter les autres utilisateurs",
+            "content": "Ne pas publier de contenu offensant ou inapproprié"
+          }
+        },
+        "artisans": {
+          "title": "Les artisans s'engagent en plus à :",
+          "obligations": {
+            "qualifications": "Posséder les qualifications nécessaires pour leurs services",
+            "deadlines": "Respecter les délais convenus avec les clients",
+            "professional": "Maintenir un niveau de service professionnel",
+            "response": "Répondre de manière appropriée aux demandes"
+          }
+        }
+      },
+      "liability": {
+        "title": "Limitation de responsabilité",
+        "content": "Project Mihan agit uniquement comme intermédiaire. Nous ne sommes pas responsables de :",
+        "limitations": {
+          "quality": "La qualité des services fournis par les artisans",
+          "disputes": "Les litiges entre clients et artisans",
+          "damages": "Les dommages résultant de l'utilisation de nos services",
+          "accuracy": "L'exactitude des informations fournies par les utilisateurs",
+          "technical": "Les problèmes techniques temporaires"
+        }
+      },
+      "intellectualProperty": {
+        "title": "Propriété intellectuelle",
+        "content": "Tous les éléments de la plateforme Project Mihan (design, logos, textes, fonctionnalités) sont protégés par les droits de propriété intellectuelle.",
+        "rules": {
+          "reproduction": "Vous ne pouvez pas reproduire ou copier nos contenus",
+          "userContent": "Les utilisateurs conservent leurs droits sur leurs propres contenus",
+          "license": "En publiant du contenu, vous nous accordez une licence d'utilisation"
+        }
+      },
+      "modifications": {
+        "title": "Modifications et résiliation",
+        "termsModification": {
+          "title": "Modifications des conditions",
+          "content": "Nous nous réservons le droit de modifier ces conditions à tout moment. Les utilisateurs seront informés des changements importants."
+        },
+        "termination": {
+          "title": "Résiliation",
+          "content": "Nous pouvons suspendre ou supprimer un compte en cas de violation de ces conditions. Les utilisateurs peuvent également supprimer leur compte à tout moment."
+        }
+      },
+      "legalContact": {
+        "title": "Contact juridique",
+        "content": "Pour toute question juridique ou réclamation, vous pouvez nous contacter via :",
+        "email": "legal@projectmihan.ma",
+        "jurisdiction": "Ces conditions sont régies par le droit marocain. Tout litige sera résolu devant les tribunaux compétents du Maroc."
+      }
+    }
+  }
+}
