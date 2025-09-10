@@ -47,7 +47,7 @@ export default function TestimonialsSection() {
   const { lang, dir } = useLang();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const testimonials = useMemo(() => {
     return testimonialsData.map((testimonial: Testimonial) => {
