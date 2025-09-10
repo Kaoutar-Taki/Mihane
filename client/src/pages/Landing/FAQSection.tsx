@@ -16,8 +16,8 @@ export default function FAQSection() {
       .sort((a, b) => a.priority - b.priority)
       .map((faq) => ({
         id: faq.id,
-        question: faq.question[lang],
-        answer: faq.answer[lang],
+        question: faq.question[lang as keyof typeof faq.question],
+        answer: faq.answer[lang as keyof typeof faq.answer],
       }));
   }, [lang]);
 

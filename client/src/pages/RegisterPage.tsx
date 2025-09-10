@@ -17,7 +17,7 @@ import {
 import MainLayout from "./layouts/MainLayout";
 
 // Types
-type IconCmp = React.ComponentType<{ size?: number; className?: string }>;
+type IconCmp = React.ComponentType<{ size?: string | number; className?: string }>;
 
 interface FormErrors {
   name?: string;

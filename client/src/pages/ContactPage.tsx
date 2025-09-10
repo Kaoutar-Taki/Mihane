@@ -16,7 +16,7 @@ import {
 
 type Topic = "general" | "support" | "partnership" | "report";
 
-type IconCmp = React.ComponentType<{ size?: number; className?: string }>;
+type IconCmp = React.ComponentType<{ size?: string | number; className?: string }>;
 
 function FloatInput({
   type = "text",
