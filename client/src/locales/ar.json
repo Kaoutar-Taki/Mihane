@@ -329,12 +329,12 @@
     }
   },
   "brand": {
-    "name": "مِهن المغرب",
+    "name": "مِهن",
     "tagline": "لقاو الحرفي المناسب بسهولة"
   },
   "logo": {
-    "firstName": "مِهن",
-    "secondName": "المغرب",
+    "firstName": "مِه",
+    "secondName": "ن",
     "alt": "شعار مهن المغرب"
   },
   "contact": {
@@ -454,7 +454,21 @@
       "allRegions": "جميع المناطق",
       "allCities": "جميع المدن"
     },
-    "resultsCount": "{{count}} من أصل {{total}} بروفايل"
+    "resultsCount": "{{count}} من أصل {{total}} بروفايل",
+     "notFound": "الملف غير موجود",
+    "notFoundDescription": "لم نتمكن من العثور على هذا الملف.",
+    "rating": "التقييم",
+    "reviews": "المراجعات",
+    "verified": "موثق",
+    "about": "نبذة",
+    "call": "اتصال",
+    "whatsapp": "واتساب",
+    "email": "البريد الإلكتروني",
+    "customerReviews": "آراء العملاء",
+    "showAllReviews": "عرض جميع المراجعات",
+    "showLess": "إظهار أقل",
+    "noReviews": "لا توجد مراجعات حتى الآن",
+    "similarProfiles": "حرفيون مقترحون"
   },
   "categories": {
     "title": "جميع الفئات",
@@ -484,19 +498,31 @@
     "viewProfile": "عرض الملف الشخصي",
     "previous": "السابق",
     "next": "التالي",
-    "backToHome": "العودة للرئيسية"
+    "backToHome": "العودة للرئيسية",
+    "backToProfiles": "الرجوع إلى قائمة الحرفيين",
+    "seeAll": "عرض الكل",
+    "view": "عرض"
   },
-  "profession": "المهنة",
-  "region": "المنطقة", 
-  "city": "المدينة",
-  "allProfessions": "جميع المهن",
-  "allRegions": "جميع المناطق",
-  "allCities": "جميع المدن",
-  "activeFilters": "الفلاتر النشطة",
-  "clearAll": "مسح الكل",
+  "profile": {
+    "notFound": "الملف غير موجود",
+    "notFoundDescription": "لم نتمكن من العثور على هذا الملف.",
+    "rating": "التقييم",
+    "reviews": "المراجعات",
+    "verified": "موثق",
+    "about": "نبذة",
+    "call": "اتصال",
+    "whatsapp": "واتساب",
+    "email": "البريد الإلكتروني",
+    "customerReviews": "آراء العملاء",
+    "showAllReviews": "عرض جميع المراجعات",
+    "showLess": "إظهار أقل",
+    "noReviews": "لا توجد مراجعات حتى الآن",
+    "similarProfiles": "حرفيون مقترحون"
+  },
   "reviews": {
     "review": "مراجعة",
-    "review_plural": "تقييم"
+    "review_plural": "تقييم",
+    "anonymousUser": "مستخدم مجهول"
   },
   "components": {
     "loadingSpinner": {
@@ -659,5 +685,13 @@
         "jurisdiction": "تخضع هذه الشروط للقانون المغربي. أي نزاع سيتم حله أمام المحاكم المختصة في المغرب."
       }
     }
-  }
+  },
+  "profession": "المهنة",
+  "region": "المنطقة", 
+  "city": "المدينة",
+  "allProfessions": "جميع المهن",
+  "allRegions": "جميع المناطق",
+  "allCities": "جميع المدن",
+  "activeFilters": "الفلاتر النشطة",
+  "clearAll": "مسح الكل"
 }

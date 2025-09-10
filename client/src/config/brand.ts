@@ -1,10 +1,10 @@
 export const BRAND = {
-  name: "Mihan Maroc",
-  nameAr: "مِهن المغرب",
-  domain: "mihanmaroc.ma",
-  email: "hello@mihanmaroc.ma",
+  name: "Mihane",
+  nameAr: "مِهن",
+  domain: "mihane.ma",
+  email: "hello@mihane.ma",
   colors: {
-    primary: "#f97316", // نفسه المستعمل حالياً
+    primary: "#f97316",
     dark: "#0f172a",
   },
   taglineAr: "لقاو الحرفي المناسب بسهولة",

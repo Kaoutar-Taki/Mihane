@@ -329,12 +329,12 @@
     }
   },
   "brand": {
-    "name": "Mihan Maroc",
+    "name": "Mihane",
     "tagline": "Trouvez le bon professionnel au Maroc"
   },
   "logo": {
     "firstName": "Mihan",
-    "secondName": "Maroc",
+    "secondName": "e",
     "alt": "Logo Mihan Maroc"
   },
   "contact": {
@@ -424,7 +424,21 @@
       "allRegions": "Toutes les régions",
       "allCities": "Toutes les villes"
     },
-    "resultsCount": "{{count}} sur {{total}} profils"
+    "resultsCount": "{{count}} sur {{total}} profils",
+     "notFound": "Profil introuvable",
+    "notFoundDescription": "Nous n'avons pas pu trouver ce profil.",
+    "rating": "Évaluation",
+    "reviews": "Avis",
+    "verified": "Vérifié",
+    "about": "À propos",
+    "call": "Appeler",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "customerReviews": "Avis des clients",
+    "showAllReviews": "Voir tous les avis",
+    "showLess": "Réduire",
+    "noReviews": "Aucun avis pour le moment",
+    "similarProfiles": "Profils similaires"
   },
   "categories": {
     "title": "Toutes les catégories",
@@ -454,18 +468,30 @@
     "noResults": "Aucun résultat",
     "viewMore": "Voir plus",
     "close": "Fermer",
-    "viewProfile": "Voir le profil"
+    "viewProfile": "Voir le profil",
+    "backToProfiles": "Retour à la liste des profils",
+    "seeAll": "Voir tout",
+    "view": "Voir"
   },
-  "profession": "Métier",
-  "region": "Région", 
-  "city": "Ville",
-  "allProfessions": "Tous les métiers",
-  "allRegions": "Toutes les régions",
-  "allCities": "Toutes les villes",
-  "activeFilters": "Filtres actifs",
-  "clearAll": "Tout effacer",
+  "profile": {
+    "notFound": "Profil introuvable",
+    "notFoundDescription": "Nous n'avons pas pu trouver ce profil.",
+    "rating": "Évaluation",
+    "reviews": "Avis",
+    "verified": "Vérifié",
+    "about": "À propos",
+    "call": "Appeler",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "customerReviews": "Avis des clients",
+    "showAllReviews": "Voir tous les avis",
+    "showLess": "Réduire",
+    "noReviews": "Aucun avis pour le moment",
+    "similarProfiles": "Profils similaires"
+  },
   "reviews": {
     "review": "avis",
+    "anonymousUser": "Utilisateur anonyme",
     "review_plural": "avis"
   },
   "components": {
@@ -629,5 +655,13 @@
         "jurisdiction": "Ces conditions sont régies par le droit marocain. Tout litige sera résolu devant les tribunaux compétents du Maroc."
       }
     }
-  }
+  },
+  "profession": "Métier",
+  "region": "Région", 
+  "city": "Ville",
+  "allProfessions": "Tous les métiers",
+  "allRegions": "Toutes les régions",
+  "allCities": "Toutes les villes",
+  "activeFilters": "Filtres actifs",
+  "clearAll": "Tout effacer"
 }
