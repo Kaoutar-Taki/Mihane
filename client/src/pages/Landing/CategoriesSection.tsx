@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Sparkles, Grid3X3 } from "lucide-react";
 import { useMemo } from "react";
-import categoriesData from "../../data/artisan-categories.json";
-import professionsData from "../../data/artisan-professions.json";
+import categoriesData from "@/data/artisan-categories.json";
+import professionsData from "@/data/artisan-professions.json";
 
 export default function CategoriesSection() {
   const { t, i18n } = useTranslation();

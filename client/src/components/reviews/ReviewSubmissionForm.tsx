@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Star, Upload, X, Send } from "lucide-react";
-import { useAuth } from "../../auth/AuthContext";
-import { useReviews } from "../../hooks/useReviews";
-import type { ReviewFormData } from "../../types/review";
-import FormField from "../ui/FormField";
-import ValidationMessage from "../ui/ValidationMessage";
-import LoadingSpinner from "../ui/LoadingSpinner";
+import { useAuth } from "@/auth/AuthContext";
+import { useReviews } from "@/hooks/useReviews";
+import type { ReviewFormData } from "@/types/review";
+import { FormField, ValidationMessage, LoadingSpinner } from "@/components";
 
 interface ReviewSubmissionFormProps {
   artisanId: string;

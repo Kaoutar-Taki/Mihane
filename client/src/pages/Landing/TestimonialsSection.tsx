@@ -8,9 +8,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useLang } from "../../hooks/useLang";
-import testimonialsData from "../../data/platform-testimonials.json";
-import usersData from "../../data/platform-users.json";
+import { useLang } from "@/hooks";
+import testimonialsData from "@/data/platform-testimonials.json";
+import usersData from "@/data/platform-users.json";
 
 interface Testimonial {
   id: number;

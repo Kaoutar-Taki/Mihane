@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MapPin, Star, ArrowRight, Sparkles, Users } from "lucide-react";
 import { useMemo } from "react";
-import profilesData from "../../data/artisan-profiles.json";
-import professionsData from "../../data/artisan-professions.json";
-import citiesData from "../../data/moroccan-cities.json";
-import regionsData from "../../data/moroccan-regions.json";
-import reviewsData from "../../data/artisan-reviews.json";
-import usersData from "../../data/platform-users.json";
+import profilesData from "@/data/artisan-profiles.json";
+import professionsData from "@/data/artisan-professions.json";
+import citiesData from "@/data/moroccan-cities.json";
+import regionsData from "@/data/moroccan-regions.json";
+import reviewsData from "@/data/artisan-reviews.json";
+import usersData from "@/data/platform-users.json";
 
 export default function JobsSection() {
   const { t, i18n } = useTranslation();

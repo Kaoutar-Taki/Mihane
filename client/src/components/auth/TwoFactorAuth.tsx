@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Shield, Mail, Smartphone, Loader2 } from "lucide-react";
-import { useAuth } from "../../auth/AuthContext";
+import { useAuth } from "@/auth/AuthContext";
 
 interface TwoFactorAuthProps {
   onSuccess: () => void;
