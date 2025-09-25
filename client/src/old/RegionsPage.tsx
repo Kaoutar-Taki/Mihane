@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import MainLayout from "./layouts/MainLayout";
+import MainLayout from "../pages/layouts/MainLayout";
 import regions from "../data/moroccan-regions.json";
 import { Link } from "react-router-dom";
 

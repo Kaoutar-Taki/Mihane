@@ -1,60 +1,69 @@
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import MainLayout from "./layouts/MainLayout";
+import MainLayout from "../pages/layouts/MainLayout";
 
-import cities from "../data/moroccan-cities.json";
 import regions from "../data/moroccan-regions.json";
+import cities from "../data/moroccan-cities.json";
 import profiles from "../data/artisan-profiles.json";
 import professions from "../data/artisan-professions.json";
 
-// ----- Types (حطّهم فوق) -----
-
-export default function CityProfilesPage() {
+export default function RegionProfilesPage() {
   const { i18n, t } = useTranslation();
   const { id } = useParams<{ id: string }>();
 
   const lang = (i18n.language as "ar" | "fr") ?? "ar";
-  const cityId = Number(id);
+  const regionId = Number(id);
 
-  const city = cities.find((c) => c.id === cityId);
-  if (!city) {
+  const region = regions.find((r) => r.id === regionId);
+  if (!region) {
     return (
       <MainLayout>
         <section className="py-16 text-center">
           <h1 className="mb-2 text-2xl font-bold text-gray-800">
-            {t("city.notFound", "المدينة غير موجودة")}
+            {t("region.notFound", "الجهة غير موجودة")}
           </h1>
           <Link
-            to="/cities"
+            to="/regions"
             className="bg-primary mt-4 inline-block rounded-lg px-4 py-2 text-white hover:opacity-90"
           >
-            {t("city.back", "رجوع إلى المدن")}
+            {t("region.back", "رجوع إلى الجهات")}
           </Link>
         </section>
       </MainLayout>
     );
   }
 
-  const region = regions.find((r) => r.id === city.region_id);
+  // المدن ديال هاد الجهة
+  const regionCities = cities.filter((c) => c.region_id === regionId);
 
-  // جميع البروفايلات فالمدينة - البحث في العنوان
-  const profilesInCity = profiles.filter((p) => 
-    p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr)
+  // جميع البروفايلات فالجهة - البحث في العنوان
+  const profilesInRegion = profiles.filter((p) =>
+    regionCities.some(
+      (city) =>
+        p.address.ar.includes(city.ar) || p.address.fr.includes(city.fr),
+    ),
   );
 
-  // تجميع حسب المهنة
-  const groupedByProfession = profilesInCity.reduce<Record<number, any[]>>(
-    (acc, p) => {
-      (acc[p.professionId] ??= []).push(p);
-      return acc;
-    },
-    {},
-  );
+  // نجمعوهم حسب المهنة
+  const groupedByProfession: Record<number, typeof profiles> = {};
+  for (const p of profilesInRegion) {
+    if (!groupedByProfession[p.professionId])
+      groupedByProfession[p.professionId] = [];
+    groupedByProfession[p.professionId].push(p);
+  }
 
-  // لائحة المهن اللي فعلا عندها بروفايلات فهاد المدينة (مرتّبة)
-  const professionsInCity = professions
+  // ترتيب المهن اللي فعلا عندها بروفايلات، حسب الاسم
+  const professionsInRegion = professions
     .filter((pro) => groupedByProfession[pro.id]?.length)
     .sort((a, b) => a.title[lang].localeCompare(b.title[lang]));
+
+  const getCityLabel = (address: { ar: string; fr: string }) => {
+    const addressText = address[lang];
+    const foundCity = cities.find(
+      (city) => addressText.includes(city.ar) || addressText.includes(city.fr),
+    );
+    return foundCity ? foundCity[lang] : "—";
+  };
 
   return (
     <MainLayout>
@@ -62,42 +71,41 @@ export default function CityProfilesPage() {
         {/* Header */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">{city[lang]}</h1>
-            {region && <p className="text-gray-600">{region[lang]}</p>}
+            <h1 className="text-2xl font-bold text-gray-800">{region[lang]}</h1>
             <p className="text-gray-600">
-              {t("city.statsProfiles", "{{count}} بروفايل داخل المدينة", {
-                count: profilesInCity.length,
+              {t("region.statsProfiles", "{{count}} بروفايل داخل الجهة", {
+                count: profilesInRegion.length,
               })}
             </p>
           </div>
 
           <div className="flex gap-2">
             <Link
-              to={`/city/${cityId}`}
+              to={`/region/${regionId}`}
               className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
             >
-              {t("city.viewProfessions", "عرض المهن في المدينة")}
+              {t("region.viewProfessions", "عرض المهن")}
             </Link>
             <Link
-              to="/cities"
+              to="/regions"
               className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
             >
-              ← {t("city.back", "رجوع إلى المدن")}
+              ← {t("region.back", "رجوع إلى الجهات")}
             </Link>
           </div>
         </div>
 
         {/* لا توجد بروفايلات */}
-        {professionsInCity.length === 0 ? (
+        {professionsInRegion.length === 0 ? (
           <div className="rounded-lg border border-dashed border-gray-300 p-8 text-center text-gray-500">
             {t(
-              "city.emptyProfiles",
-              "ما كاينينش بروفايلات فهاد المدينة حاليا.",
+              "region.emptyProfiles",
+              "ما كاينينش بروفايلات فهاد الجهة حاليا.",
             )}
           </div>
         ) : (
           <>
-            {professionsInCity.map((pro) => (
+            {professionsInRegion.map((pro) => (
               <section key={pro.id} className="mb-10">
                 <div className="mb-3 flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-gray-800">
@@ -107,12 +115,11 @@ export default function CityProfilesPage() {
                       {t("professionals", "محترف/ة")})
                     </span>
                   </h2>
-                  {/* نمرّرو city كـ query باش صفحة المهنة تقدّر تصفّي بهاد المدينة فقط (اختياري) */}
                   <Link
-                    to={`/profession/${pro.id}?city=${cityId}`}
+                    to={`/profession/${pro.id}`}
                     className="text-primary text-sm hover:underline"
                   >
-                    {t("seeAllProfession", "رؤية كل المحترفين فهاد المهنة")}
+                    {t("seeAllProfession", "رؤية جميع هذه المهنة")}
                   </Link>
                 </div>
 
@@ -125,18 +132,21 @@ export default function CityProfilesPage() {
                     >
                       <div className="h-16 w-16 overflow-hidden rounded-full border-2 border-orange-500">
                         <img
-                          src={p.image}
-                          alt={p.fullName}
+                          src={p.gallery[0] || "/assets/default-profile.jpg"}
+                          alt={p.title.ar}
                           className="h-full w-full object-cover"
                           loading="lazy"
                         />
                       </div>
                       <div className="min-w-0 flex-1">
                         <h3 className="group-hover:text-primary truncate text-base font-semibold text-gray-800">
-                          {p.fullName}
+                          {p.title.ar}
                         </h3>
+                        <p className="mt-0.5 text-sm text-gray-600">
+                          {getCityLabel(p.address)} {/* المدينة */}
+                        </p>
                         <p className="mt-1 line-clamp-2 text-xs text-gray-500">
-                          {p.description}
+                          {p.description.ar}
                         </p>
                       </div>
                     </Link>

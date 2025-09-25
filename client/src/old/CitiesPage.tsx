@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import MainLayout from "./layouts/MainLayout";
+import MainLayout from "../pages/layouts/MainLayout";
 import cities from "../data/moroccan-cities.json";
 import { Link, useNavigate } from "react-router-dom";
 
