@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import { ChevronDown, ChevronUp, HelpCircle, Sparkles } from "lucide-react";
-import faqsData from "../../data/platform-faqs.json";
-import { useLang } from "../../hooks/useLang";
-import type { FAQ } from "../../data/types";
+import faqsData from "@/data/platform-faqs.json";
+import { useLang } from "@/hooks";
+import type { FAQ } from "@/data/types";
 
 export default function FAQSection() {
   const { t } = useTranslation();

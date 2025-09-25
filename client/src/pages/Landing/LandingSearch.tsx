@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import professionsData from "../../data/artisan-professions.json";
-import regionsData from "../../data/moroccan-regions.json";
-import citiesData from "../../data/moroccan-cities.json";
+import professionsData from "@/data/artisan-professions.json";
+import regionsData from "@/data/moroccan-regions.json";
+import citiesData from "@/data/moroccan-cities.json";
 
 type Lang = "ar" | "fr";
 type Profession = { id: number; title: Record<Lang, string>; image?: string };

@@ -9,9 +9,9 @@ import {
   Award,
 } from "lucide-react";
 import { useMemo } from "react";
-import profilesData from "../../data/artisan-profiles.json";
-import usersData from "../../data/platform-users.json";
-import reviewsData from "../../data/artisan-reviews.json";
+import profilesData from "@/data/artisan-profiles.json";
+import usersData from "@/data/platform-users.json";
+import reviewsData from "@/data/artisan-reviews.json";
 
 export default function StatsSection() {
   const { t } = useTranslation();

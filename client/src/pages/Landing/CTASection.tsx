@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowRight, UserPlus, Sparkles, Star, Users } from "lucide-react";
-import { useStats } from "../../hooks/useStats";
+import { useStats } from "@/hooks";
 
 export default function CTASection() {
   const { t } = useTranslation();

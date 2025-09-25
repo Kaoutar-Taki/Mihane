@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Star, Award, Calendar } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { ReviewStats as ReviewStatsType } from "../../types/review";
+import type { ReviewStats as ReviewStatsType } from "@/types/review";
 
 interface ReviewStatsProps {
   stats: ReviewStatsType;

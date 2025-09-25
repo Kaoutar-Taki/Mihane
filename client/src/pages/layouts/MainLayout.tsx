@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import { Navbar, Footer } from "@/components";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (

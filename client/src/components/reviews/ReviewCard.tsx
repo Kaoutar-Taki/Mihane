@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { Star, CheckCircle, Calendar, Image as ImageIcon, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../../auth/AuthContext";
-import type { Review } from "../../types/review";
+import { useAuth } from "@/auth/AuthContext";
+import type { Review } from "@/types/review";
 
 interface ReviewCardProps {
   review: Review;

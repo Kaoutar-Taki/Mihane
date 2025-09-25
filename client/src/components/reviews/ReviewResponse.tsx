@@ -1,7 +1,7 @@
 import { useState, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { MessageSquare, Send, Edit, Trash2, X } from "lucide-react";
-import { useAuth } from "../../auth/AuthContext";
+import { useAuth } from "@/auth/AuthContext";
 
 interface ReviewResponseProps {
   reviewId: string;
