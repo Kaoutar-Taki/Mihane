@@ -6,6 +6,7 @@ import MainLayout from "./layouts/MainLayout";
 import SectionCard from "../components/ui/SectionCard";
 import { useAuth } from "../auth/AuthContext";
 import TwoFactorAuth from "../components/auth/TwoFactorAuth";
+
 export default function LoginPage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -22,7 +23,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Show 2FA component if required
   if (twoFactorRequired) {
     return (
       <TwoFactorAuth
@@ -37,12 +37,9 @@ export default function LoginPage() {
   const validate = () => {
     const e: Record<string, string> = {};
     if (!identifier.trim() || !(isEmail(identifier) || isPhone(identifier)))
-      e.identifier = t(
-        "login.errors.identifier",
-        "أدخل بريداً صحيحاً أو هاتفاً صحيحاً",
-      );
+      e.identifier = t("login.errors.identifier");
     if (!password || password.length < 6)
-      e.password = t("login.errors.password", "كلمة السر لا تقل عن 6 أحرف");
+      e.password = t("login.errors.password");
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -51,15 +48,17 @@ export default function LoginPage() {
     e.preventDefault();
     if (!validate()) return;
     setLoading(true);
+    const mappedRole = role === "pro" ? "ARTISAN" : "CLIENT";
     try {
-      await signIn(identifier, password, undefined, remember);
-      // If 2FA is not required, navigate immediately
+      await signIn(identifier, password, mappedRole, remember);
       if (!twoFactorRequired) {
         navigate(next, { replace: true });
       }
-      // If 2FA is required, the component will re-render with TwoFactorAuth
     } catch (err) {
-      // Error handling is done in AuthContext
+      setErrors((prev) => ({
+        ...prev,
+        identifier: prev.identifier || t("auth.errors.signInError"),
+      }));
     } finally {
       setLoading(false);
     }
@@ -73,8 +72,7 @@ export default function LoginPage() {
     <MainLayout>
       <div className="mx-auto max-w-4xl px-4 py-12">
         <form onSubmit={onSubmit} className="space-y-6">
-          <SectionCard title={t("login.title", "تسجيل الدخول")}>
-            {/* اختيار الدور */}
+          <SectionCard title={t("login.title")}>
             <div className="mb-4 flex gap-2 text-sm">
               <button
                 type="button"
@@ -85,7 +83,7 @@ export default function LoginPage() {
                     : "bg-gray-50 text-gray-700 ring-gray-200"
                 }`}
               >
-                زبون
+                {t("login.client")}
               </button>
               <button
                 type="button"
@@ -96,20 +94,18 @@ export default function LoginPage() {
                     : "bg-gray-50 text-gray-700 ring-gray-200"
                 }`}
               >
-                حرفي
+                {t("login.pro")}
               </button>
             </div>
-
-            {/* البريد/الهاتف */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
-                {t("login.identifier", "البريد الإلكتروني أو الهاتف")}
+                {t("login.identifier")}
               </label>
               <div className="relative">
                 <input
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
-                  placeholder="name@example.com أو +2126..."
+                  placeholder={t("login.placeholder")}
                   className={`w-full rounded-xl border border-gray-300 bg-white py-2.5 text-sm shadow-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 ${padX}`}
                 />
                 <span
@@ -122,15 +118,14 @@ export default function LoginPage() {
                   )}
                 </span>
               </div>
-              {errors.identifier && (
+              {errors.identifier && !errors.password && (
                 <p className="mt-1 text-xs text-red-600">{errors.identifier}</p>
               )}
             </div>
 
-            {/* كلمة السر */}
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
-                {t("login.password", "كلمة السر")}
+                {t("login.password")}
               </label>
               <div className="relative">
                 <input
@@ -151,6 +146,9 @@ export default function LoginPage() {
               {errors.password && (
                 <p className="mt-1 text-xs text-red-600">{errors.password}</p>
               )}
+              {errors.identifier && errors.password && (
+                <p className="mt-1 text-xs text-red-600">{t("auth.errors.signInError")}</p>
+              )}
               <div className="mt-2 flex items-center justify-between text-xs">
                 <label className="inline-flex items-center gap-2 text-gray-700">
                   <input
@@ -158,10 +156,10 @@ export default function LoginPage() {
                     checked={remember}
                     onChange={(e) => setRemember(e.target.checked)}
                   />
-                  {t("login.remember", "تذكرني")}
+                  {t("login.remember")}
                 </label>
                 <Link to="/forgot" className="text-primary hover:underline">
-                  {t("login.forgot", "نسيت كلمة السر؟")}
+                  {t("login.forgot")}
                 </Link>
               </div>
             </div>
@@ -173,13 +171,13 @@ export default function LoginPage() {
                 className="bg-primary inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-700 disabled:opacity-60"
               >
                 {loading && <Loader2 className="animate-spin" size={16} />}
-                {t("login.submit", "تسجيل الدخول")}
+                {t("login.submit")}
               </button>
               <Link
                 to="/register"
                 className="rounded-xl border border-gray-300 bg-white px-6 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50"
               >
-                {t("login.noAccount", "مستخدم جديد؟ أنشئ حساب")}
+                {t("login.noAccount")}
               </Link>
             </div>
           </SectionCard>

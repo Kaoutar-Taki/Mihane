@@ -15,6 +15,7 @@ import ProfessionDetailsPage from "../pages/ProfessionDetailsPage";
 import ContactPage from "../pages/ContactPage";
 import ProfilesPage from "../pages/ProfilesPage";
 import ProfilePage from "../pages/ProfilePage";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 
 export default function App() {
   return (
@@ -22,19 +23,20 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<Landing />} /> {/* Done */}
-            <Route path="/about" element={<AboutPage />} /> {/* Done */}
-            <Route path="/contact" element={<ContactPage />} /> {/* Done */}
-            <Route path="/privacy" element={<Privacy />} /> {/* Done */}
-            <Route path="/terms" element={<Terms />} /> {/* Done */}
+            <Route path="/" element={<Landing />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/categories" element={<CategoriesPage />} /> {/* Done */}
-            <Route path="/professions" element={<ProfessionsPage />} /> {/* Done */}
-            <Route path="/profession/:id" element={<ProfessionDetailsPage />} /> {/* Done */}
-            <Route path="/profiles" element={<ProfilesPage />} /> {/* Done */}
-            <Route path="/profile/:id" element={<ProfilePage />} /> {/* Done */}
-            <Route path="*" element={<NotFoundPage />} /> {/* Done */}
+            <Route path="/forgot" element={<ForgotPasswordPage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/professions" element={<ProfessionsPage />} />
+            <Route path="/profession/:id" element={<ProfessionDetailsPage />} />
+            <Route path="/profiles" element={<ProfilesPage />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
