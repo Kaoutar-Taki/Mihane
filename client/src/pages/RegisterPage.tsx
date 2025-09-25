@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import MainLayout from "./layouts/MainLayout";
 
-// Types
 type IconCmp = React.ComponentType<{ size?: string | number; className?: string }>;
 
 interface FormErrors {
@@ -28,7 +27,6 @@ interface FormErrors {
   agree?: string;
 }
 
-// Floating Input Component (single, clean version)
 function FloatInput({
   type = "text",
   value,
@@ -105,7 +103,6 @@ export default function RegisterPage() {
   const dir = i18n.dir() as "rtl" | "ltr";
   const navigate = useNavigate();
 
-  // Form state
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -118,7 +115,6 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Validation
   const validateEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const validatePassword = (v: string) => v.length >= 6;
 
@@ -126,32 +122,23 @@ export default function RegisterPage() {
     const e: FormErrors = {};
 
     if (!fullName.trim())
-      e.name = t("register.errors.name", "الإسم الكامل مطلوب");
+      e.name = t("register.errors.name");
 
-    if (!email.trim()) e.email = t("register.errors.email", "الإيميل مطلوب");
+    if (!email.trim()) e.email = t("register.errors.email");
     else if (!validateEmail(email))
-      e.email = t("register.errors.emailInvalid", "الإيميل غير صحيح");
+      e.email = t("register.errors.emailInvalid");
 
     if (!password.trim())
-      e.password = t("register.errors.password", "كلمة المرور مطلوبة");
+      e.password = t("register.errors.password");
     else if (!validatePassword(password))
-      e.password = t(
-        "register.errors.passwordWeak",
-        "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
-      );
+      e.password = t("register.errors.passwordWeak");
 
     if (!confirmPassword.trim())
-      e.confirmPassword = t(
-        "register.errors.confirmPassword",
-        "تأكيد كلمة المرور مطلوب",
-      );
+      e.confirmPassword = t("register.errors.confirmPassword");
     else if (password !== confirmPassword)
-      e.confirmPassword = t(
-        "register.errors.passwordMismatch",
-        "كلمات المرور غير متطابقة",
-      );
+      e.confirmPassword = t("register.errors.passwordMismatch");
 
-    if (!agree) e.agree = t("register.errors.agree", "يجب الموافقة على الشروط");
+    if (!agree) e.agree = t("register.errors.agree");
 
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -182,7 +169,6 @@ export default function RegisterPage() {
       updatedAt: new Date().toISOString(),
     };
 
-    // Simulate API call
     await new Promise((r) => setTimeout(r, 1200));
 
     console.log("REGISTER_PAYLOAD:", payload);
@@ -200,12 +186,11 @@ export default function RegisterPage() {
                 <CheckCircle size={32} className="text-green-600" />
               </div>
               <h1 className="mb-4 text-3xl font-bold text-gray-900">
-                {t("register.success.title", "تم إنشاء حسابك بنجاح!")}
+                {t("register.success.title")}
               </h1>
               <p className="mb-8 text-lg text-gray-700">
                 {t(
                   "register.success.message",
-                  "يمكنك الآن تسجيل الدخول والبدء في استخدام المنصة",
                 )}
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -215,7 +200,7 @@ export default function RegisterPage() {
                 >
                   <span className="inline-flex items-center gap-2">
                     <Home size={18} />
-                    {t("register.success.home", "العودة للرئيسية")}
+                    {t("register.success.home")}
                   </span>
                 </button>
                 <button
@@ -224,7 +209,7 @@ export default function RegisterPage() {
                 >
                   <span className="inline-flex items-center gap-2">
                     <LogIn size={18} />
-                    {t("register.success.login", "تسجيل الدخول")}
+                    {t("register.success.login")}
                   </span>
                 </button>
               </div>
@@ -246,15 +231,15 @@ export default function RegisterPage() {
                   <User2 size={14} />
                 </div>
                 <span className="text-sm font-semibold text-gray-700">
-                  {t("register.badge", "انضم إلينا")}
+                  {t("register.badge")}
                 </span>
               </div>
             </div>
             <h1 className="mb-4 text-4xl font-black tracking-tight text-orange-900 md:text-5xl">
-              {t("register.title", "إنشاء حساب جديد")}
+              {t("register.title")}
             </h1>
             <p className="mx-auto max-w-xl text-lg text-gray-700">
-              {t("register.subtitle", "انضم إلى منصتنا وابدأ رحلتك معنا")}
+              {t("register.subtitle")}
             </p>
           </div>
 
@@ -262,42 +247,39 @@ export default function RegisterPage() {
             <form onSubmit={onSubmit} dir={dir} className="space-y-6">
               <div className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-xl backdrop-blur">
                 <div className="space-y-6">
-                  {/* Full Name */}
                   <FloatInput
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder={t("register.fullName", "الإسم الكامل")}
+                    placeholder={t("register.fullName")}
                     Icon={User2}
                     error={errors.name}
                     dir={dir}
                   />
 
-                  {/* Email */}
                   <FloatInput
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder={t("register.email", "البريد الإلكتروني")}
+                    placeholder={t("register.email")}
                     Icon={Mail}
                     error={errors.email}
                     dir={dir}
                   />
 
-                  {/* Password */}
                   <div>
                     <div className="relative">
                       <input
                         type={showPassword ? "text" : "password"}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder={t("register.password", "كلمة المرور")}
+                        placeholder={t("register.password")}
                         className={[
                           "peer h-12 w-full rounded-xl border bg-white/80 backdrop-blur",
                           "border-gray-200 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.02)]",
                           "px-4 text-sm placeholder-transparent transition-all duration-300",
                           "focus:border-orange-500 focus:shadow-lg focus:ring-4 focus:ring-orange-100",
                           "hover:border-orange-300 hover:shadow-md",
-                          "pr-11", // space for toggle
+                          "pr-11", 
                           dir === "ltr" ? "pl-11" : "pl-11",
                         ].join(" ")}
                       />
@@ -314,7 +296,7 @@ export default function RegisterPage() {
                           "peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:scale-105 peer-focus:bg-white peer-focus:px-2 peer-focus:text-orange-600",
                         ].join(" ")}
                       >
-                        {t("register.password", "كلمة المرور")}
+                        {t("register.password")}
                       </label>
                       <Lock
                         size={18}
@@ -349,17 +331,13 @@ export default function RegisterPage() {
                     )}
                   </div>
 
-                  {/* Confirm Password */}
                   <div>
                     <div className="relative">
                       <input
                         type={showConfirmPassword ? "text" : "password"}
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder={t(
-                          "register.confirmPassword",
-                          "تأكيد كلمة المرور",
-                        )}
+                        placeholder={t("register.confirmPassword")}
                         className={[
                           "peer h-12 w-full rounded-xl border bg-white/80 backdrop-blur",
                           "border-gray-200 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.02)]",
@@ -383,7 +361,7 @@ export default function RegisterPage() {
                           "peer-focus:-top-2 peer-focus:translate-y-0 peer-focus:scale-105 peer-focus:bg-white peer-focus:px-2 peer-focus:text-orange-600",
                         ].join(" ")}
                       >
-                        {t("register.confirmPassword", "تأكيد كلمة المرور")}
+                        {t("register.confirmPassword")}
                       </label>
                       <Lock
                         size={18}
@@ -420,7 +398,6 @@ export default function RegisterPage() {
                     )}
                   </div>
 
-                  {/* User Role */}
                   <div>
                     <div className="relative">
                       <select
@@ -437,10 +414,10 @@ export default function RegisterPage() {
                         ].join(" ")}
                       >
                         <option value="CLIENT">
-                          {t("register.userTypes.client", "عميل")}
+                          {t("register.userTypes.client")}
                         </option>
                         <option value="ARTISAN">
-                          {t("register.userTypes.artisan", "حرفي")}
+                          {t("register.userTypes.artisan")}
                         </option>
                       </select>
                       <label
@@ -450,7 +427,7 @@ export default function RegisterPage() {
                           "transition-all peer-focus:text-orange-600",
                         ].join(" ")}
                       >
-                        {t("register.userType", "نوع المستخدم")}
+                        {t("register.userType")}
                       </label>
                       <Users
                         size={18}
@@ -473,7 +450,6 @@ export default function RegisterPage() {
                     )}
                   </div>
 
-                  {/* Agreement */}
                   <div>
                     <div className="flex items-center gap-2">
                       <input
@@ -484,10 +460,7 @@ export default function RegisterPage() {
                         className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
                       />
                       <label htmlFor="agree" className="text-sm text-gray-700">
-                        {t(
-                          "register.agree",
-                          "أوافق على الشروط والأحكام وسياسة الخصوصية",
-                        )}
+                        {t("register.agree")}
                       </label>
                     </div>
                     {errors.agree && (
@@ -497,7 +470,6 @@ export default function RegisterPage() {
                     )}
                   </div>
 
-                  {/* Submit + Login */}
                   <div className="flex flex-col gap-3">
                     <button
                       type="submit"
@@ -507,18 +479,18 @@ export default function RegisterPage() {
                       {loading && (
                         <Loader2 size={18} className="animate-spin" />
                       )}
-                      {t("register.submit", "إنشاء الحساب")}
+                      {t("register.submit")}
                     </button>
 
                     <div className="text-center">
                       <span className="text-sm text-gray-600">
-                        {t("register.hasAccount", "لديك حساب بالفعل؟")}{" "}
+                        {t("register.hasAccount")}{" "}
                         <button
                           type="button"
                           onClick={() => navigate("/login")}
                           className="font-semibold text-orange-600 hover:text-orange-700"
                         >
-                          {t("register.loginLink", "تسجيل الدخول")}
+                          {t("register.loginLink")}
                         </button>
                       </span>
                     </div>

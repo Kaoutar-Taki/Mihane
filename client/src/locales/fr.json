@@ -271,13 +271,25 @@
     }
   },
   "register": {
-    "title": "Inscription des professionnels",
+    "title": "Créer un compte",
+    "badge": "Rejoignez-nous",
+    "subtitle": "Rejoignez notre plateforme et commencez votre parcours",
     "sections": {
       "identity": "Informations de base",
       "contact": "Coordonnées",
       "about": "Description",
       "media": "Photo & Galerie"
     },
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "userType": "Type d'utilisateur",
+    "userTypes": {
+      "client": "Client",
+      "artisan": "Artisan"
+    },
+    "hasAccount": "Vous avez déjà un compte ?",
+    "loginLink": "Se connecter",
     "fullName": "Nom complet",
     "fullNamePh": "Ex: Mohamed Ben Ali",
     "genre": "Genre",
@@ -299,7 +311,7 @@
     "preview": "Aperçu",
     "cardName": "Nom complet",
     "cardDesc": "La description apparaîtra ici...",
-    "success": "Demande envoyée avec succès !",
+    
     "errors": {
       "fullName": "Le nom complet est requis",
       "profession": "Choisissez un métier",
@@ -309,6 +321,12 @@
       "description": "Saisissez au moins 20 caractères",
       "contact": "Renseignez au moins un moyen de contact",
       "agree": "Vous devez accepter les conditions"
+    },
+    "success": {
+      "title": "Votre compte a été créé avec succès !",
+      "message": "Vous pouvez maintenant vous connecter et utiliser la plateforme",
+      "home": "Retour à l'accueil",
+      "login": "Se connecter"
     }
   },
   "login": {
