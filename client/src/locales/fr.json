@@ -656,12 +656,20 @@
       }
     }
   },
-  "profession": "Métier",
+  "profession": {
+    "label": "Métier",
+    "notFound": "Métier introuvable",
+    "count": "{{count}} professionnel(s)",
+    "empty": "Aucun professionnel selon les filtres actuels.",
+    "otherInArea": "Autres métiers dans la même zone",
+    "mismatch": "La ville choisie n'appartient pas à la région sélectionnée. Les résultats peuvent être limités."
+  },
   "region": "Région", 
   "city": "Ville",
   "allProfessions": "Tous les métiers",
   "allRegions": "Toutes les régions",
   "allCities": "Toutes les villes",
   "activeFilters": "Filtres actifs",
-  "clearAll": "Tout effacer"
+  "clearAll": "Tout effacer",
+  "professionals": "professionnel(s)"
 }

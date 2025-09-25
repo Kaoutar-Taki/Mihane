@@ -31,7 +31,7 @@ export default function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/categories" element={<CategoriesPage />} /> {/* Done */}
             <Route path="/professions" element={<ProfessionsPage />} /> {/* Done */}
-            <Route path="/profession/:id" element={<ProfessionDetailsPage />} />
+            <Route path="/profession/:id" element={<ProfessionDetailsPage />} /> {/* Done */}
             <Route path="/profiles" element={<ProfilesPage />} /> {/* Done */}
             <Route path="/profile/:id" element={<ProfilePage />} /> {/* Done */}
             <Route path="*" element={<NotFoundPage />} /> {/* Done */}
