@@ -1,7 +1,24 @@
 import { useState, useEffect, useMemo } from "react";
 import { useAuth } from "../auth/AuthContext";
 import type { Review, ReviewStats, ReviewFormData } from "../types/review";
-import reviewsData from "../data/reviews.json";
+import reviewsData from "@/data/artisan-reviews.json";
+
+// Raw JSON shape coming from artisan-reviews.json
+interface RawArtisanReview {
+  id: number;
+  profileId: number; // maps to artisanId
+  userId: number; // maps to clientId
+  rating: number;
+  comment: string;
+  status: "APPROVED" | "PENDING" | string;
+  visibility: "PUBLIC" | "PRIVATE" | string;
+  artisanResponse: { comment: string; respondedAt: string } | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Helper to quickly localize plain strings into the LocalizedText used by Review
+const toLocalized = (text: string) => ({ ar: text, fr: text });
 
 interface UseReviewsOptions {
   artisanId?: string;
@@ -34,8 +51,24 @@ export const useReviews = (options: UseReviewsOptions = {}) => {
         
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 300));
-        
-        let filteredReviews = reviewsData as Review[];
+        // Normalize raw JSON data to the Review interface
+        const normalized: Review[] = (reviewsData as unknown as RawArtisanReview[]).map((r) => ({
+          id: String(r.id),
+          clientId: String(r.userId),
+          artisanId: String(r.profileId),
+          clientName: toLocalized("عميل"),
+          artisanName: toLocalized("حرفي"),
+          rating: r.rating,
+          comment: toLocalized(r.comment),
+          craftType: toLocalized("غير محدد"),
+          projectType: toLocalized("غير محدد"),
+          isApproved: r.status === "APPROVED",
+          isVerified: r.visibility === "PUBLIC",
+          createdAt: r.createdAt,
+          images: []
+        }));
+
+        let filteredReviews = normalized;
         
         // Filter by artisan
         if (artisanId) {

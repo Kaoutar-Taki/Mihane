@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import professionsData from "../data/artisan-professions.json";
-import citiesData from "../data/moroccan-cities.json";
-import regionsData from "../data/moroccan-regions.json";
-import reviewsData from "../data/artisan-reviews.json";
-import usersData from "../data/platform-users.json";
+import professionsData from "@/data/artisan-professions.json";
+import citiesData from "@/data/moroccan-cities.json";
+import regionsData from "@/data/moroccan-regions.json";
+import reviewsData from "@/data/artisan-reviews.json";
+import usersData from "@/data/platform-users.json";
 
 export interface Stats {
   craftsmen: {
