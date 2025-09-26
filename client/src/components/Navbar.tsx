@@ -1,14 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../auth/AuthContext";
+// NOTE: نستعمل تخزين محلي بدل AuthContext المؤقت
+import { apiLogout, getStoredAuth, clearStoredAuth, type StoredAuth } from "../services/auth";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Logo from "./Logo";
 
 export default function Navbar() {
   const { t } = useTranslation();
-  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+  const [auth, setAuth] = useState<StoredAuth | null>(getStoredAuth());
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -18,6 +20,25 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // راقب تغيّر التخزين (login/register)
+  useEffect(() => {
+    const onStorage = () => setAuth(getStoredAuth());
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      if (auth?.token) {
+        await apiLogout(auth.token).catch(() => {});
+      }
+    } finally {
+      clearStoredAuth();
+      setAuth(null);
+      navigate("/", { replace: true });
+    }
+  };
 
   const navItems = [
     { to: "/", label: t("navbar.home") },
@@ -68,17 +89,22 @@ export default function Navbar() {
 
           <div className="mx-2 h-6 w-px bg-gradient-to-b from-orange-200 to-amber-200"></div>
 
-          {user ? (
+          {auth?.user ? (
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-700">
-                {user.name} ·{" "}
-                <span className="text-orange-600">
-                  {user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
-                </span>
+                {auth.user.name}
+                {auth.user?.role && (
+                  <>
+                    {" "}· {" "}
+                    <span className="text-orange-600">
+                      {auth.user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
+                    </span>
+                  </>
+                )}
               </span>
               <button
                 type="button"
-                onClick={signOut}
+                onClick={handleSignOut}
                 className="rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-orange-600 hover:to-amber-600 hover:shadow-lg"
               >
                 {t("auth.signout")}
@@ -137,18 +163,23 @@ export default function Navbar() {
 
             <div className="my-3 h-px bg-gradient-to-r from-transparent via-orange-200 to-transparent"></div>
 
-            {user ? (
+            {auth?.user ? (
               <div className="space-y-3">
                 <div className="text-sm font-medium text-gray-700">
-                  {user.name} ·{" "}
-                  <span className="text-orange-600">
-                    {user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
-                  </span>
+                  {auth.user.name}
+                  {auth.user?.role && (
+                    <>
+                      {" "}· {" "}
+                      <span className="text-orange-600">
+                        {auth.user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
+                      </span>
+                    </>
+                  )}
                 </div>
                 <button
                   type="button"
                   onClick={() => {
-                    signOut();
+                    handleSignOut();
                     setOpen(false);
                   }}
                   className="w-full rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-left text-sm font-semibold text-white transition-all duration-300 hover:from-orange-600 hover:to-amber-600"

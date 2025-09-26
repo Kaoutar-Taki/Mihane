@@ -1,9 +1,9 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Mail, Phone, Eye, EyeOff, Loader2, Lock, LogIn } from "lucide-react";
 import MainLayout from "./layouts/MainLayout";
-import { useAuth } from "../auth/AuthContext";
+import { apiLogin } from "../services/auth";
 import TwoFactorAuth from "../components/auth/TwoFactorAuth";
 
 export default function LoginPage() {
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [sp] = useSearchParams();
   const next = sp.get("next") || "/";
 
-  const { signIn, twoFactorRequired } = useAuth();
+  const twoFactorRequired = false;
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -48,16 +48,25 @@ export default function LoginPage() {
     e.preventDefault();
     if (!validate()) return;
     setLoading(true);
-    const mappedRole = role === "pro" ? "ARTISAN" : "CLIENT";
     try {
-      await signIn(identifier, password, mappedRole, remember);
-      if (!twoFactorRequired) {
-        navigate(next, { replace: true });
-      }
-    } catch (err) {
+      const res = await apiLogin(identifier, password);
+      const authData = {
+        token: res.token,
+        refreshToken: "",
+        user: res.user,
+        expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+      };
+      const store = remember ? localStorage : sessionStorage;
+      store.setItem("auth", JSON.stringify(authData));
+      navigate(next, { replace: true });
+    } catch (error) {
+      const msg =
+        error instanceof Error && error.message
+          ? error.message
+          : t("auth.errors.signInError");
       setErrors((prev) => ({
         ...prev,
-        identifier: prev.identifier || t("auth.errors.signInError"),
+        identifier: prev.identifier || msg,
       }));
     } finally {
       setLoading(false);

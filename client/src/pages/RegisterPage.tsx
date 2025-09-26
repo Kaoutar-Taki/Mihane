@@ -14,7 +14,9 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
+ 
 import MainLayout from "./layouts/MainLayout";
+import { apiRegister } from "../services/auth";
 
 type IconCmp = React.ComponentType<{ size?: string | number; className?: string }>;
 
@@ -116,7 +118,7 @@ export default function RegisterPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validateEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  const validatePassword = (v: string) => v.length >= 6;
+  const validatePassword = (v: string) => v.length >= 8;
 
   const validate = () => {
     const e: FormErrors = {};
@@ -150,30 +152,37 @@ export default function RegisterPage() {
 
     setLoading(true);
 
-    const payload = {
-      id: Date.now(),
-      profileId: null,
-      genderId: 1,
-      cityId: 1,
-      name: {
-        ar: fullName.trim(),
-        fr: fullName.trim(),
-      },
-      description: { ar: "", fr: "" },
-      email: email.trim(),
-      phone: "",
-      avatar: "/assets/profiles/defaultMan.png",
-      role: userRole,
-      isActive: true,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
+    try {
+      const res = await apiRegister({
+        name: fullName.trim(),
+        email: email.trim(),
+        password: password,
+        password_confirmation: confirmPassword,
+      });
 
-    await new Promise((r) => setTimeout(r, 1200));
+      const authData = {
+        token: res.token,
+        refreshToken: "",
+        user: res.user,
+        expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+      };
+      localStorage.setItem("auth", JSON.stringify(authData));
 
-    console.log("REGISTER_PAYLOAD:", payload);
-    setLoading(false);
-    setSubmitted(true);
+      setSubmitted(true);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : typeof err === "string"
+            ? err
+            : "Registration failed";
+      setErrors((prev) => ({
+        ...prev,
+        email: message,
+      }));
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
