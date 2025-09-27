@@ -16,6 +16,13 @@ import ContactPage from "../pages/ContactPage";
 import ProfilesPage from "../pages/ProfilesPage";
 import ProfilePage from "../pages/ProfilePage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
+import AccountProfile from "../pages/AccountProfile";
+import { RequireAuth } from "../auth/Guards";
+import DashboardRouter from "../pages/dashboard/DashboardRouter";
+import SuperAdminDashboard from "../pages/dashboard/SuperAdminDashboard";
+import AdminDashboard from "../pages/dashboard/AdminDashboard";
+import ArtisanDashboard from "../pages/dashboard/ArtisanDashboard";
+import ClientDashboard from "../pages/dashboard/ClientDashboard";
 
 export default function App() {
   return (
@@ -36,6 +43,19 @@ export default function App() {
             <Route path="/profession/:id" element={<ProfessionDetailsPage />} />
             <Route path="/profiles" element={<ProfilesPage />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
+            <Route
+              path="/account/profile"
+              element={
+                <RequireAuth>
+                  <AccountProfile />
+                </RequireAuth>
+              }
+            />
+            <Route path="/dashboard" element={<RequireAuth><DashboardRouter /></RequireAuth>} />
+            <Route path="/dashboard/super" element={<RequireAuth><SuperAdminDashboard /></RequireAuth>} />
+            <Route path="/dashboard/admin" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
+            <Route path="/dashboard/artisan" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
+            <Route path="/dashboard/client" element={<RequireAuth><ClientDashboard /></RequireAuth>} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

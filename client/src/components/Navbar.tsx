@@ -2,10 +2,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
-// NOTE: نستعمل تخزين محلي بدل AuthContext المؤقت
 import { apiLogout, getStoredAuth, clearStoredAuth, type StoredAuth } from "../services/auth";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Logo from "./Logo";
+import UserMenu from "./UserMenu";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -21,7 +21,6 @@ export default function Navbar() {
     };
   }, [open]);
 
-  // راقب تغيّر التخزين (login/register)
   useEffect(() => {
     const onStorage = () => setAuth(getStoredAuth());
     window.addEventListener("storage", onStorage);
@@ -31,7 +30,7 @@ export default function Navbar() {
   const handleSignOut = async () => {
     try {
       if (auth?.token) {
-        await apiLogout(auth.token).catch(() => {});
+        await apiLogout(auth.token).catch(() => { });
       }
     } finally {
       clearStoredAuth();
@@ -72,10 +71,9 @@ export default function Navbar() {
               key={it.to}
               to={it.to}
               className={({ isActive }) =>
-                `relative text-sm font-semibold transition-all duration-300 hover:scale-105 ${
-                  isActive
-                    ? "text-orange-600"
-                    : "text-gray-700 hover:text-orange-600"
+                `relative text-sm font-semibold transition-all duration-300 hover:scale-105 ${isActive
+                  ? "text-orange-600"
+                  : "text-gray-700 hover:text-orange-600"
                 }`
               }
             >
@@ -90,26 +88,7 @@ export default function Navbar() {
           <div className="mx-2 h-6 w-px bg-gradient-to-b from-orange-200 to-amber-200"></div>
 
           {auth?.user ? (
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium text-gray-700">
-                {auth.user.name}
-                {auth.user?.role && (
-                  <>
-                    {" "}· {" "}
-                    <span className="text-orange-600">
-                      {auth.user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
-                    </span>
-                  </>
-                )}
-              </span>
-              <button
-                type="button"
-                onClick={handleSignOut}
-                className="rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-orange-600 hover:to-amber-600 hover:shadow-lg"
-              >
-                {t("auth.signout")}
-              </button>
-            </div>
+            <UserMenu auth={auth} onSignOut={handleSignOut} />
           ) : (
             <div className="flex items-center gap-4">
               <Link
@@ -144,74 +123,110 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div
-          id="mobile-menu"
-          className="relative border-t border-orange-200/50 bg-gradient-to-br from-white/95 to-orange-50/90 px-4 pt-4 pb-6 backdrop-blur-md md:hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-100/20 to-amber-100/20"></div>
-          <div className="relative z-10 flex flex-col gap-4 text-sm font-semibold text-gray-700">
-            {navItems.map((it) => (
-              <Link
-                key={it.to}
-                to={it.to}
-                className="rounded-lg px-3 py-2 transition-all duration-300 hover:bg-orange-100/50 hover:text-orange-600"
-                onClick={() => setOpen(false)}
-              >
-                {it.label}
-              </Link>
-            ))}
-
-            <div className="my-3 h-px bg-gradient-to-r from-transparent via-orange-200 to-transparent"></div>
-
-            {auth?.user ? (
-              <div className="space-y-3">
-                <div className="text-sm font-medium text-gray-700">
-                  {auth.user.name}
-                  {auth.user?.role && (
-                    <>
-                      {" "}· {" "}
-                      <span className="text-orange-600">
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+            onClick={() => setOpen(false)}
+            aria-hidden
+          />
+          <div id="mobile-menu" className="fixed inset-x-0 top-14 z-50 md:hidden">
+            <div className="mx-3 rounded-2xl border border-orange-200/60 bg-white p-4 shadow-xl ring-1 ring-white/40">
+              <div className="relative z-10 flex flex-col gap-2 overflow-y-auto text-sm font-semibold text-gray-800 max-h-[75vh]">
+                {auth?.user && (
+                  <div className="mb-2 flex items-center justify-between rounded-xl bg-gradient-to-br from-orange-50 to-amber-50/60 p-3">
+                    <div className="min-w-0">
+                      <p className="truncate text-[13px] font-bold text-gray-900">{auth.user.name}</p>
+                      {auth.user.email && (
+                        <p className="truncate text-[12px] font-normal text-gray-500">{auth.user.email}</p>
+                      )}
+                    </div>
+                    {auth.user.role && (
+                      <span className="ml-3 shrink-0 rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-bold text-emerald-700">
                         {auth.user.role === "CLIENT" ? t("auth.client") : t("auth.pro")}
                       </span>
-                    </>
-                  )}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleSignOut();
-                    setOpen(false);
-                  }}
-                  className="w-full rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-left text-sm font-semibold text-white transition-all duration-300 hover:from-orange-600 hover:to-amber-600"
-                >
-                  {t("auth.signout")}
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <Link
-                  to="/login"
-                  className="block rounded-lg px-3 py-2 text-sm font-semibold text-gray-700 transition-all duration-300 hover:bg-orange-100/50 hover:text-orange-600"
-                  onClick={() => setOpen(false)}
-                >
-                  {t("login.title")}
-                </Link>
-                <Link
-                  to="/register"
-                  className="block rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-center text-sm font-semibold text-white transition-all duration-300 hover:from-orange-600 hover:to-amber-600"
-                  onClick={() => setOpen(false)}
-                >
-                  {t("register.title")}
-                </Link>
-              </div>
-            )}
+                    )}
+                  </div>
+                )}
+                {navItems.map((it) => (
+                  <NavLink
+                    key={it.to}
+                    to={it.to}
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `rounded-lg px-3 py-2 transition-all duration-300 ${
+                        isActive ? "bg-orange-100/70 text-orange-700" : "hover:bg-orange-100/50 hover:text-orange-600"
+                      }`
+                    }
+                  >
+                    {it.label}
+                  </NavLink>
+                ))}
 
-            <div className="pt-3">
-              <LanguageSwitcher />
+                <div className="my-3 h-px bg-gradient-to-r from-transparent via-orange-200 to-transparent"></div>
+
+                {auth?.user ? (
+                  <div className="space-y-3">
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        `block rounded-lg px-3 py-2 text-sm font-semibold transition-all duration-300 ${
+                          isActive ? "bg-orange-100/70 text-orange-700" : "text-gray-700 hover:bg-orange-100/50 hover:text-orange-600"
+                        }`
+                      }
+                      onClick={() => setOpen(false)}
+                    >
+                      {t("navbar.dashboard", { defaultValue: "لوحة التحكم" })}
+                    </NavLink>
+                    <NavLink
+                      to="/account/profile"
+                      className={({ isActive }) =>
+                        `block rounded-lg px-3 py-2 text-sm font-semibold transition-all duration-300 ${
+                          isActive ? "bg-orange-100/70 text-orange-700" : "text-gray-700 hover:bg-orange-100/50 hover:text-orange-600"
+                        }`
+                      }
+                      onClick={() => setOpen(false)}
+                    >
+                      {t("navbar.profile", { defaultValue: "حسابي" })}
+                    </NavLink>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleSignOut();
+                        setOpen(false);
+                      }}
+                      className="w-full rounded-lg bg-white px-4 py-2 text-left text-sm font-semibold text-gray-800 transition-all duration-300 hover:bg-orange-100/50 hover:text-orange-600"
+                    >
+                      {t("auth.signout")}
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <NavLink
+                      to="/login"
+                      className={({ isActive }) =>
+                        `block rounded-lg px-3 py-2 text-sm font-semibold transition-all duration-300 ${
+                          isActive ? "bg-orange-100/70 text-orange-700" : "text-gray-700 hover:bg-orange-100/50 hover:text-orange-600"
+                        }`
+                      }
+                      onClick={() => setOpen(false)}
+                    >
+                      {t("login.title")}
+                    </NavLink>
+                    <Link
+                      to="/register"
+                      className="block rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 text-center text-sm font-semibold text-white transition-all duration-300 hover:from-orange-600 hover:to-amber-600"
+                      onClick={() => setOpen(false)}
+                    >
+                      {t("register.title")}
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );
 }
+

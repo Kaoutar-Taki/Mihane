@@ -1,12 +1,19 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { getStoredAuth } from "../services/auth";
 import type { User, Permission, PermissionScope } from "../types";
+
+const AUTH_STORAGE_KEY = "auth" as const;
+type ViteMeta = { env?: { VITE_USE_MOCK_AUTH?: string } };
+const USE_MOCK_AUTH = ((import.meta as unknown as ViteMeta).env?.VITE_USE_MOCK_AUTH) === "true";
 
 export type Role = "SUPER_ADMIN" | "ADMIN" | "ARTISAN" | "CLIENT";
 
 export interface AuthUser extends User {
   readonly permissions?: Permission[];
   readonly permissionScopes?: Record<Permission, PermissionScope>;
+  readonly twoFactorEnabled?: boolean;
 }
 
 interface AuthData {
@@ -22,6 +29,7 @@ type AuthContextType = {
   loading: boolean;
   error: string | null;
   twoFactorRequired: boolean;
+  isAuthenticated: boolean;
   signIn: (
     identifier: string,
     password: string,
@@ -31,37 +39,35 @@ type AuthContextType = {
   verifyTwoFactor: (code: string) => Promise<void>;
   signOut: () => void;
   clearError: () => void;
+  updateUser: (patch: Partial<AuthUser>) => void;
   hasPermission: (permission: Permission, scope?: PermissionScope) => boolean;
   canAccess: (resource: string) => boolean;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const encryptData = (data: any): string => {
+function encryptData<T>(data: T): string {
   try {
-    return btoa(JSON.stringify(data));
+    return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
   } catch {
     return JSON.stringify(data);
   }
-};
+}
 
-const decryptData = (encrypted: string): any => {
+function decryptData<T>(encrypted: string): T | null {
   try {
-    return JSON.parse(atob(encrypted));
+    const json = decodeURIComponent(escape(atob(encrypted)));
+    return JSON.parse(json) as T;
   } catch {
-    return JSON.parse(encrypted);
+    try {
+      return JSON.parse(encrypted) as T;
+    } catch {
+      return null;
+    }
   }
-};
+}
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { t } = useTranslation();
-  const [user, setUser] = useState<AuthUser | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [twoFactorRequired, setTwoFactorRequired] = useState(false);
-
-  // Mock users data - in real app this would come from API
-  const mockUsers: AuthUser[] = [
+const MOCK_USERS: Readonly<AuthUser[]> = [
     {
       id: 1,
       name: "Super Admin",
@@ -107,35 +113,56 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   ];
 
-  useEffect(() => {
-    const initAuth = async () => {
-      try {
-        const saved =
-          localStorage.getItem("auth") || sessionStorage.getItem("auth");
-        if (saved) {
-          const parsed = decryptData(saved) as AuthData;
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation();
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [twoFactorRequired, setTwoFactorRequired] = useState(false);
 
-          if (parsed?.expiresAt && Date.now() < parsed.expiresAt) {
-            if (parsed?.user && !parsed.twoFactorRequired) {
-              setUser(parsed.user);
-            } else if (parsed.twoFactorRequired) {
-              setTwoFactorRequired(true);
+  useEffect(() => {
+    const initAuth = () => {
+      try {
+        const stored = getStoredAuth();
+        if (stored && stored.user && stored.token) {
+          setUser(stored.user as AuthUser);
+          setTwoFactorRequired(false);
+          setLoading(false);
+          return;
+        }
+
+        const saved = localStorage.getItem(AUTH_STORAGE_KEY) || sessionStorage.getItem(AUTH_STORAGE_KEY);
+        if (saved) {
+          try {
+            const parsed = decryptData<AuthData>(saved);
+            if (parsed?.expiresAt && Date.now() < parsed.expiresAt) {
+              if (parsed?.user && !parsed.twoFactorRequired) {
+                setUser(parsed.user);
+              } else if (parsed.twoFactorRequired) {
+                setTwoFactorRequired(true);
+              }
+            } else {
+              localStorage.removeItem(AUTH_STORAGE_KEY);
+              sessionStorage.removeItem(AUTH_STORAGE_KEY);
             }
-          } else {
-            localStorage.removeItem("auth");
-            sessionStorage.removeItem("auth");
+          } catch {
+            // 
           }
         }
       } catch (err) {
         console.error("Auth initialization error:", err);
-        localStorage.removeItem("auth");
-        sessionStorage.removeItem("auth");
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+        sessionStorage.removeItem(AUTH_STORAGE_KEY);
       } finally {
         setLoading(false);
       }
     };
 
     initAuth();
+
+    const onStorage = () => initAuth();
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, []);
 
   const signIn: AuthContextType["signIn"] = async (
@@ -149,44 +176,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
 
       await new Promise((r) => setTimeout(r, 500));
-
-      // Find user by email
-      const foundUser = mockUsers.find(u => u.email === identifier);
-      
-      if (!foundUser) {
-        throw new Error(t("auth.errors.userNotFound", "المستخدم غير موجود"));
-      }
-
-      if (!foundUser.isActive) {
-        throw new Error(t("auth.errors.accountDisabled", "الحساب معطل"));
-      }
-
-      // Check 2FA requirement for SUPER_ADMIN
-      if (foundUser.role === "SUPER_ADMIN" && foundUser.twoFactorEnabled) {
+      if (USE_MOCK_AUTH) {
+        const foundUser = MOCK_USERS.find(u => u.email === identifier);
+        if (!foundUser) {
+          throw new Error(t("auth.errors.userNotFound", "المستخدم غير موجود"));
+        }
+        if (!foundUser.isActive) {
+          throw new Error(t("auth.errors.accountDisabled", "الحساب معطل"));
+        }
+        if (foundUser.role === "SUPER_ADMIN" && foundUser.twoFactorEnabled) {
+          const authData: AuthData = {
+            token: `pending_2fa_${Date.now()}`,
+            refreshToken: `refresh_${Date.now()}`,
+            user: foundUser,
+            expiresAt: Date.now() + 10 * 60 * 1000,
+            twoFactorRequired: true
+          };
+          const store = remember ? localStorage : sessionStorage;
+          store.setItem(AUTH_STORAGE_KEY, encryptData(authData));
+          setTwoFactorRequired(true);
+          return;
+        }
         const authData: AuthData = {
-          token: `pending_2fa_${Date.now()}`,
+          token: `demo_token_${Date.now()}`,
           refreshToken: `refresh_${Date.now()}`,
           user: foundUser,
-          expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes for 2FA
-          twoFactorRequired: true
+          expiresAt: Date.now() + 24 * 60 * 60 * 1000,
         };
-
+        setUser(foundUser);
         const store = remember ? localStorage : sessionStorage;
-        store.setItem("auth", encryptData(authData));
-        setTwoFactorRequired(true);
+        store.setItem(AUTH_STORAGE_KEY, encryptData(authData));
         return;
       }
 
-      const authData: AuthData = {
-        token: `demo_token_${Date.now()}`,
-        refreshToken: `refresh_${Date.now()}`,
-        user: foundUser,
-        expiresAt: Date.now() + 24 * 60 * 60 * 1000,
-      };
-
-      setUser(foundUser);
-      const store = remember ? localStorage : sessionStorage;
-      store.setItem("auth", encryptData(authData));
+      throw new Error(t("auth.errors.signInError", "تعذر تسجيل الدخول: فعّل VITE_USE_MOCK_AUTH أو اربط بالـ API"));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : t("auth.errors.signInError");
@@ -203,29 +226,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
 
       await new Promise((r) => setTimeout(r, 500));
-
-      // Mock 2FA verification - accept "123456" as valid code
-      if (code !== "123456") {
-        throw new Error(t("auth.errors.invalid2FA", "رمز التحقق غير صحيح"));
-      }
-
-      const saved = localStorage.getItem("auth") || sessionStorage.getItem("auth");
-      if (saved) {
-        const parsed = decryptData(saved) as AuthData;
-        if (parsed.twoFactorRequired) {
-          const updatedAuthData: AuthData = {
-            ...parsed,
-            twoFactorRequired: false,
-            expiresAt: Date.now() + 24 * 60 * 60 * 1000,
-          };
-
-          setUser(parsed.user);
-          setTwoFactorRequired(false);
-          
-          const store = localStorage.getItem("auth") ? localStorage : sessionStorage;
-          store.setItem("auth", encryptData(updatedAuthData));
+      if (USE_MOCK_AUTH) {
+        if (code !== "123456") {
+          throw new Error(t("auth.errors.invalid2FA", "رمز التحقق غير صحيح"));
         }
+        const saved = localStorage.getItem(AUTH_STORAGE_KEY) || sessionStorage.getItem(AUTH_STORAGE_KEY);
+        if (saved) {
+          const parsed = decryptData<AuthData>(saved);
+          if (parsed && parsed.twoFactorRequired) {
+            const updatedAuthData: AuthData = {
+              ...parsed,
+              twoFactorRequired: false,
+              expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+            };
+            setUser(parsed.user);
+            setTwoFactorRequired(false);
+            const store = localStorage.getItem(AUTH_STORAGE_KEY) ? localStorage : sessionStorage;
+            store.setItem(AUTH_STORAGE_KEY, encryptData(updatedAuthData));
+          }
+        }
+        return;
       }
+
+      throw new Error(t("auth.errors.2FAError", "تحقق بخطوتين غير مفعّل بعد: فعّل VITE_USE_MOCK_AUTH أو اربط بالـ API"));
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : t("auth.errors.2FAError");
@@ -240,25 +263,45 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
     setError(null);
     setTwoFactorRequired(false);
-    localStorage.removeItem("auth");
-    sessionStorage.removeItem("auth");
+    localStorage.removeItem(AUTH_STORAGE_KEY);
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
+  };
+
+  const updateUser: AuthContextType["updateUser"] = (patch) => {
+    setUser((prev) => {
+      if (!prev) return prev;
+      const next = { ...prev, ...patch } as AuthUser;
+      const saved = localStorage.getItem(AUTH_STORAGE_KEY) || sessionStorage.getItem(AUTH_STORAGE_KEY);
+      if (saved) {
+        const parsed = decryptData<AuthData>(saved);
+        if (parsed) {
+          const updated: AuthData = { ...parsed, user: next };
+          const store = localStorage.getItem(AUTH_STORAGE_KEY) ? localStorage : sessionStorage;
+          store.setItem(AUTH_STORAGE_KEY, encryptData(updated));
+        }
+      }
+      return next;
+    });
   };
 
   const clearError = () => {
     setError(null);
   };
 
-  const hasPermission = (permission: Permission, _scope?: PermissionScope): boolean => {
+  const hasPermission = (permission: Permission, scope?: PermissionScope): boolean => {
     if (!user) return false;
-    
-    // SUPER_ADMIN has all permissions
+
     if (user.role === "SUPER_ADMIN") return true;
-    
-    // ADMIN users check their specific permissions
-    if (user.role === "ADMIN" && user.permissions) {
-      return user.permissions.includes(permission);
+
+    if (user.role === "ADMIN" && user.permissions?.includes(permission)) {
+      if (!scope) return true;
+      const allowed = user.permissionScopes?.[permission];
+      if (!allowed) return false;
+      const allowedRec = allowed as unknown as Record<string, unknown>;
+      const scopeRec = scope as unknown as Record<string, unknown>;
+      return Object.keys(scopeRec).every((k) => allowedRec[k] === scopeRec[k]);
     }
-    
+
     return false;
   };
 
@@ -277,17 +320,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const value = useMemo(
-    () => ({ 
-      user, 
-      loading, 
-      error, 
+    () => ({
+      user,
+      loading,
+      error,
       twoFactorRequired,
-      signIn, 
+      isAuthenticated: !!user,
+      signIn,
       verifyTwoFactor,
-      signOut, 
+      signOut,
       clearError,
+      updateUser,
       hasPermission,
-      canAccess
+      canAccess,
     }),
     [user, loading, error, twoFactorRequired],
   );

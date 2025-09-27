@@ -16,7 +16,6 @@ export default function LoginPage() {
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"client" | "pro">("client");
   const [show, setShow] = useState(false);
   const [remember, setRemember] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -98,30 +97,7 @@ export default function LoginPage() {
 
             <form onSubmit={onSubmit} className="space-y-6">
               <div className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-xl backdrop-blur">
-                <div className="mb-2 flex gap-2 text-sm">
-                  <button
-                    type="button"
-                    onClick={() => setRole("client")}
-                    className={`rounded-full px-4 py-1.5 ring-1 transition shadow-sm ${
-                      role === "client"
-                        ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white ring-transparent"
-                        : "bg-white text-gray-700 ring-gray-200 hover:bg-gray-50"
-                    }`}
-                  >
-                    {t("login.client")}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setRole("pro")}
-                    className={`rounded-full px-4 py-1.5 ring-1 transition shadow-sm ${
-                      role === "pro"
-                        ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white ring-transparent"
-                        : "bg-white text-gray-700 ring-gray-200 hover:bg-gray-50"
-                    }`}
-                  >
-                    {t("login.pro")}
-                  </button>
-                </div>
+               
 
                 <div className="mb-2">
                   <div className="relative">

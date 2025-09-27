@@ -27,6 +27,7 @@ export async function apiRegister(params: {
   email: string;
   password: string;
   password_confirmation: string;
+  role: 'CLIENT' | 'ARTISAN';
 }): Promise<AuthResponse> {
   const res = await fetch(`${API}/register`, {
     method: "POST",

@@ -158,6 +158,7 @@ export default function RegisterPage() {
         email: email.trim(),
         password: password,
         password_confirmation: confirmPassword,
+        role: userRole,
       });
 
       const authData = {

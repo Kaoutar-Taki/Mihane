@@ -16,16 +16,16 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(8)],
+            'role' => ['required', 'string', 'in:CLIENT,ARTISAN'],
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            // 'password' => Hash::make($validated['password']),
-            'password' => $validated['password'],
+            'password' => Hash::make($validated['password']),
+            'role' => $validated['role'],
         ]);
 
-        // Create a personal access token
         $token = $user->createToken('api')->plainTextToken;
 
         return response()->json([
@@ -49,9 +49,6 @@ class AuthController extends Controller
             ]);
         }
 
-        // Optionally delete old tokens to keep one active token per device
-        // $user->tokens()->delete();
-
         $token = $user->createToken('api')->plainTextToken;
 
         return response()->json([
@@ -62,7 +59,6 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        // Revoke current access token
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Logged out']);
