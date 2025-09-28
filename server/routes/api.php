@@ -35,4 +35,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/regions', [RegionController::class, 'store']);
     Route::put('/regions/{region}', [RegionController::class, 'update']);
     Route::delete('/regions/{region}', [RegionController::class, 'destroy']);
+    Route::post('/regions/{id}/restore', [RegionController::class, 'restore']);
+    Route::delete('/regions/{id}/force', [RegionController::class, 'forceDestroy']);
 });

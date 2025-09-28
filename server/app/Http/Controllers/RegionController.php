@@ -8,9 +8,16 @@ use Illuminate\Http\Response;
 
 class RegionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Region::orderBy('id')->get());
+        $status = $request->query('status', 'active');
+        $query = Region::query();
+        if ($status === 'archived') {
+            $query->onlyTrashed();
+        } elseif ($status === 'all') {
+            $query->withTrashed();
+        }
+        return response()->json($query->orderBy('id')->get());
     }
 
     public function show(Region $region)
@@ -41,6 +48,20 @@ class RegionController extends Controller
     public function destroy(Region $region)
     {
         $region->delete();
+        return response()->json(['ok' => true]);
+    }
+
+    public function restore($id)
+    {
+        $region = Region::withTrashed()->findOrFail($id);
+        $region->restore();
+        return response()->json($region);
+    }
+
+    public function forceDestroy($id)
+    {
+        $region = Region::withTrashed()->findOrFail($id);
+        $region->forceDelete();
         return response()->json(['ok' => true]);
     }
 }
