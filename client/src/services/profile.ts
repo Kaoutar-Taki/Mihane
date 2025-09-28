@@ -70,3 +70,24 @@ export async function getGenders(): Promise<Gender[]> {
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
   return res.json();
 }
+
+export type ChangePasswordInput = {
+  current_password?: string;
+  password: string;
+  password_confirmation: string;
+};
+
+export async function changePassword(input: ChangePasswordInput, token?: string): Promise<{ message?: string } & Record<string, unknown>> {
+  const t = token ?? getStoredAuth()?.token;
+  if (!t) throw new Error("Not authenticated");
+  const url = `${API}/profile/password`;
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${t}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(input),
+  });
+  return safe(res);
+}

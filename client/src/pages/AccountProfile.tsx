@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { useAuth } from "../auth/AuthContext";
 import MainLayout from "./layouts/MainLayout";
 import {
   getStoredAuth,
@@ -12,8 +13,11 @@ import {
   type Gender,
   resolveAssetUrl,
 } from "../services/profile";
+import { changePassword, type ChangePasswordInput } from "../services/profile";
 
 export default function AccountProfile() {
+  const { user: authUser } = useAuth();
+  const isSuperAdmin = authUser?.role === "SUPER_ADMIN";
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,6 +38,11 @@ export default function AccountProfile() {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  // Password change state (SUPER_ADMIN only UI)
+  const [pwForm, setPwForm] = useState<ChangePasswordInput>({ current_password: "", password: "", password_confirmation: "" });
+  const [pwErrors, setPwErrors] = useState<Record<string, string>>({});
+  const [pwSaving, setPwSaving] = useState(false);
 
   const inputFileRef = useRef<HTMLInputElement | null>(null);
 
@@ -75,6 +84,36 @@ export default function AccountProfile() {
     };
     run();
   }, []);
+
+  const validatePassword = (data: ChangePasswordInput) => {
+    const errs: Record<string, string> = {};
+    if (!data.password || data.password.length < 8) errs.password = "كلمة السر يجب أن تكون على الأقل 8 أحرف";
+    if (data.password !== data.password_confirmation) errs.password_confirmation = "تأكيد كلمة السر غير مطابق";
+    return errs;
+  };
+
+  const onSubmitPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPwErrors({});
+    setError(null);
+    setMessage(null);
+    const errs = validatePassword(pwForm);
+    if (Object.keys(errs).length) {
+      setPwErrors(errs);
+      return;
+    }
+    try {
+      setPwSaving(true);
+      await changePassword(pwForm);
+      setMessage("تم تحديث كلمة السر بنجاح");
+      setPwForm({ current_password: "", password: "", password_confirmation: "" });
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : "تعذر تغيير كلمة السر";
+      setError(msg);
+    } finally {
+      setPwSaving(false);
+    }
+  };
 
   const setField = <K extends keyof UpdateProfileInput>(key: K, value: UpdateProfileInput[K]) =>
     setForm((p) => ({ ...p, [key]: value } as UpdateProfileInput));
@@ -183,17 +222,19 @@ export default function AccountProfile() {
   const bioArCount = useMemo(() => (form.bio_ar?.length ?? 0), [form.bio_ar]);
   const [activeTab, setActiveTab] = useState<"overview" | "settings">("settings");
   const completion = useMemo(() => {
-    const checks = [
+    const baseChecks = [
       !!(form.name && form.name.trim()),
       !!(form.email && form.email.trim()),
       !!(form.phone && form.phone.trim()),
-      !!(form.bio && form.bio.trim()),
-      !!(form.gender_id),
       !!(avatarPreview || form.avatar),
     ];
+    const extraChecks = isSuperAdmin
+      ? []
+      : [!!(form.bio && form.bio.trim()), !!(form.gender_id)];
+    const checks = [...baseChecks, ...extraChecks];
     const score = checks.reduce((a, b) => a + (b ? 1 : 0), 0);
-    return Math.round((score / checks.length) * 100);
-  }, [form.name, form.email, form.phone, form.bio, form.gender_id, form.avatar, avatarPreview]);
+    return Math.round((score / Math.max(checks.length, 1)) * 100);
+  }, [isSuperAdmin, form.name, form.email, form.phone, form.bio, form.gender_id, form.avatar, avatarPreview]);
 
   if (loading) {
     return (
@@ -232,10 +273,11 @@ export default function AccountProfile() {
             completion={completion}
             activeTab={activeTab}
             onTabChange={setActiveTab}
+            isSuperAdmin={isSuperAdmin}
           />
 
           {activeTab === "settings" && (
-          <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className={`my-6 grid grid-cols-1 gap-6 md:grid-cols-3` + (isSuperAdmin ? "md:col-span-2" : "")}>
             <div className="md:col-span-2 rounded-2xl border border-orange-200/60 bg-white/80 p-4 shadow backdrop-blur">
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <div className="relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-white shadow-md">
@@ -281,7 +323,8 @@ export default function AccountProfile() {
                 </div>
               </div>
             </div>
-            <InfoCard
+            {
+              !isSuperAdmin && <InfoCard
               title="نصائح سريعة"
               items={[
                 "اختر صورة واضحة وبخلفية بسيطة",
@@ -291,7 +334,7 @@ export default function AccountProfile() {
                 "اكتب مهاراتك وخبراتك في النبذة",
                 "تأكد من حفظ التغييرات قبل المغادرة",
               ]}
-            />
+            />}
           </div>
           )}
         </div>
@@ -309,19 +352,27 @@ export default function AccountProfile() {
           {activeTab === "overview" ? (
             <Card title="تفاصيل الحساب">
               <DetailsList
-                items={[
-                  { label: "الإسم الكامل", value: form.name ||"—" },
-                  { label: "البريد الإلكتروني", value: form.email || "—" },
-                  { label: "الهاتف", value: form.phone || "—" },
-                  { label: "الجنس", value: genders.find(g=>g.id===form.gender_id)?.name_ar || "—" },
-                  { label: "نبذة", value: form.bio || "—" },
-                  { label: "نبذة بالعربية", value: form.bio_ar || "—" },
-                ]}
+                items={
+                  isSuperAdmin
+                    ? [
+                        { label: "الإسم الكامل", value: form.name || "—" },
+                        { label: "البريد الإلكتروني", value: form.email || "—" },
+                        { label: "الهاتف", value: form.phone || "—" },
+                      ]
+                    : [
+                        { label: "الإسم الكامل", value: form.name || "—" },
+                        { label: "البريد الإلكتروني", value: form.email || "—" },
+                        { label: "الهاتف", value: form.phone || "—" },
+                        { label: "الجنس", value: genders.find((g) => g.id === form.gender_id)?.name_ar || "—" },
+                        { label: "نبذة", value: form.bio || "—" },
+                        { label: "نبذة بالعربية", value: form.bio_ar || "—" },
+                      ]
+                }
               />
             </Card>
           ) : (
           <form onSubmit={onSubmit} className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="space-y-6 lg:col-span-2">
+            <div className={`space-y-6 ${isSuperAdmin ? "lg:col-span-3" : "lg:col-span-2"}`}>
               <Card title="المعلومات الأساسية">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <Field
@@ -362,43 +413,85 @@ export default function AccountProfile() {
                 </div>
               </Card>
 
-              <Card title="نبذة عنك">
-                <div className="grid grid-cols-1 gap-4">
-                  <TextArea
-                    id="bio"
-                    label="نبذة"
-                    value={form.bio || ""}
-                    onChange={onChange("bio")}
-                    error={fieldErrors.bio}
-                    rows={5}
-                    counter={`${bioCount}/400`}
-                    maxLength={400}
+              {!isSuperAdmin && (
+                <Card title="نبذة عنك">
+                  <div className="grid grid-cols-1 gap-4">
+                    <TextArea
+                      id="bio"
+                      label="نبذة"
+                      value={form.bio || ""}
+                      onChange={onChange("bio")}
+                      error={fieldErrors.bio}
+                      rows={5}
+                      counter={`${bioCount}/400`}
+                      maxLength={400}
+                    />
+                    <TextArea
+                      id="bio_ar"
+                      label="نبذة بالعربية"
+                      value={form.bio_ar || ""}
+                      onChange={onChange("bio_ar")}
+                      error={fieldErrors.bio_ar}
+                      dir="rtl"
+                      rows={5}
+                      counter={`${bioArCount}/400`}
+                      maxLength={400}
+                    />
+                  </div>
+                </Card>
+              )}
+
+              <Card title="تغيير كلمة السر">
+                <form onSubmit={onSubmitPassword} className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <Field
+                    id="current_password"
+                    type="password"
+                    label="كلمة السر الحالية (إن وُجدت)"
+                    value={pwForm.current_password || ""}
+                    onChange={(e) => setPwForm((p) => ({ ...p, current_password: e.target.value }))}
                   />
-                  <TextArea
-                    id="bio_ar"
-                    label="نبذة بالعربية"
-                    value={form.bio_ar || ""}
-                    onChange={onChange("bio_ar")}
-                    error={fieldErrors.bio_ar}
-                    dir="rtl"
-                    rows={5}
-                    counter={`${bioArCount}/400`}
-                    maxLength={400}
+                  <Field
+                    id="password"
+                    type="password"
+                    label="كلمة السر الجديدة"
+                    value={pwForm.password}
+                    onChange={(e) => setPwForm((p) => ({ ...p, password: e.target.value }))}
+                    error={pwErrors.password}
                   />
-                </div>
+                  <Field
+                    id="password_confirmation"
+                    type="password"
+                    label="تأكيد كلمة السر الجديدة"
+                    value={pwForm.password_confirmation}
+                    onChange={(e) => setPwForm((p) => ({ ...p, password_confirmation: e.target.value }))}
+                    error={pwErrors.password_confirmation}
+                  />
+
+                  <div className="md:col-span-2 flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={pwSaving}
+                      className="inline-flex items-center gap-2 rounded-xl border px-5 py-2 font-semibold text-gray-800 hover:bg-gray-50 disabled:opacity-60"
+                    >
+                      {pwSaving ? "يحفظ…" : "تغيير كلمة السر"}
+                    </button>
+                  </div>
+                </form>
               </Card>
             </div>
 
             <div className="space-y-6">
-              <Card title="معلومات إضافية">
-                <Select
-                  id="gender"
-                  label="الجنس"
-                  value={form.gender_id ?? ""}
-                  onChange={onGenderChange}
-                  options={[{ value: "", label: "— اختر —" }, ...genders.map((g) => ({ value: String(g.id), label: g.name_ar }))]}
-                />
-              </Card>
+              {!isSuperAdmin && (
+                <Card title="معلومات إضافية">
+                  <Select
+                    id="gender"
+                    label="الجنس"
+                    value={form.gender_id ?? ""}
+                    onChange={onGenderChange}
+                    options={[{ value: "", label: "— اختر —" }, ...genders.map((g) => ({ value: String(g.id), label: g.name_ar }))]}
+                  />
+                </Card>
+              )}
             </div>
 
             <div className="lg:col-span-3">
@@ -434,6 +527,7 @@ function SummaryHeader({
   completion,
   activeTab,
   onTabChange,
+  isSuperAdmin,
 }: {
   name: string;
   email: string;
@@ -441,6 +535,7 @@ function SummaryHeader({
   completion: number;
   activeTab: "overview" | "settings";
   onTabChange: (t: "overview" | "settings") => void;
+  isSuperAdmin: boolean;
 }) {
   return (
     <div className="my-6 overflow-hidden rounded-2xl border border-orange-200/60 bg-gradient-to-br from-white to-orange-50/50 p-5 shadow-sm">
@@ -459,6 +554,8 @@ function SummaryHeader({
             <p className="text-sm text-gray-600">{email || "—"}</p>
           </div>
         </div>
+       {
+        !isSuperAdmin &&
         <div className="min-w-[240px]">
           <div className="mb-1 flex items-center justify-between text-xs text-gray-600">
             <span>إكتمال الملف</span>
@@ -467,7 +564,7 @@ function SummaryHeader({
           <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
             <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-400" style={{ width: `${Math.min(Math.max(completion, 0), 100)}%` }} />
           </div>
-        </div>
+        </div>}
       </div>
       <div className="mt-5 flex flex-wrap items-center gap-2 border-t pt-3 text-sm">
         <button
