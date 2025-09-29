@@ -3,28 +3,29 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "../auth/AuthContext";
 import { RequireAuth } from "../auth/Guards";
-import AccountProfile from "../pages/AccountProfile";
-import Landing from "./../pages/Landing";
 import Loader from "../components/Loader";
 import AboutPage from "../pages/AboutPage";
-import Privacy from "../pages/Privacy";
-import Terms from "../pages/Terms";
-import NotFoundPage from "../pages/NotFoundPage";
-import RegisterPage from "../pages/RegisterPage";
-import LoginPage from "../pages/LoginPage";
+import AccountProfile from "../pages/AccountProfile";
 import CategoriesPage from "../pages/CategoriesPage";
-import ProfessionsPage from "../pages/ProfessionsPage";
-import ProfessionDetailsPage from "../pages/ProfessionDetailsPage";
 import ContactPage from "../pages/ContactPage";
-import ProfilesPage from "../pages/ProfilesPage";
-import ProfilePage from "../pages/ProfilePage";
-import ForgotPasswordPage from "../pages/ForgotPasswordPage";
-import DashboardRouter from "../pages/dashboard/DashboardRouter";
-import SuperAdminDashboard from "../pages/dashboard/SuperAdminDashboard";
 import AdminDashboard from "../pages/dashboard/AdminDashboard";
 import ArtisanDashboard from "../pages/dashboard/ArtisanDashboard";
+import CitiesPage from "../pages/dashboard/CitiesPage";
 import ClientDashboard from "../pages/dashboard/ClientDashboard";
+import DashboardRouter from "../pages/dashboard/DashboardRouter";
 import RegionsPage from "../pages/dashboard/RegionsPage";
+import SuperAdminDashboard from "../pages/dashboard/SuperAdminDashboard";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage";
+import LoginPage from "../pages/LoginPage";
+import NotFoundPage from "../pages/NotFoundPage";
+import Privacy from "../pages/Privacy";
+import ProfessionDetailsPage from "../pages/ProfessionDetailsPage";
+import ProfessionsPage from "../pages/ProfessionsPage";
+import ProfilePage from "../pages/ProfilePage";
+import ProfilesPage from "../pages/ProfilesPage";
+import RegisterPage from "../pages/RegisterPage";
+import Terms from "../pages/Terms";
+import Landing from "./../pages/Landing";
 
 export default function App() {
   return (
@@ -56,6 +57,7 @@ export default function App() {
             <Route path="/dashboard" element={<RequireAuth><DashboardRouter /></RequireAuth>} />
             <Route path="/dashboard/super" element={<RequireAuth><SuperAdminDashboard /></RequireAuth>} />
             <Route path="/dashboard/super/regions" element={<RequireAuth><RegionsPage /></RequireAuth>} />
+            <Route path="/dashboard/super/cities" element={<RequireAuth><CitiesPage /></RequireAuth>} />
             <Route path="/dashboard/admin" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
             <Route path="/dashboard/artisan" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
             <Route path="/dashboard/client" element={<RequireAuth><ClientDashboard /></RequireAuth>} />
