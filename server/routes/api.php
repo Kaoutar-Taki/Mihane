@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TestimonialController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -21,6 +22,9 @@ Route::get('/cities/{city}', [CityController::class, 'show']);
 Route::get('/genders', function () {
     return response()->json(DB::table('genders')->select('id','key','name_ar','name')->orderBy('id')->get());
 });
+
+Route::get('/testimonials', [TestimonialController::class, 'index']);
+Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
@@ -41,11 +45,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/cities/{id}/restore', [CityController::class, 'restore']);
     Route::delete('/cities/{id}/force', [CityController::class, 'forceDestroy']);
 
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::post('/users', [UserController::class, 'store']);
-    Route::put('/users/{user}', [UserController::class, 'update']);
-    Route::delete('/users/{user}', [UserController::class, 'destroy']);
-    Route::post('/users/{id}/restore', [UserController::class, 'restore']);
-    Route::delete('/users/{id}/force', [UserController::class, 'forceDestroy']);
+    Route::post('/testimonials', [TestimonialController::class, 'store']);
+    Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update']);
+    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy']);
+    Route::post('/testimonials/{id}/restore', [TestimonialController::class, 'restore']);
+    Route::delete('/testimonials/{id}/force', [TestimonialController::class, 'forceDestroy']);
+
 });
