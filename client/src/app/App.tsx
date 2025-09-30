@@ -15,6 +15,7 @@ import ClientDashboard from "../pages/dashboard/ClientDashboard";
 import DashboardRouter from "../pages/dashboard/DashboardRouter";
 import RegionsPage from "../pages/dashboard/RegionsPage";
 import SuperAdminDashboard from "../pages/dashboard/SuperAdminDashboard";
+import UsersPage from "../pages/dashboard/UsersPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/dashboard/super" element={<RequireAuth><SuperAdminDashboard /></RequireAuth>} />
             <Route path="/dashboard/super/regions" element={<RequireAuth><RegionsPage /></RequireAuth>} />
             <Route path="/dashboard/super/cities" element={<RequireAuth><CitiesPage /></RequireAuth>} />
+            <Route path="/dashboard/super/users" element={<RequireAuth><UsersPage /></RequireAuth>} />
             <Route path="/dashboard/admin" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
             <Route path="/dashboard/artisan" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
             <Route path="/dashboard/client" element={<RequireAuth><ClientDashboard /></RequireAuth>} />

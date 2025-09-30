@@ -6,15 +6,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\UserController;
 
-Route::get('/health', function () {
-    return response()->json([
-        'ok' => true,
-        'app' => config('app.name'),
-        'env' => config('app.env'),
-        'time' => now()->toDateTimeString(),
-    ]);
-});
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -47,4 +40,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/cities/{city}', [CityController::class, 'destroy']);
     Route::post('/cities/{id}/restore', [CityController::class, 'restore']);
     Route::delete('/cities/{id}/force', [CityController::class, 'forceDestroy']);
+
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{user}', [UserController::class, 'show']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::delete('/users/{user}', [UserController::class, 'destroy']);
+    Route::post('/users/{id}/restore', [UserController::class, 'restore']);
+    Route::delete('/users/{id}/force', [UserController::class, 'forceDestroy']);
 });
