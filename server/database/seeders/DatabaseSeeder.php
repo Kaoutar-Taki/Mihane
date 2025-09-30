@@ -8,6 +8,7 @@ use Database\Seeders\SuperAdminSeeder;
 use Database\Seeders\RegionSeeder;
 use Database\Seeders\CitySeeder;
 use Database\Seeders\TestimonialSeeder;
+use Database\Seeders\GenderSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SuperAdminSeeder::class);
         $this->call(RegionSeeder::class);
+        $this->call(GenderSeeder::class);
         $this->call(CitySeeder::class);
         $this->call(TestimonialSeeder::class);
     }

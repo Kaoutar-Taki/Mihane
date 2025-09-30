@@ -8,6 +8,7 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\GenderController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -19,9 +20,7 @@ Route::get('/regions/{region}', [RegionController::class, 'show']);
 Route::get('/cities', [CityController::class, 'index']);
 Route::get('/cities/{city}', [CityController::class, 'show']);
 
-Route::get('/genders', function () {
-    return response()->json(DB::table('genders')->select('id','key','name_ar','name')->orderBy('id')->get());
-});
+Route::get('/genders', [GenderController::class, 'index']);
 
 Route::get('/testimonials', [TestimonialController::class, 'index']);
 Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']);
@@ -50,5 +49,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy']);
     Route::post('/testimonials/{id}/restore', [TestimonialController::class, 'restore']);
     Route::delete('/testimonials/{id}/force', [TestimonialController::class, 'forceDestroy']);
+
+    Route::get('/genders/all', [GenderController::class, 'index']);
+    Route::get('/genders/{gender}', [GenderController::class, 'show']);
+    Route::post('/genders', [GenderController::class, 'store']);
+    Route::put('/genders/{gender}', [GenderController::class, 'update']);
+    Route::delete('/genders/{gender}', [GenderController::class, 'destroy']);
+    Route::post('/genders/{id}/restore', [GenderController::class, 'restore']);
+    Route::delete('/genders/{id}/force', [GenderController::class, 'forceDestroy']);
 
 });

@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('key', 20)->unique();
             $table->string('name_ar', 50);
-            $table->string('name', 50)->nullable();
+            $table->string('name_fr', 50)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

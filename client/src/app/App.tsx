@@ -13,6 +13,7 @@ import ArtisanDashboard from "../pages/dashboard/ArtisanDashboard";
 import CitiesPage from "../pages/dashboard/CitiesPage";
 import ClientDashboard from "../pages/dashboard/ClientDashboard";
 import DashboardRouter from "../pages/dashboard/DashboardRouter";
+import GendersPage from "../pages/dashboard/GendersPage";
 import RegionsPage from "../pages/dashboard/RegionsPage";
 import SuperAdminDashboard from "../pages/dashboard/SuperAdminDashboard";
 import TestimonialsPage from "../pages/dashboard/TestimonialsPage";
@@ -61,6 +62,7 @@ export default function App() {
             <Route path="/dashboard/super/regions" element={<RequireAuth><RegionsPage /></RequireAuth>} />
             <Route path="/dashboard/super/cities" element={<RequireAuth><CitiesPage /></RequireAuth>} />
             <Route path="/dashboard/super/testimonials" element={<RequireAuth><TestimonialsPage /></RequireAuth>} />
+            <Route path="/dashboard/super/genders" element={<RequireAuth><GendersPage /></RequireAuth>} />
             <Route path="/dashboard/super/users" element={<RequireAuth><UsersPage /></RequireAuth>} />
             <Route path="/dashboard/admin" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
             <Route path="/dashboard/artisan" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
