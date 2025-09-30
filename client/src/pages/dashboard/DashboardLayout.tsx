@@ -19,11 +19,11 @@ export default function DashboardLayout({ title, children }: { title: string; ch
                     <nav className="space-y-1 text-sm">
                         <DashLink to="/dashboard/super" label="Default" icon={<LayoutDashboard className="size-4" />} />
                         <DashLink to="/dashboard/super/regions" label="Regions" icon={<MapPin className="size-4" />} />
-                        <DashLink to="/dashboard/super/cities" label="City" icon={<Building2 className="size-4" />} />
+                        <DashLink to="/dashboard/super/cities" label="Cities" icon={<Building2 className="size-4" />} />
                         <DashLink to="/dashboard/super/artisans" label="Artisans" icon={<Users className="size-4" />} />
                         <DashLink to="/dashboard/super/users" label="Users" icon={<User className="size-4" />} />
                         <DashLink to="/dashboard/super/testimonials" label="Testimonials" icon={<MessageSquare className="size-4" />} />
-                        <DashLink to="/dashboard/super/genres" label="Genres" icon={<Tag className="size-4" />} />
+                        <DashLink to="/dashboard/super/genders" label="Genders" icon={<Tag className="size-4" />} />
                         <DashLink to="/dashboard/super/categories" label="Categories" icon={<Layers className="size-4" />} />
                         <DashLink to="/dashboard/super/professions" label="Professions" icon={<Briefcase className="size-4" />} />
                         <DashLink to="/dashboard/super/faqs" label="FAQs" icon={<HelpCircle className="size-4" />} />
@@ -41,11 +41,11 @@ export default function DashboardLayout({ title, children }: { title: string; ch
                             <nav className="space-y-1 text-sm">
                                 <DashLink to="/dashboard/super" label="Default" icon={<LayoutDashboard className="size-4" />} />
                                 <DashLink to="/dashboard/super/regions" label="Regions" icon={<MapPin className="size-4" />} />
-                                <DashLink to="/dashboard/super/cities" label="City" icon={<Building2 className="size-4" />} />
+                                <DashLink to="/dashboard/super/cities" label="Cities" icon={<Building2 className="size-4" />} />
                                 <DashLink to="/dashboard/super/artisans" label="Artisans" icon={<Users className="size-4" />} />
                                 <DashLink to="/dashboard/super/users" label="Users" icon={<User className="size-4" />} />
                                 <DashLink to="/dashboard/super/testimonials" label="Testimonials" icon={<MessageSquare className="size-4" />} />
-                                <DashLink to="/dashboard/super/genres" label="Genres" icon={<Tag className="size-4" />} />
+                                <DashLink to="/dashboard/super/genders" label="Genders" icon={<Tag className="size-4" />} />
                                 <DashLink to="/dashboard/super/categories" label="Categories" icon={<Layers className="size-4" />} />
                                 <DashLink to="/dashboard/super/professions" label="Professions" icon={<Briefcase className="size-4" />} />
                                 <DashLink to="/dashboard/super/faqs" label="FAQs" icon={<HelpCircle className="size-4" />} />

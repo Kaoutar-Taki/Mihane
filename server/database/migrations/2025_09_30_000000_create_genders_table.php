@@ -7,15 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('regions', function (Blueprint $table) {
+        Schema::create('genders', function (Blueprint $table) {
+            $table->id();
+            $table->string('key', 20)->unique();
+            $table->string('name_ar', 50);
+            $table->string('name', 50)->nullable();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::table('regions', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('genders');
     }
 };
