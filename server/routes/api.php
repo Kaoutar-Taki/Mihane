@@ -11,6 +11,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FaqController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -24,11 +25,14 @@ Route::get('/cities/{city}', [CityController::class, 'show']);
 
 Route::get('/genders', [GenderController::class, 'index']);
 Route::get('/professions', [ProfessionController::class, 'index']);
+Route::get('/users', [UserController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{category}', [CategoryController::class, 'show']);
 
 Route::get('/testimonials', [TestimonialController::class, 'index']);
 Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']);
+Route::get('/faqs', [FaqController::class, 'index']);
+Route::get('/faqs/{faq}', [FaqController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
@@ -75,4 +79,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/categories/{id}/restore', [CategoryController::class, 'restore']);
     Route::delete('/categories/{id}/force', [CategoryController::class, 'forceDestroy']);
 
+    Route::post('/faqs', [FaqController::class, 'store']);
+    Route::put('/faqs/{faq}', [FaqController::class, 'update']);
+    Route::delete('/faqs/{faq}', [FaqController::class, 'destroy']);
+    Route::post('/faqs/{id}/restore', [FaqController::class, 'restore']);
+    Route::delete('/faqs/{id}/force', [FaqController::class, 'forceDestroy']);
+
+    Route::post('/users', [UserController::class, 'store']);
+    Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::delete('/users/{user}', [UserController::class, 'destroy']);
+    Route::post('/users/{id}/restore', [UserController::class, 'restore']);
+    Route::delete('/users/{id}/force', [UserController::class, 'forceDestroy']);
 });
