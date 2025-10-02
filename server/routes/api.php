@@ -12,6 +12,9 @@ use App\Http\Controllers\GenderController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ArtisanProfileController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\ReviewController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -33,6 +36,9 @@ Route::get('/testimonials', [TestimonialController::class, 'index']);
 Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']);
 Route::get('/faqs', [FaqController::class, 'index']);
 Route::get('/faqs/{faq}', [FaqController::class, 'show']);
+Route::get('/artisans', [ArtisanProfileController::class, 'index']);
+Route::get('/artisans/{artisan}', [ArtisanProfileController::class, 'show']);
+Route::get('/artisans/{artisan}/reviews', [ReviewController::class, 'indexByProfile']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
@@ -90,4 +96,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
     Route::post('/users/{id}/restore', [UserController::class, 'restore']);
     Route::delete('/users/{id}/force', [UserController::class, 'forceDestroy']);
+
+    Route::post('/artisans', [ArtisanProfileController::class, 'store']);
+    Route::put('/artisans/{artisan}', [ArtisanProfileController::class, 'update']);
+    Route::delete('/artisans/{artisan}', [ArtisanProfileController::class, 'destroy']);
+    Route::post('/artisans/{id}/restore', [ArtisanProfileController::class, 'restore']);
+    Route::delete('/artisans/{id}/force', [ArtisanProfileController::class, 'forceDestroy']);
+
+    Route::post('/uploads/images', [UploadController::class, 'uploadImages']);
+
+    Route::post('/reviews', [ReviewController::class, 'store']);
+    Route::post('/reviews/{review}/respond', [ReviewController::class, 'respond']);
+    Route::put('/reviews/{review}/status', [ReviewController::class, 'updateStatus']);
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
 });

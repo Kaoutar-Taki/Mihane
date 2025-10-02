@@ -31,6 +31,7 @@ import RegisterPage from "../pages/RegisterPage";
 import Terms from "../pages/Terms";
 import Landing from "./../pages/Landing";
 
+import ArtisansDashboardPage from "@/pages/dashboard/ArtisansDashboardPage";
 import CategoriesDashboardPage from "@/pages/dashboard/CategoriesDashboardPage";
 import FaqsDashboardPage from "@/pages/dashboard/FaqsDashboardPage";
 
@@ -70,6 +71,7 @@ export default function App() {
             <Route path="/dashboard/super/professions" element={<RequireAuth><DashboardProfessionsPage /></RequireAuth>} />
             <Route path="/dashboard/super/categories" element={<RequireAuth><CategoriesDashboardPage /></RequireAuth>} />
             <Route path="/dashboard/super/faqs" element={<RequireAuth><FaqsDashboardPage /></RequireAuth>} />
+            <Route path="/dashboard/super/artisans" element={<RequireAuth><ArtisansDashboardPage /></RequireAuth>} />
             <Route path="/dashboard/super/users" element={<RequireAuth><UsersPage /></RequireAuth>} />
             <Route path="/dashboard/admin" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
             <Route path="/dashboard/artisan" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
