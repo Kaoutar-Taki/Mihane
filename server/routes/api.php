@@ -15,6 +15,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ArtisanProfileController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\StatsController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -109,4 +110,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/reviews/{review}/respond', [ReviewController::class, 'respond']);
     Route::put('/reviews/{review}/status', [ReviewController::class, 'updateStatus']);
     Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
+
+    // Dashboard stats
+    Route::get('/stats/overview', [StatsController::class, 'overview']);
 });

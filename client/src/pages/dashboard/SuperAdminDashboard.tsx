@@ -1,31 +1,50 @@
 import type { LucideIcon } from "lucide-react";
 import { Users, BadgeCheck, Activity, ShieldAlert, TrendingUp, MapPin, Server, HardDrive, Wifi, ArrowUpRight, Loader2, Check, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import DashboardLayout from "./DashboardLayout";
 import { useAuth } from "../../auth/AuthContext";
+import { getOverview, type StatsOverview } from "../../services/stats";
 
 export default function SuperAdminDashboard() {
   const { user, isAuthenticated } = useAuth();
+  const [stats, setStats] = useState<StatsOverview | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true); setErr(null);
+        const s = await getOverview();
+        setStats(s);
+      } catch {
+        setErr("تعذر تحميل الإحصائيات — سيتم عرض بيانات تجريبية.");
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
   if (!isAuthenticated) return <Navigate to="/login" replace />;
   if (!user || user.role !== "SUPER_ADMIN") return <Navigate to="/" replace />;
 
   return (
     <DashboardLayout title="لوحة تحكم المشرف العام">
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-4">
-        <KPI label="إجمالي المستخدمين" value={24532} delta="+2.1%" icon={Users} tone="emerald" spark={[12,18,14,19,21,20,24,27,26,29,31,33,36,38,37,41]} />
-        <KPI label="حرفيون موثَّقون" value={6312} delta="+5.0%" icon={BadgeCheck} tone="sky" spark={[2,3,3,5,4,6,5,7,8,9,10,12,12,13,14,16]} />
-        <KPI label="طلبات تنتظر المراجعة" value={42} delta="−8%" icon={Activity} tone="amber" spark={[35,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19]} />
-        <KPI label="أخطاء حرجة" value={3} delta="0%" icon={ShieldAlert} tone="rose" spark={[4,4,5,5,5,4,4,3,3,3,3,3,3,3,3,3]} />
+        <KPI label="إجمالي المستخدمين" value={stats?.kpis.totalUsers ?? 0} icon={Users} tone="emerald" spark={stats ? stats.series.signups.slice(-16) : [12,18,14,19,21,20,24,27,26,29,31,33,36,38,37,41]} />
+        <KPI label="حرفيون موثَّقون" value={stats?.kpis.verifiedArtisans ?? 0} icon={BadgeCheck} tone="sky" spark={stats ? stats.series.profiles.slice(-16) : [2,3,3,5,4,6,5,7,8,9,10,12,12,13,14,16]} />
+        <KPI label="طلبات تنتظر المراجعة" value={stats?.kpis.pendingRequests ?? 0} icon={Activity} tone="amber" spark={[35,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19]} />
+        <KPI label="أخطاء حرجة" value={stats?.kpis.criticalErrors ?? 0} icon={ShieldAlert} tone="rose" spark={[4,4,5,5,5,4,4,3,3,3,3,3,3,3,3,3]} />
       </section>
 
       <section className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="space-y-6 xl:col-span-2">
-          <Card title="نظرة عامة (آخر 30 يوماً)" desc="الزيارات • التسجيلات • النمو">
+          <Card title="نظرة عامة (آخر 30 يوماً)" desc={loading ? "جاري التحميل…" : "التسجيلات • ملفات الحرفيين"}>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <AreaChart label="الزيارات" tone="sky" data={demo.series.visits} />
-              <LineChart label="التسجيلات" tone="emerald" data={demo.series.signups} />
+              <AreaChart label="التسجيلات" tone="sky" data={stats?.series.signups ?? demo.series.signups} />
+              <LineChart label="ملفات حرفيين جديدة" tone="emerald" data={stats?.series.profiles ?? demo.series.signups} />
             </div>
           </Card>
 
@@ -57,22 +76,22 @@ export default function SuperAdminDashboard() {
             <SystemHealth />
           </Card>
 
-          <Card title="توزيع الزيارات حسب الجهة" desc="آخر 7 أيام">
-            <DonutChart
-              segments={[
-                { label: "الرباط", value: 32, tone: "emerald" },
-                { label: "الدار البيضاء", value: 28, tone: "sky" },
-                { label: "فاس", value: 18, tone: "amber" },
-                { label: "طنجة", value: 22, tone: "rose" },
-              ]}
-            />
+          <Card title="توزيع حسب الجهة" desc="آخر 7 أيام">
+            <DonutChart segments={(stats?.regions ?? []).length
+              ? (stats!.regions.map((r, i) => ({ label: r.region, value: r.visitors, tone: (['emerald','sky','amber','rose'] as const)[i % 4] })) )
+              : [
+                { label: "الرباط", value: 32, tone: "emerald" as const },
+                { label: "الدار البيضاء", value: 28, tone: "sky" as const },
+                { label: "فاس", value: 18, tone: "amber" as const },
+                { label: "طنجة", value: 22, tone: "rose" as const },
+              ]} />
           </Card>
 
           <Card title="أداء الجهات (Top Regions)" desc="الأكثر زيارة">
             <RegionsTable rows={demo.regions} />
           </Card>
 
-          <TipsCard />
+          {err ? <div className="rounded-xl border border-amber-300/60 bg-amber-50 px-3 py-2 text-xs text-amber-800">{err}</div> : <TipsCard />}
         </div>
       </section>
     </DashboardLayout>
