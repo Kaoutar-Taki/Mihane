@@ -10,6 +10,8 @@ use Database\Seeders\CitySeeder;
 use Database\Seeders\TestimonialSeeder;
 use Database\Seeders\GenderSeeder;
 use Database\Seeders\ProfessionSeeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\CategoryProfessionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RegionSeeder::class);
         $this->call(GenderSeeder::class);
         $this->call(ProfessionSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(CategoryProfessionSeeder::class);
         $this->call(CitySeeder::class);
         $this->call(TestimonialSeeder::class);
     }

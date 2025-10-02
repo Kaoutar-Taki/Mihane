@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\CategoryController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -23,6 +24,8 @@ Route::get('/cities/{city}', [CityController::class, 'show']);
 
 Route::get('/genders', [GenderController::class, 'index']);
 Route::get('/professions', [ProfessionController::class, 'index']);
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/{category}', [CategoryController::class, 'show']);
 
 Route::get('/testimonials', [TestimonialController::class, 'index']);
 Route::get('/testimonials/{testimonial}', [TestimonialController::class, 'show']);
@@ -65,5 +68,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/professions/{id}/restore', [ProfessionController::class, 'restore']);
     Route::delete('/professions/{id}/force', [ProfessionController::class, 'forceDestroy']);
     Route::post('/professions/{profession}/image', [ProfessionController::class, 'uploadImage']);
+
+    Route::post('/categories', [CategoryController::class, 'store']);
+    Route::put('/categories/{category}', [CategoryController::class, 'update']);
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+    Route::post('/categories/{id}/restore', [CategoryController::class, 'restore']);
+    Route::delete('/categories/{id}/force', [CategoryController::class, 'forceDestroy']);
 
 });
