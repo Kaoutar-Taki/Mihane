@@ -334,7 +334,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       hasPermission,
       canAccess,
     }),
-    [user, loading, error, twoFactorRequired],
+    [user, loading, error, twoFactorRequired, signIn, verifyTwoFactor],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

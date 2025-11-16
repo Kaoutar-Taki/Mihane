@@ -31,7 +31,10 @@ export async function apiRegister(params: {
 }): Promise<AuthResponse> {
   const res = await fetch(`${API}/register`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
     body: JSON.stringify(params),
   });
   if (!res.ok) throw new Error(await safeError(res));
@@ -41,7 +44,10 @@ export async function apiRegister(params: {
 export async function apiLogin(email: string, password: string): Promise<AuthResponse> {
   const res = await fetch(`${API}/login`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
     body: JSON.stringify({ email, password }),
   });
   if (!res.ok) throw new Error(await safeError(res));
@@ -50,7 +56,10 @@ export async function apiLogin(email: string, password: string): Promise<AuthRes
 
 export async function apiMe(token: string): Promise<User> {
   const res = await fetch(`${API}/me`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+    },
   });
   if (!res.ok) throw new Error(await safeError(res));
   return res.json() as Promise<User>;
@@ -59,7 +68,10 @@ export async function apiMe(token: string): Promise<User> {
 export async function apiLogout(token: string): Promise<void> {
   const res = await fetch(`${API}/logout`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${token}` },
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+    },
   });
   if (!res.ok) throw new Error(await safeError(res));
 }

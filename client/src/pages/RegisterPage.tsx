@@ -1,6 +1,3 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import {
   User2,
   Mail,
@@ -10,10 +7,12 @@ import {
   ChevronDown,
   CheckCircle,
   Home,
-  LogIn,
   Eye,
   EyeOff,
 } from "lucide-react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
  
 import MainLayout from "./layouts/MainLayout";
 import { apiRegister } from "../services/auth";
@@ -190,9 +189,9 @@ export default function RegisterPage() {
     return (
       <MainLayout>
         <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
-          <div className="container mx-auto px-4 py-16">
-            <div className="mx-auto max-w-md text-center">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+          <div className="container px-4 py-16 mx-auto">
+            <div className="max-w-md mx-auto text-center">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-green-100 rounded-full">
                 <CheckCircle size={32} className="text-green-600" />
               </div>
               <h1 className="mb-4 text-3xl font-bold text-gray-900">
@@ -213,15 +212,15 @@ export default function RegisterPage() {
                     {t("register.success.home")}
                   </span>
                 </button>
-                <button
+                {/* <button
                   onClick={() => navigate("/login")}
-                  className="rounded-xl border-2 border-orange-200 bg-white/80 px-8 py-3 font-semibold text-orange-700 backdrop-blur transition-all duration-300 hover:border-orange-300 hover:bg-orange-50"
+                  className="px-8 py-3 font-semibold text-orange-700 transition-all duration-300 border-2 border-orange-200 rounded-xl bg-white/80 backdrop-blur hover:border-orange-300 hover:bg-orange-50"
                 >
                   <span className="inline-flex items-center gap-2">
                     <LogIn size={18} />
                     {t("register.success.login")}
                   </span>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -233,11 +232,11 @@ export default function RegisterPage() {
   return (
     <MainLayout>
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
-        <div className="container mx-auto px-4 py-10">
-          <div className="mx-auto mb-8 max-w-2xl text-center">
-            <div className="mx-auto mb-6 w-fit rounded-full border border-white/60 bg-white/70 px-5 py-2 shadow backdrop-blur">
+        <div className="container px-4 py-10 mx-auto">
+          <div className="max-w-2xl mx-auto mb-8 text-center">
+            <div className="px-5 py-2 mx-auto mb-6 border rounded-full shadow w-fit border-white/60 bg-white/70 backdrop-blur">
               <div className="flex items-center gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+                <div className="flex items-center justify-center text-white rounded-full h-7 w-7 bg-gradient-to-r from-orange-500 to-amber-500">
                   <User2 size={14} />
                 </div>
                 <span className="text-sm font-semibold text-gray-700">
@@ -248,14 +247,14 @@ export default function RegisterPage() {
             <h1 className="mb-4 text-4xl font-black tracking-tight text-orange-900 md:text-5xl">
               {t("register.title")}
             </h1>
-            <p className="mx-auto max-w-xl text-lg text-gray-700">
+            <p className="max-w-xl mx-auto text-lg text-gray-700">
               {t("register.subtitle")}
             </p>
           </div>
 
-          <div className="mx-auto max-w-md">
+          <div className="max-w-md mx-auto">
             <form onSubmit={onSubmit} dir={dir} className="space-y-6">
-              <div className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-xl backdrop-blur">
+              <div className="p-8 border border-gray-200 shadow-xl rounded-2xl bg-white/80 backdrop-blur">
                 <div className="space-y-6">
                   <FloatInput
                     value={fullName}
@@ -467,7 +466,7 @@ export default function RegisterPage() {
                         type="checkbox"
                         checked={agree}
                         onChange={(e) => setAgree(e.target.checked)}
-                        className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
+                        className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
                       />
                       <label htmlFor="agree" className="text-sm text-gray-700">
                         {t("register.agree")}

@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { Mail, Phone, Eye, EyeOff, Loader2, Lock, LogIn } from "lucide-react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
+
 import MainLayout from "./layouts/MainLayout";
-import { apiLogin } from "../services/auth";
 import TwoFactorAuth from "../components/auth/TwoFactorAuth";
+import { apiLogin } from "../services/auth";
 
 export default function LoginPage() {
   const { t, i18n } = useTranslation();
@@ -77,16 +78,16 @@ export default function LoginPage() {
 
   return (
     <MainLayout>
-      <section className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 py-16">
-        <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-orange-200/30 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-amber-200/30 blur-3xl" />
+      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+        <div className="absolute w-64 h-64 rounded-full pointer-events-none -top-24 -right-24 bg-orange-200/30 blur-3xl" />
+        <div className="absolute w-64 h-64 rounded-full pointer-events-none -bottom-24 -left-24 bg-amber-200/30 blur-3xl" />
 
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="mx-auto max-w-md">
+        <div className="container relative z-10 px-4 mx-auto">
+          <div className="max-w-md mx-auto">
             
-            <div className="mb-6 w-fit rounded-full border border-white/60 bg-white/70 px-5 py-2 shadow-sm backdrop-blur">
+            <div className="px-5 py-2 mb-6 border rounded-full shadow-sm w-fit border-white/60 bg-white/70 backdrop-blur">
               <div className="flex items-center gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+                <div className="flex items-center justify-center text-white rounded-full h-7 w-7 bg-gradient-to-r from-orange-500 to-amber-500">
                   <LogIn size={14} />
                 </div>
                 <span className="text-sm font-semibold text-gray-700">
@@ -96,7 +97,7 @@ export default function LoginPage() {
             </div>
 
             <form onSubmit={onSubmit} className="space-y-6">
-              <div className="rounded-2xl border border-gray-200 bg-white/80 p-8 shadow-xl backdrop-blur">
+              <div className="p-8 border border-gray-200 shadow-xl rounded-2xl bg-white/80 backdrop-blur">
                
 
                 <div className="mb-2">
@@ -198,7 +199,7 @@ export default function LoginPage() {
                     <p className="mt-1 text-xs text-red-600">{errors.password}</p>
                   )}
 
-                  <div className="mt-2 flex items-center justify-between text-xs">
+                  <div className="flex items-center justify-between mt-2 text-xs">
                     <label className="inline-flex items-center gap-2 text-gray-700">
                       <input
                         type="checkbox"
@@ -213,7 +214,7 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center gap-3">
+                <div className="flex items-center gap-3 mt-4">
                   <button
                     type="submit"
                     disabled={loading}
